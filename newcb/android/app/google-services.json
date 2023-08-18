@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "637405091641",
+    "firebase_url": "https://cook-admin-86ba7-default-rtdb.firebaseio.com",
+    "project_id": "cook-admin-86ba7",
+    "storage_bucket": "cook-admin-86ba7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637405091641:android:248860b042a8c2b7bb3ae8",
+        "android_client_info": {
+          "package_name": "com.newcb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637405091641-bjnsh1t6q46ujl8do6lgrsj01tjr7rdo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newcb",
+            "certificate_hash": "7e6a95f7018684e3069fca2675da470c310b4e36"
+          }
+        },
+        {
+          "client_id": "637405091641-ieplijd54tbla638jdv4a62o8phuqsru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newcb",
+            "certificate_hash": "c6407dd3a362efac860e5d18b8948d6eb369b7ce"
+          }
+        },
+        {
+          "client_id": "637405091641-3o8c717lrj2q8qur2ji84f3hb5rh8i52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDat7rhwXNwhfaqcDYvi8-VFxqCItl8Qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637405091641-3o8c717lrj2q8qur2ji84f3hb5rh8i52.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -85,10 +85,10 @@ function HomeNav() {
 }
 
 function SubCategoryNav() {
-  const [path, setPath] = useState(require("./imgs/heart_w.jpg"));
-  const IdContext = useContext([]);
-  const Data = useContext(UserContext);
-  let ID;  
+  // const [path, setPath] = useState(require("./imgs/heart_w.jpg"));
+  // const IdContext = useContext([]);
+  // const Data = useContext(UserContext);
+  // let ID;  
 
   /* Store Data */
   // const storeData = async (localid,name) => {

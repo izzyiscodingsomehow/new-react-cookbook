@@ -36,7 +36,7 @@ const Profile = ({ navigation }) => {
               </View>
             </Button>
 
-            <Button
+            {/* <Button
               style={styles.pagebutton}
               onPress={() => navigation.navigate("How To Use")}
             >
@@ -51,7 +51,7 @@ const Profile = ({ navigation }) => {
                   Help
                 </Text>
               </View>
-            </Button>
+            </Button> */}
 
             <Button
               style={styles.pagebutton}

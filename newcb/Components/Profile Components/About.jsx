@@ -18,7 +18,7 @@ const About = ({ navigation }) => {
             <Text style={styles.HeadingText}>
               About
             </Text>
-            <Text style={{ fontWeight: "bold", fontSize: 15 }}>{abouttext}</Text>
+            <Text style={styles.bodyText}>{abouttext}</Text>
           </View>
         </ScrollView>
         <View style={styles.footer}>

@@ -73,9 +73,9 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 android {
     ndkVersion rootProject.ext.ndkVersion
 
-    namespace "com.newcb"
+    namespace "com.CookBook"
     defaultConfig {
-        applicationId "com.newcb"
+        applicationId "com.CookBook"
         minSdkVersion rootProject.ext.minSdkVersion
         compileSdkVersion rootProject.ext.compileSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

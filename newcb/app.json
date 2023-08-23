@@ -1,4 +1,11 @@
 {
-  "name": "newcb",
-  "displayName": "newcb"
+  "name": "CookBook",
+  "displayName": "CookBook",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "ac5c56c1-8edf-4803-9ff6-0f6b53e9ba08"
+      }
+    }
+  }
 }

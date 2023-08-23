@@ -201,10 +201,11 @@ const Home = ({ navigation }) => {
               );
             })}
           </View>
+          {/*}
           <View style={styles.reccomendedcontainer}>
-            {/* <View style={styles.reccomended}> */}
+             <View style={styles.reccomended}> 
             <Text style={styles.reccheading}>Recommended</Text>
-            {/* <Button style={styles.morebutton}>
+             <Button style={styles.morebutton}>
                 <View style={{ flexDirection: "row" }}>
                   <Text
                     style={{ color: "black", fontSize: 15, fontWeight: "bold" }}
@@ -216,7 +217,7 @@ const Home = ({ navigation }) => {
                     style={styles.arrowimg}
                   />
                 </View>
-              </Button> */}
+              </Button> 
             <View style={styles.subbuttons}>
               {Data.Data.slice(0, 3).map((e) => {
                 return (
@@ -234,7 +235,6 @@ const Home = ({ navigation }) => {
                   </Button>
                 );
               })}
-              {/* </View> */}
             </View>
             {/* <View style={styles.reccrecipe}>
               <Button style={styles.reccrecipebutton}>
@@ -246,8 +246,9 @@ const Home = ({ navigation }) => {
                   <Text style={styles.reccrecipetext}>Recipe</Text>
                 </View>
               </Button>
-            </View> */}
+            </View> 
           </View>
+          */}
         </View>
         <View style={styles.footer}>
           <Footer navigation={navigation} />

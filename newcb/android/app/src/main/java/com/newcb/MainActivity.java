@@ -1,4 +1,4 @@
-package com.newcb;
+package com.CookBook;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
@@ -19,7 +19,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "newcb";
+    return "CookBook";
   }
 
   /**

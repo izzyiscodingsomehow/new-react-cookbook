@@ -1,4 +1,4 @@
-import Login from "./Components/Login.jsx";
+// import Login from "./Components/Login.jsx";
 import React, {useState, useContext} from "react";
 import Home from "./Components/Home.jsx";
 import Search from "./Components/Main Pages/Search.jsx";
@@ -192,9 +192,7 @@ function MyStack() {
         }}
       >
         <Stack.Screen name="HomeNav" component={HomeNav} />
-        <Stack.Screen name="Login" component={Login} />
-        
-
+        {/* <Stack.Screen name="Login" component={Login} /> */}
       </Stack.Navigator>
     </ContextProvider>
   );

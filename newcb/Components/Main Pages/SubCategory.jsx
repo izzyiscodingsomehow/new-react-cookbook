@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
   // Inner Text
   innerText: {
     textAlign: "center"
+    , color: 'black'
   },
  
   // Footer

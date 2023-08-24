@@ -48,7 +48,7 @@ const Recipe = ({ navigation, route }) => {
 
                 <Container style={{}}>
                   {e.Quantity.map((s, i) => {
-                    return <Text style={{marginVertical: 3,marginLeft:30}} key={i}>{i}-{s}</Text>;
+                    return <Text style={{marginVertical: 3,marginLeft:30, color: 'black'}} key={i}>{i}-{s}</Text>;
                   })}
                 </Container>
               </Container>

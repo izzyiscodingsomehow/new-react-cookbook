@@ -25,7 +25,7 @@ const Recipe = ({ navigation, route }) => {
 
               {"\n"}
               <Container style={{width: 320}}>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                <Text style={{ fontSize: 20, fontWeight: "bold", color: 'black' }}>
                   Ingredients
                 </Text>
               </Container>
@@ -42,7 +42,7 @@ const Recipe = ({ navigation, route }) => {
                 {/* 2 columns for Data Calling Ingredients and Quantity */}
                 <Container>
                   {e.Ingredient.map((s, i) => {
-                    return <Text style={{marginVertical: 3, width:250}} key={i}>{i}-{s}</Text>;
+                    return <Text style={{marginVertical: 3, width:250, color: 'black' }} key={i}>{i}-{s}</Text>;
                   })}
                 </Container>
 
@@ -56,7 +56,7 @@ const Recipe = ({ navigation, route }) => {
               {"\n"}
 
               <Container style={{}}>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Recipe</Text>
+                <Text style={{ fontSize: 20, fontWeight: "bold", color: 'black' }}>Recipe</Text>
                 {/* Procedure */}
                 <Text style={styles.makingstyle}>{e.Making}</Text>
               </Container>
@@ -64,7 +64,7 @@ const Recipe = ({ navigation, route }) => {
               {"\n"}
 
               <Container style={styles.refVid}>
-                <Text style={{ fontSize: 20, fontWeight: "bold",width: 250 }}>
+                <Text style={{ fontSize: 20, fontWeight: "bold",width: 250, color: 'black' }}>
                   Reference Video
                 </Text>
                 {/* Reference Video Link */}
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     width: 320,
     textAlign: "justify",
     lineHeight: 20,
+    color: 'black'
   },
 });
 

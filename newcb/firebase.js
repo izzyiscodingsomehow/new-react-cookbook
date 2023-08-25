@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore"
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
@@ -30,13 +31,9 @@ if(!firebase.apps.length) {
 
 export { firebase };
 
-/*
-GoogleSignin.configure({
-    webClientId:'637405091641-3o8c717lrj2q8qur2ji84f3hb5rh8i52.apps.googleusercontent.com',
-    offlineAcess:true,
-})
+
 export async function signInWithGoogle(){
     const idToken = await GoogleSignin.signIn();
     const googleCredential = GoogleAuthProvider.credential(idToken);
     return auth().signInWithCredential(googleCredential);
-}*/
+}

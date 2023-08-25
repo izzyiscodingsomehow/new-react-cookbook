@@ -1,4 +1,4 @@
-package com.CookBook;
+package com.undefinedtech.cookbook;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

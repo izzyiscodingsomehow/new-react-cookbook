@@ -9,6 +9,7 @@ const color = "#E89452";
 const Recipe = ({ navigation, route }) => {
 
   const Data = useContext(UserContext);
+  const tableHead = ['Ingredients', 'Quantity'];
   
   return (
     <NativeBaseProvider>
@@ -30,6 +31,7 @@ const Recipe = ({ navigation, route }) => {
                 </Text>
               </Container>
 
+              {/* /* NOT INCLUDED */ }
               {/* <Container>
                   {e.map((s, i) => {
                     return <Text style={{marginVertical: 3, width:250}} key={i}>{s}</Text>;
@@ -42,16 +44,18 @@ const Recipe = ({ navigation, route }) => {
                 {/* 2 columns for Data Calling Ingredients and Quantity */}
                 <Container>
                   {e.Ingredient.map((s, i) => {
-                    return <Text style={{marginVertical: 3, width:250, color: 'black' }} key={i}>{i}-{s}</Text>;
+                    return <Text style={{marginVertical: 3, width:250, color: 'black' }} key={i}>{s}</Text>;
                   })}
                 </Container>
 
                 <Container style={{}}>
                   {e.Quantity.map((s, i) => {
-                    return <Text style={{marginVertical: 3,marginLeft:30, color: 'black'}} key={i}>{i}-{s}</Text>;
+                    return <Text style={{marginVertical: 3,marginLeft:30, color: 'black'}} key={i}>{s}</Text>;
                   })}
                 </Container>
               </Container>
+
+
 
               {"\n"}
 
@@ -82,6 +86,12 @@ const Recipe = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+
+  container: {
+    paddingTop: 100,
+    paddingHorizontal: 30,
+  },
+
   // Main Container
   IngredCont: {
     marginTop: 70,

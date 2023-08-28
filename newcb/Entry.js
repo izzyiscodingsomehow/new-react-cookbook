@@ -14,11 +14,7 @@ import SubCat from "./Components/Main Pages/SubCategory.jsx";
 import AllCat from "./Components/Main Pages/AllCategory.jsx"
 import Youtube from './Components/Global/YoutubePlayer.jsx';
 import { Button, NativeBaseProvider } from "native-base";
-import { Image } from "react-native";
-import {
-  UserContext,
-  ContextProvider,
-} from "./Components/Global/ContextAPI.jsx";
+import  { UserContext, ContextProvider } from "./Components/Global/ContextAPI.jsx";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 

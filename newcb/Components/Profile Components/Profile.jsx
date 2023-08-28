@@ -2,9 +2,18 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
 import Footer from "../Footer.jsx";
+import auth from '../../firebase';
+import { signOut } from "firebase/auth";
+
 const color = "#E89452";
 
 const Profile = ({ navigation }) => {
+
+  const LogOut = () => { 
+    signOut(auth).then(() => {
+      navigation.navigate('Login');
+    })
+  }
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -103,6 +112,11 @@ const Profile = ({ navigation }) => {
                 </Text>
               </View>
             </Button>
+
+            <Button style={styles.pagebutton} onPress={LogOut}>
+              <Text style={{color: 'black', fontWeight: 'bold', fontSize: 25}}>Sign Out</Text>
+            </Button>
+
           </View>
         </View>
         <View style={styles.footer}>

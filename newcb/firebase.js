@@ -19,9 +19,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
+var auth = getAuth(app);
 export const db = getFirestore(app);
 //export const provider = new GoogleAuthProvider();
+
 
 /* Initialize Firebase */
 if(!firebase.apps.length) {
@@ -30,13 +31,22 @@ if(!firebase.apps.length) {
 
 export { firebase };
 
+<<<<<<< Updated upstream
 /*
 GoogleSignin.configure({
     webClientId:'637405091641-3o8c717lrj2q8qur2ji84f3hb5rh8i52.apps.googleusercontent.com',
     offlineAcess:true,
 })
+=======
+>>>>>>> Stashed changes
 export async function signInWithGoogle(){
     const idToken = await GoogleSignin.signIn();
     const googleCredential = GoogleAuthProvider.credential(idToken);
     return auth().signInWithCredential(googleCredential);
+<<<<<<< Updated upstream
 }*/
+=======
+}
+
+export default auth;
+>>>>>>> Stashed changes

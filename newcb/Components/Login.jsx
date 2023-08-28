@@ -9,7 +9,81 @@
 
 // const color = "#E89452";
 
+<<<<<<< Updated upstream
 // const Login = ({ navigation }) => {
+=======
+const Login = ({ navigation }) => {
+    const [userid, setUserId] = useState({
+        userInfo: null,
+        });
+    useEffect(() => {
+        GoogleSignin.configure({
+            webClientId:'637405091641-3o8c717lrj2q8qur2ji84f3hb5rh8i52.apps.googleusercontent.com',
+            offlineAcess:true,
+        });
+    }, [])
+    const signIn = async () => {
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            setUserId({ userInfo });
+        } catch (error) {
+          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+            // user cancelled the login flow
+          } else if (error.code === statusCodes.IN_PROGRESS) {
+            // operation (e.g. sign in) is in progress already
+          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+            // play services not available or outdated
+          } else {
+            // some other error happened
+          }
+        }
+      };
+return (
+  <NativeBaseProvider>
+    <ImageBackground
+      source={require("../imgs/mainBg.jpg")}
+      resizeMode="cover"
+      style={styles.bgimage}
+    >
+      <View style={styles.container}>
+        <View style={styles.upperContainer}>
+          <View>
+            <Image
+              source={require("../imgs/CookBookLogo.jpg")}
+              style={styles.imageStyle}
+            />
+          </View>
+          <Text style={styles.mainHeading}>COOK BOOK</Text>
+          <View style={styles.JustifyText}>
+            <Text style={styles.textColor}>
+              "Delight your taste buds, one
+            </Text>
+            <Text style={styles.textColor}>recipe at a time !"</Text>
+          </View>
+        </View>
+        <Text style={styles.heading}>Sign Up</Text>
+         <Button style={styles.ButtonProp} onPress={()=>signIn().then(()=>navigation.navigate("HomeNav")).catch((e) => navigation.navigate("Login"))}>
+          <View style={styles.imagetext}>
+            <Image
+              source={require("../imgs/gmail.jpg")}
+              style={{ height: 23, width: 22, marginRight: 15 }}
+            />
+            <Text style={{ color: "white",width:140, }}>Continue with Gmail</Text>
+          </View>
+        </Button>
+        
+        {/*
+        <Button style={styles.ButtonPropface}>
+          <View style={styles.imagetext}>
+            <Image
+              source={require("../imgs/facebook.jpg")}
+              style={{ height: 30, width: 17, marginRight: 5, marginTop: -2 }}
+            />
+            <Text style={{ color: "white",width:160 }}>Continue with Facebook</Text>
+          </View>
+        </Button> */}
+>>>>>>> Stashed changes
 
 // return (
 //   <NativeBaseProvider>

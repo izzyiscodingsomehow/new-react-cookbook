@@ -13,6 +13,7 @@ import About from "./Components/Profile Components/About.jsx";
 import SubCat from "./Components/Main Pages/SubCategory.jsx";
 import AllCat from "./Components/Main Pages/AllCategory.jsx"
 import Youtube from './Components/Global/YoutubePlayer.jsx';
+import Login from './Components/Login.jsx';
 import { Button, NativeBaseProvider } from "native-base";
 import  { UserContext, ContextProvider } from "./Components/Global/ContextAPI.jsx";
 import { NavigationContainer } from "@react-navigation/native";
@@ -60,7 +61,7 @@ function HomeNav() {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false }}
+        options={{ headerShown: false}}
       />
       <Stack.Screen
         name="SubCategoryNav"
@@ -187,8 +188,8 @@ function MyStack() {
           headerShown: false,
         }}
       >
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="HomeNav" component={HomeNav} />
-        {/* <Stack.Screen name="Login" component={Login} /> */}
       </Stack.Navigator>
     </ContextProvider>
   );

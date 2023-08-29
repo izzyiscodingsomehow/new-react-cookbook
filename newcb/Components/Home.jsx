@@ -1,5 +1,5 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
 import { UserContext } from "./Global/ContextAPI";
@@ -8,14 +8,21 @@ import Listener from "./Global/Listener";
 
 const color = "#E89452";
 
-const Home = ({ navigation }) => {
+const Home = ({ route, navigation}) => {
   // Always write Data.Data for accessing data elements from firebase in other components
-  /* Check if User is logged In or Not */
-  Listener();
 
+  /* Check if User is logged In or Not */
+  const { Opt } = route.params;
+  console.log(Opt);
+
+  /* If User Signs In using Google, Attach Listener */
+  if(Opt == 1) {
+    Listener();
+  }
+  
   const Data = useContext(UserContext);
   //console.log(Data.Data.map(e => e.id))
-  
+  //alert(Opt);
   return (
     <NativeBaseProvider>
       <ImageBackground

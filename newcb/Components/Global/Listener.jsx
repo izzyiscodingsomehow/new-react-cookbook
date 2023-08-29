@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react';
-// import {auth} from '@react-native-firebase/auth';
-import  auth  from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
-import { onAuthStateChanged } from 'firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 function Listener() {
+
+  console.log("Called");
 
   const [Authuser, setAuthUser ] = useState();
   const navigation = useNavigation();
 
-  /* Working */
   useEffect(() => {
-    const subscriber = onAuthStateChanged(auth, (user) => {
-      /* If User Logged In */
+    const unsubscribe = auth().onAuthStateChanged((user) => {
       if(user) {
         setAuthUser(user);
-        navigation.navigate('Home');
-        Alert("Welcome" + Authuser.email);
-      } else { /* If User Not Logged In */
-        setUser(null);
-        navigation.navigate('Login');
-        console.log("Not Logged In");
+        navigation.navigate("HomeNav");
       }
-    });
+      else {
+        setAuthUser(null);
+        navigation.navigate("Login");
+      }
+    })
     
-    return () => subscriber(); // unsubscribe on unmount
+    return () => unsubscribe(); // unsubscribe on unmount
   }, []);
 
 }

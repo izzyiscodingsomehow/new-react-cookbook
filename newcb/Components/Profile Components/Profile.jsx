@@ -14,6 +14,7 @@ const Profile = ({ navigation }) => {
       navigation.navigate('Login');
     })
   }
+  
   return (
     <NativeBaseProvider>
       <ImageBackground

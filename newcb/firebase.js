@@ -30,10 +30,4 @@ if(!firebase.apps.length) {
 }
 
 export { firebase };
-
-
-export async function signInWithGoogle(){
-    const idToken = await GoogleSignin.signIn();
-    const googleCredential = GoogleAuthProvider.credential(idToken);
-    return auth().signInWithCredential(googleCredential);
-}
+export const auth = firebase.auth();

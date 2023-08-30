@@ -23,23 +23,31 @@ const Login = ({navigation}) => {
       offlineAcess: true,
     });
   }, []);
-  const signIn = async () => {
+  const onGooglePressButton = async () => {
     try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      setUserId({userInfo});
+      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      const userInfo = await GoogleSignin.signIn(); // Error on this line -> SHA-1 key not initiliazed 
+      console.log(userInfo); // UserInfo Null
+      setUserId({userInfo}); 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
+        console.log(error);
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
+        console.log(error);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
+        console.log(error);
       } else {
         // some other error happened
+        console.log(error);
       }
     }
   };
+
+  console.log(userid);
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -66,7 +74,7 @@ const Login = ({navigation}) => {
           <Button
             style={styles.ButtonProp}
             onPress={() =>
-              signIn()
+              onGooglePressButton()
                 .then(() =>
                   navigation.navigate('HomeNav', {
                     screen: 'Home',

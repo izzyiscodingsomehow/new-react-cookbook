@@ -1,17 +1,21 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {NativeBaseProvider} from 'native-base';
 import {Button} from 'native-base';
+import {auth, provider} from '../firebase';
+import {signInWithPopup} from 'firebase/auth';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {useState} from 'react';
-import {useEffect} from 'react';
+import {useState, useEffect} from 'react';
+import {Screen} from 'react-native-screens';
 
 const color = '#E89452';
 
 const Login = ({navigation}) => {
-  const [userid, setUserId] = useState(null);
+  const [userid, setUserId] = useState({
+    userInfo: null,
+  });
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
@@ -19,24 +23,31 @@ const Login = ({navigation}) => {
       offlineAcess: true,
     });
   }, []);
-  const signIn = async () => {
+  const onGooglePressButton = async () => {
     try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      setUserId({userInfo});
-      navigation.navigate('HomeNav');
+      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      const userInfo = await GoogleSignin.signIn(); // Error on this line -> SHA-1 key not initiliazed 
+      console.log(userInfo); // UserInfo Null
+      setUserId({userInfo}); 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
+        console.log(error);
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
+        console.log(error);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
+        console.log(error);
       } else {
         // some other error happened
+        console.log(error);
       }
     }
   };
+
+  console.log(userid);
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -60,7 +71,18 @@ const Login = ({navigation}) => {
             </View>
           </View>
           <Text style={styles.heading}>Sign Up</Text>
-          <Button style={styles.ButtonProp} onPress={() => signIn()}>
+          <Button
+            style={styles.ButtonProp}
+            onPress={() =>
+              onGooglePressButton()
+                .then(() =>
+                  navigation.navigate('HomeNav', {
+                    screen: 'Home',
+                    params: {Opt: 1},
+                  }),
+                )
+                .catch(e => navigation.navigate('Login'))
+            }>
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/gmail.jpg')}
@@ -85,7 +107,9 @@ const Login = ({navigation}) => {
 
           <Button
             style={styles.ButtonPropGuest}
-            onPress={() => navigation.navigate('HomeNav')}>
+            onPress={() =>
+              navigation.navigate('HomeNav', {screen: 'Home', params: {Opt: 0}})
+            }>
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/guest.jpg')}
@@ -173,11 +197,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: color,
     fontWeight: 'bold',
+    marginBottom: 60,
   },
 
   // Gmail Button
   ButtonProp: {
     marginTop: 25,
+    margin: 50,
     backgroundColor: '#D44C3D',
     padding: 15,
     paddingHorizontal: 30,

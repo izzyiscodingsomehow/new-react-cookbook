@@ -2,21 +2,24 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
 import Footer from "../Footer.jsx";
-import {
-  GoogleSignin,
-} from '@react-native-google-signin/google-signin';
+import auth from '../../firebase';
+import { signOut } from "firebase/auth";
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const color = "#E89452";
 
 const Profile = ({ navigation }) => {
+
+  
   signOut = async () => {
     try {
       await GoogleSignin.signOut();
-      navigation.navigate("Login") // Remember to remove the user from your app's state as well
+      //setState({ user: null }); // Remember to remove the user from your app's state as well
     } catch (error) {
       console.error(error);
     }
   };
+  
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -26,22 +29,6 @@ const Profile = ({ navigation }) => {
       >
         <View style={styles.container}>
           <View style={styles.pagebuttons}>
-            <Button
-              style={styles.pagebutton}
-              onPress={()=>signOut()}
-            >
-              <View style={styles.imagetext}>
-                <Image
-                  source={require("../../imgs/logout.jpg")}
-                  style={{ height: 35, width: 35,marginLeft:3, marginRight: 5 }}
-                />
-                <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
-                >
-                  Logout
-                </Text>
-              </View>
-            </Button>
             <Button
               style={styles.pagebutton}
               onPress={() => navigation.navigate("Suggestion Box")}
@@ -131,6 +118,17 @@ const Profile = ({ navigation }) => {
                 </Text>
               </View>
             </Button>
+
+            <Button style={styles.pagebutton} onPress={LogOut}>
+            <View style={styles.imagetext}>
+              <Image
+                  style={{ height: 35, width: 35, marginRight: 5 }}
+                  source={require("../../imgs/logout.jpg")}
+                />
+              <Text style={{color: 'black', fontWeight: 'bold', fontSize: 25}}>Sign Out</Text>
+            </View>
+            </Button>
+
           </View>
         </View>
         <View style={styles.footer}>

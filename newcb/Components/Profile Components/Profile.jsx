@@ -10,15 +10,14 @@ const color = "#E89452";
 
 const Profile = ({ navigation }) => {
 
-  
-  signOut = async () => {
+  const signOut = async () => {
     try {
       await GoogleSignin.signOut();
       //setState({ user: null }); // Remember to remove the user from your app's state as well
     } catch (error) {
       console.error(error);
     }
-  };
+  }
   
   return (
     <NativeBaseProvider>
@@ -119,7 +118,7 @@ const Profile = ({ navigation }) => {
               </View>
             </Button>
 
-            <Button style={styles.pagebutton} onPress={LogOut}>
+            <Button style={styles.pagebutton} onPress={signOut}>
             <View style={styles.imagetext}>
               <Image
                   style={{ height: 35, width: 35, marginRight: 5 }}

@@ -2,9 +2,10 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
-import { UserContext } from "./Global/ContextAPI";
-import { useContext, useState } from "react";
+import { UserContext, } from "./Global/ContextAPI";
+import { useContext, useState, useEffect } from "react";
 import Listener from "./Global/Listener";
+import Loader from "./Global/Loader";
 
 const color = "#E89452";
 
@@ -19,22 +20,31 @@ const Home = ({ route, navigation}) => {
   // if(Opt == 1) {
   //   Listener();
   // }
-  
+  const [isLoading,setIsLoading]=useState(true);
+    useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(!isLoading);
+      }, 2800);
+    }, []);
   const Data = useContext(UserContext);
+  
   //console.log(Data.Data.map(e => e.id))
   //alert(Opt);
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider style={{backgroundColor:color}}>
+      
       <ImageBackground
         source={require("../imgs/mainBg.jpg")}
         resizeMode="cover"
         style={styles.bgimage}
       >
+        {isLoading?<Loader/>:null}
         <View style={styles.header}>
           <Text style={styles.HeadingText}>Cook Book</Text>
         </View>
         <View style={styles.container}>
           <View style={styles.innercontainers}>
+          
             <View style={styles.headings}>
               <Text style={{ fontSize: 20, fontWeight: "bold" }}>
                 Categories
@@ -143,7 +153,7 @@ const Home = ({ route, navigation}) => {
               </Button>
             </View>
             <View style={styles.subbuttons}>
-              {Data.Data.slice(0, 5).map((e) => {
+              {Data.Data.slice(0,5).map((e,index) => {
                 return (
                   <Button
                     key={e.id}

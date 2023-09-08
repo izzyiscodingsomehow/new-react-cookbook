@@ -25,6 +25,7 @@ const Login = ({navigation}) => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       setUserId({userInfo});
+      console.log(userInfo);
       navigation.navigate('HomeNav');
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {

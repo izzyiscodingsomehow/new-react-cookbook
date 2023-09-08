@@ -14,6 +14,7 @@ const Profile = ({ navigation }) => {
     try {
       await GoogleSignin.signOut();
       //setState({ user: null }); // Remember to remove the user from your app's state as well
+      navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }

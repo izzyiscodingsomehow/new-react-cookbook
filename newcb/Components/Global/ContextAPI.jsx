@@ -6,7 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 const UserContext = createContext([]);
 
 const ContextProvider = ({ children }) => {
-  const [Data, setData] = useState([]);
+  const [Data, setData] = useState();
   const categoriesRef = collection(db, "categories");
   // Fetch Data from Firebase
   useEffect(() => {
@@ -14,7 +14,6 @@ const ContextProvider = ({ children }) => {
       const data = await getDocs(categoriesRef);
       setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-
     ReadData();
   }, []);
   

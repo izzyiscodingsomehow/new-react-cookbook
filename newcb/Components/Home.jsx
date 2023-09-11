@@ -21,24 +21,23 @@ const Home = ({ route, navigation}) => {
   //   Listener();
   // }
   const [isLoading,setIsLoading]=useState(true);
-    useEffect(() => {
-      setTimeout(() => {
-        setIsLoading(!isLoading);
-      }, 2800);
-    }, []);
+    
   const Data = useContext(UserContext);
-  
+  useEffect(() => {
+      if(Data.Data)
+      setIsLoading(false);
+  }, [Data]);
   //console.log(Data.Data.map(e => e.id))
   //alert(Opt);
   return (
     <NativeBaseProvider style={{backgroundColor:color}}>
-      
       <ImageBackground
         source={require("../imgs/mainBg.jpg")}
         resizeMode="cover"
         style={styles.bgimage}
       >
-        {isLoading?<Loader/>:null}
+        {isLoading?<Loader/>:(
+        <>
         <View style={styles.header}>
           <Text style={styles.HeadingText}>Cook Book</Text>
         </View>
@@ -153,7 +152,7 @@ const Home = ({ route, navigation}) => {
               </Button>
             </View>
             <View style={styles.subbuttons}>
-              {Data.Data.slice(0,5).map((e,index) => {
+              {Data.Data.slice(0,5).map((e) => {
                 return (
                   <Button
                     key={e.id}
@@ -274,6 +273,8 @@ const Home = ({ route, navigation}) => {
         <View style={styles.footer}>
           <Footer navigation={navigation} />
         </View>
+        </>
+      )}
       </ImageBackground>
     </NativeBaseProvider>
   );

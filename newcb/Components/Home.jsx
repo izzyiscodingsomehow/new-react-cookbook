@@ -2,10 +2,11 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
-import { UserContext, } from "./Global/ContextAPI";
+import { UserContext } from "./Global/ContextAPI";
 import { useContext, useState, useEffect } from "react";
 import Listener from "./Global/Listener";
 import Loader from "./Global/Loader";
+import { AuthUserInfo } from "./Login";
 
 const color = "#E89452";
 
@@ -23,6 +24,11 @@ const Home = ({ route, navigation}) => {
   const [isLoading,setIsLoading]=useState(true);
     
   const Data = useContext(UserContext);
+  const AuthData = useContext(AuthUserInfo);
+
+  console.log("In Home");
+  console.log(AuthData);
+
   useEffect(() => {
       if(Data.Data)
       setIsLoading(false);

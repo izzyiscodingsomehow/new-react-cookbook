@@ -19,6 +19,7 @@ import {
   UserContext,
   ContextProvider,
 } from "./Components/Global/ContextAPI.jsx";
+import { AuthUserInfo, AuthUserInfoProvider } from "./Components/Login.jsx";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -185,7 +186,9 @@ function SubCategoryNav() {
 
 function MyStack() {
   return (
+    
     <ContextProvider>
+      <AuthUserInfoProvider>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
@@ -193,9 +196,10 @@ function MyStack() {
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="HomeNav" component={HomeNav} />
-        
       </Stack.Navigator>
+      </AuthUserInfoProvider>
     </ContextProvider>
+    
   );
 }
 const Entry = () => {

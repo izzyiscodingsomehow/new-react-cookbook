@@ -5,9 +5,14 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, createContext, Children} from 'react';
 
+/* TO DO
+1- Use Context API for object */
 const color = '#E89452';
+
+const AuthUserInfo = createContext([]);
+let arr;
 
 const Login = ({navigation}) => {
   const [userid, setUserId] = useState({
@@ -20,13 +25,19 @@ const Login = ({navigation}) => {
       offlineAcess: true,
     });
   }, []);
+  // Sign In Function
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      // store user info 
       setUserId({userInfo});
-      console.log(userInfo);
-      navigation.navigate('HomeNav');
+      // push user info in object
+      arr = userInfo;
+      // display object
+      console.log("User Data")
+      console.log(arr);
+      
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -39,7 +50,9 @@ const Login = ({navigation}) => {
         console.log(error);
       }
     }
+
   };
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -111,6 +124,20 @@ const Login = ({navigation}) => {
     </NativeBaseProvider>
   );
 };
+
+
+// Context API For Authenticated User 
+const AuthUserInfoProvider = ({children}) => {
+  // Store in Context Provider
+  //avigation.navigate('HomeNav');
+  return(
+    <AuthUserInfo.Provider value={ arr }>{children}</AuthUserInfo.Provider>
+  );
+};
+
+
+export { AuthUserInfo, AuthUserInfoProvider };
+
 
 const styles = StyleSheet.create({
   // Main Container

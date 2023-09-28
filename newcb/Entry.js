@@ -1,5 +1,5 @@
 import Login from "./Components/Login.jsx";
-import React, {useState, useContext} from "react";
+import React, { useState, useContext, createContext } from "react";
 import Home from "./Components/Home.jsx";
 import Search from "./Components/Main Pages/Search.jsx";
 //import Favorites from "./Components/Main Pages/Favorites.jsx";
@@ -14,7 +14,7 @@ import SubCat from "./Components/Main Pages/SubCategory.jsx";
 import AllCat from "./Components/Main Pages/AllCategory.jsx"
 import Youtube from './Components/Global/YoutubePlayer.jsx';
 import { Button, NativeBaseProvider } from "native-base";
-import { Image } from "react-native";
+import { Image, Text } from "react-native";
 import {
   UserContext,
   ContextProvider,
@@ -26,25 +26,30 @@ const color = "#E89452";
 const Stack = createNativeStackNavigator();
 
 function ProfileNav() {
+  const { user, setUser } = useContext(UserContext);
+  console.log(user.user.givenName);
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: color,
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-      }}
-    >
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Suggestion Box" component={SuggBox} />
-      <Stack.Screen name="Terms and Conditions" component={TermsandCond} />
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="How To Use" component={Help} />
-      <Stack.Screen name="Privacy Policy" component={PrivacyPolicy} />
-    </Stack.Navigator>
+    <>
+      <Text>{user.user.givenName}</Text>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: color,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Suggestion Box" component={SuggBox} />
+        <Stack.Screen name="Terms and Conditions" component={TermsandCond} />
+        <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="How To Use" component={Help} />
+        <Stack.Screen name="Privacy Policy" component={PrivacyPolicy} />
+      </Stack.Navigator>
+    </>
   );
 
 }
@@ -88,7 +93,8 @@ function SubCategoryNav() {
   const [path, setPath] = useState(require("./imgs/heart_w.jpg"));
   const IdContext = useContext([]);
   const Data = useContext(UserContext);
-  let ID;  
+  console.log("This is my Data: ", Data);
+  let ID;
 
   /* Store Data */
   // const storeData = async (localid,name) => {
@@ -111,9 +117,9 @@ function SubCategoryNav() {
   // }
 
   // const pathhandler = (name) => {
-    
+
   //   if (path == (require("./imgs/heart_w.jpg"))) {
-      
+
   //     setPath(require("./imgs/heart.jpg"));
 
   //       /* 1- Get the ID of the recipe
@@ -129,56 +135,57 @@ function SubCategoryNav() {
 
   //     alert("Added to Favorites");
   //   } else {
-      
+
   //     setPath(require("./imgs/heart_w.jpg"));
-      
+
   //     Data.Data.map((e) => {
   //       if( e.RecipeName == name) {
   //         ID = e.id;
   //       }
   //     })
-      
+
   //     removeValue(ID); // Function Calling
   //     alert("Removed from Favorites");
-  
+
   //   }
   // };
   return (
     <NativeBaseProvider>
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: color,
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-      }}
-    >
-      <Stack.Screen
-        name="SubCategory"
-        component={SubCat}
-        options={({ route }) => ({ title: route.params.name })}
-      />
-      <Stack.Screen name="Recipe" component={Recipe} 
-      options={ ({ route }) => ({ title: route.params.name , 
-      // headerRight: () => (
-      //   // onPress={() => {pathhandler(route.params.name)}}
-      //   <Button style={{backgroundColor:color}} >  
-      //     <Image
-      //       source={path}
-      //       style={{ width: 29, height: 26 }}
-      //     />
-      //   </Button>
-      // ), 
-      }) }/>
-      <Stack.Screen name="Youtube"
-       component={Youtube}
-       options={({ route }) => ({ title: route.params.name })}  />
-       <Stack.Screen name="AllCategory" component={AllCat} 
-       options={({ route }) => ({ title: route.params.name })} />
-    </Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: color,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <Stack.Screen
+          name="SubCategory"
+          component={SubCat}
+          options={({ route }) => ({ title: route.params.name })}
+        />
+        <Stack.Screen name="Recipe" component={Recipe}
+          options={({ route }) => ({
+            title: route.params.name,
+            // headerRight: () => (
+            //   // onPress={() => {pathhandler(route.params.name)}}
+            //   <Button style={{backgroundColor:color}} >  
+            //     <Image
+            //       source={path}
+            //       style={{ width: 29, height: 26 }}
+            //     />
+            //   </Button>
+            // ), 
+          })} />
+        <Stack.Screen name="Youtube"
+          component={Youtube}
+          options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="AllCategory" component={AllCat}
+          options={({ route }) => ({ title: route.params.name })} />
+      </Stack.Navigator>
     </NativeBaseProvider>
   );
 }
@@ -193,7 +200,7 @@ function MyStack() {
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="HomeNav" component={HomeNav} />
-        
+
       </Stack.Navigator>
     </ContextProvider>
   );

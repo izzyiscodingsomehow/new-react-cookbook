@@ -1,15 +1,17 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {NativeBaseProvider} from 'native-base';
-import {Button} from 'native-base';
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { NativeBaseProvider } from 'native-base';
+import { Button } from 'native-base';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from './Global/ContextAPI';
 
 const color = '#E89452';
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
+  const { user, setUser } = useContext(UserContext);
   const [userid, setUserId] = useState({
     userInfo: null,
   });
@@ -24,18 +26,24 @@ const Login = ({navigation}) => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      setUserId({userInfo});
+      setUserId({ userInfo });
+      setUser(userInfo);
       console.log(userInfo);
+
       navigation.navigate('HomeNav');
     } catch (error) {
+
+      // user cancelled the login flow
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
+
         // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+
         // play services not available or outdated
-      } else {
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+
         // some other error happened
+      } else {
         console.log(error);
       }
     }
@@ -67,9 +75,9 @@ const Login = ({navigation}) => {
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/gmail.jpg')}
-                style={{height: 23, width: 22, marginRight: 15}}
+                style={{ height: 23, width: 22, marginRight: 15 }}
               />
-              <Text style={{color: 'white', width: 140}}>
+              <Text style={{ color: 'white', width: 140 }}>
                 Continue with Gmail
               </Text>
             </View>
@@ -92,18 +100,18 @@ const Login = ({navigation}) => {
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/guest.jpg')}
-                style={{height: 25, width: 26, marginRight: 15, marginLeft: 5}}
+                style={{ height: 25, width: 26, marginRight: 15, marginLeft: 5 }}
               />
-              <Text style={{color: 'black', fontWeight: 'bold', width: 160}}>
+              <Text style={{ color: 'black', fontWeight: 'bold', width: 160 }}>
                 Continue as Guest
               </Text>
             </View>
           </Button>
           <View style={styles.Footer}>
-            <Text style={{fontWeight: 'bold', marginRight: 5}}>From</Text>
+            <Text style={{ fontWeight: 'bold', marginRight: 5 }}>From</Text>
             <Image
               source={require('../imgs/undefinedlogo.jpg')}
-              style={{height: 20, width: 17}}
+              style={{ height: 20, width: 17 }}
             />
           </View>
         </View>

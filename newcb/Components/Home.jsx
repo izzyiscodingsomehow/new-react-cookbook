@@ -9,7 +9,7 @@ import Loader from "./Global/Loader";
 
 const color = "#E89452";
 
-const Home = ({ route, navigation}) => {
+const Home = ({ route, navigation }) => {
   // Always write Data.Data for accessing data elements from firebase in other components
 
   /* Check if User is logged In or Not */
@@ -20,208 +20,209 @@ const Home = ({ route, navigation}) => {
   // if(Opt == 1) {
   //   Listener();
   // }
-  const [isLoading,setIsLoading]=useState(true);
-    
+  const [isLoading, setIsLoading] = useState(true);
+
   const Data = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   useEffect(() => {
-      if(Data.Data)
+    if (Data.Data)
       setIsLoading(false);
   }, [Data]);
   //console.log(Data.Data.map(e => e.id))
   //alert(Opt);
   return (
-    <NativeBaseProvider style={{backgroundColor:color}}>
+    <NativeBaseProvider style={{ backgroundColor: color }}>
       <ImageBackground
         source={require("../imgs/mainBg.jpg")}
         resizeMode="cover"
         style={styles.bgimage}
       >
-        {isLoading?<Loader/>:(
-        <>
-        <View style={styles.header}>
-          <Text style={styles.HeadingText}>Cook Book</Text>
-        </View>
-        <View style={styles.container}>
-          <View style={styles.innercontainers}>
-          
-            <View style={styles.headings}>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                Categories
-              </Text>
+        {isLoading ? <Loader /> : (
+          <>
+            <View style={styles.header}>
+              <Text style={styles.HeadingText}>Cook Book</Text>
             </View>
+            <View style={styles.container}>
+              <View style={styles.innercontainers}>
 
-            <View style={styles.subbuttons}>
-              <Button
-                style={styles.subbutton}
-                onPress={() =>
-                  navigation.navigate("SubCategoryNav", {
-                    screen: "SubCategory",
-                    params: { name: "Break Fast" },
-                  })
-                }
-              >
-                <Text style={styles.subtext}>Break Fast</Text>
-              </Button>
-
-              <Button
-                style={styles.subbutton}
-                onPress={() =>
-                  navigation.navigate("SubCategoryNav", {
-                    screen: "SubCategory",
-                    params: { name: "Lunch" },
-                  })
-                }
-              >
-                <Text style={styles.subtext}>Lunch</Text>
-              </Button>
-              <Button
-                style={styles.subbutton}
-                onPress={() =>
-                  navigation.navigate("SubCategoryNav", {
-                    screen: "SubCategory",
-                    params: { name: "Dinner" },
-                  })
-                }
-              >
-                <Text style={styles.subtext}>Dinner</Text>
-              </Button>
-              <Button
-                style={styles.subbutton}
-                onPress={() =>
-                  navigation.navigate("SubCategoryNav", {
-                    screen: "SubCategory",
-                    params: { name: "Appetizer" },
-                  })
-                }
-              >
-                <Text style={styles.subtext}>Appetizer</Text>
-              </Button>
-              <Button
-                style={styles.subbutton}
-                onPress={() =>
-                  navigation.navigate("SubCategoryNav", {
-                    screen: "SubCategory",
-                    params: { name: "Fast Food" },
-                  })
-                }
-              >
-                <Text style={styles.subtext}>Fast Food</Text>
-              </Button>
-              <Button
-                style={styles.subbutton}
-                onPress={() =>
-                  navigation.navigate("SubCategoryNav", {
-                    screen: "SubCategory",
-                    params: { name: "Desserts" },
-                  })
-                }
-              >
-                <Text style={styles.subtext}>Desserts</Text>
-              </Button>
-            </View>
-          </View>
-          <View style={styles.innercontainers}>
-            <View style={styles.reccomended}>
-              <View style={styles.headings}>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  Top Recipes
-                </Text>
-              </View>
-              <Button style={styles.morebutton} onPress={() =>
-                navigation.navigate("SubCategoryNav", {
-                  screen: "AllCategory",
-                  params: { name: "Top Recipes" },
-                })
-              }>
-                <View style={{ flexDirection: "row" }}>
-                  <Text
-                    style={{
-                      color: "black",
-                      fontSize: 15,
-                      fontWeight: "bold",
-                      marginLeft: 10,
-                    }}
-                  >
-                    Explore Now
+                <View style={styles.headings}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    Categories
                   </Text>
-                  <Image
-                    source={require("../imgs/arrow.jpg")}
-                    style={styles.arrowimg}
-                  />
                 </View>
-              </Button>
-            </View>
-            <View style={styles.subbuttons}>
-              {Data.Data.slice(0,5).map((e) => {
-                return (
+
+                <View style={styles.subbuttons}>
                   <Button
-                    key={e.id}
                     style={styles.subbutton}
                     onPress={() =>
                       navigation.navigate("SubCategoryNav", {
-                        screen: "Recipe",
-                        params: { name: e.RecipeName, id: e.id },
+                        screen: "SubCategory",
+                        params: { name: "Break Fast" },
                       })
                     }
                   >
-                    <Text style={styles.subtext}>{e.RecipeName}</Text>
+                    <Text style={styles.subtext}>Break Fast</Text>
                   </Button>
-                );
-              })}
-            </View>
-          </View>
-          <View style={styles.reccomended}>
-            <View style={styles.headings}>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                New Recipes
-              </Text>
-            </View>
-            <Button
-              style={styles.morebutton}
-              onPress={() =>
-                navigation.navigate("SubCategoryNav", {
-                  screen: "AllCategory",
-                  params: { name: "New Recipes" },
-                })
-              }
-            >
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    color: "black",
-                    fontSize: 15,
-                    fontWeight: "bold",
-                    marginLeft: 10,
-                  }}
-                >
-                  Explore Now
-                </Text>
-                <Image
-                  source={require("../imgs/arrow.jpg")}
-                  style={styles.arrowimg}
-                />
+
+                  <Button
+                    style={styles.subbutton}
+                    onPress={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Lunch" },
+                      })
+                    }
+                  >
+                    <Text style={styles.subtext}>Lunch</Text>
+                  </Button>
+                  <Button
+                    style={styles.subbutton}
+                    onPress={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Dinner" },
+                      })
+                    }
+                  >
+                    <Text style={styles.subtext}>Dinner</Text>
+                  </Button>
+                  <Button
+                    style={styles.subbutton}
+                    onPress={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Appetizer" },
+                      })
+                    }
+                  >
+                    <Text style={styles.subtext}>Appetizer</Text>
+                  </Button>
+                  <Button
+                    style={styles.subbutton}
+                    onPress={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Fast Food" },
+                      })
+                    }
+                  >
+                    <Text style={styles.subtext}>Fast Food</Text>
+                  </Button>
+                  <Button
+                    style={styles.subbutton}
+                    onPress={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Desserts" },
+                      })
+                    }
+                  >
+                    <Text style={styles.subtext}>Desserts</Text>
+                  </Button>
+                </View>
               </View>
-            </Button>
-          </View>
-          <View style={styles.subbuttons}>
-            {Data.Data.slice(0, 3).map((e) => {
-              return (
+              <View style={styles.innercontainers}>
+                <View style={styles.reccomended}>
+                  <View style={styles.headings}>
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                      Top Recipes
+                    </Text>
+                  </View>
+                  <Button style={styles.morebutton} onPress={() =>
+                    navigation.navigate("SubCategoryNav", {
+                      screen: "AllCategory",
+                      params: { name: "Top Recipes" },
+                    })
+                  }>
+                    <View style={{ flexDirection: "row" }}>
+                      <Text
+                        style={{
+                          color: "black",
+                          fontSize: 15,
+                          fontWeight: "bold",
+                          marginLeft: 10,
+                        }}
+                      >
+                        Explore Now
+                      </Text>
+                      <Image
+                        source={require("../imgs/arrow.jpg")}
+                        style={styles.arrowimg}
+                      />
+                    </View>
+                  </Button>
+                </View>
+                <View style={styles.subbuttons}>
+                  {Data.Data.slice(0, 5).map((e) => {
+                    return (
+                      <Button
+                        key={e.id}
+                        style={styles.subbutton}
+                        onPress={() =>
+                          navigation.navigate("SubCategoryNav", {
+                            screen: "Recipe",
+                            params: { name: e.RecipeName, id: e.id },
+                          })
+                        }
+                      >
+                        <Text style={styles.subtext}>{e.RecipeName}</Text>
+                      </Button>
+                    );
+                  })}
+                </View>
+              </View>
+              <View style={styles.reccomended}>
+                <View style={styles.headings}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    New Recipes
+                  </Text>
+                </View>
                 <Button
-                  key={e.id}
-                  style={styles.subbutton}
+                  style={styles.morebutton}
                   onPress={() =>
                     navigation.navigate("SubCategoryNav", {
-                      screen: "Recipe",
-                      params: { name: e.RecipeName, id: e.id },
+                      screen: "AllCategory",
+                      params: { name: "New Recipes" },
                     })
                   }
                 >
-                  <Text style={styles.subtext}>{e.RecipeName}</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      style={{
+                        color: "black",
+                        fontSize: 15,
+                        fontWeight: "bold",
+                        marginLeft: 10,
+                      }}
+                    >
+                      Explore Now
+                    </Text>
+                    <Image
+                      source={require("../imgs/arrow.jpg")}
+                      style={styles.arrowimg}
+                    />
+                  </View>
                 </Button>
-              );
-            })}
-          </View>
-          {/*}
+              </View>
+              <View style={styles.subbuttons}>
+                {Data.Data.slice(0, 3).map((e) => {
+                  return (
+                    <Button
+                      key={e.id}
+                      style={styles.subbutton}
+                      onPress={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "Recipe",
+                          params: { name: e.RecipeName, id: e.id },
+                        })
+                      }
+                    >
+                      <Text style={styles.subtext}>{e.RecipeName}</Text>
+                    </Button>
+                  );
+                })}
+              </View>
+              {/*}
           <View style={styles.reccomendedcontainer}>
              <View style={styles.reccomended}> 
             <Text style={styles.reccheading}>Recommended</Text>
@@ -269,12 +270,12 @@ const Home = ({ route, navigation}) => {
             </View> 
           </View>
           */}
-        </View>
-        <View style={styles.footer}>
-          <Footer navigation={navigation} />
-        </View>
-        </>
-      )}
+            </View>
+            <View style={styles.footer}>
+              <Footer navigation={navigation} />
+            </View>
+          </>
+        )}
       </ImageBackground>
     </NativeBaseProvider>
   );

@@ -20,6 +20,7 @@ import {
   ContextProvider,
 } from "./Components/Global/ContextAPI.jsx";
 import { NavigationContainer } from "@react-navigation/native";
+import ProfileHeader from "./Components/Profile Components/ProfileHeader.jsx";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const color = "#E89452";
@@ -32,15 +33,16 @@ function ProfileNav() {
     <>
       {/* <Text>{user.user.givenName}</Text> */}
       <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: color,
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        }}
+        screenOptions={({ navigation }) => ({
+          header: () => <ProfileHeader navigation={navigation} title="Profile" />,
+          // headerStyle: {
+          //   backgroundColor: '#3498db', // Adjust the color as needed
+          // },
+          // headerTintColor: '#fff',
+          // headerTitleStyle: {
+          //   fontWeight: 'bold',
+          // },
+        })}
       >
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Suggestion Box" component={SuggBox} />

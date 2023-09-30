@@ -141,35 +141,22 @@ const Profile = ({ navigation }) => {
 const styles = StyleSheet.create({
   // Container
   container: {
-    // marginBottom: 310,
-    padding: 0,
+    paddingLeft: 15,
     flex: 1,
-    // alignItems: "center",
-    // backgroundColor: 'red',
     justifyContent: "flex-start",
     alignContent: "flex-start",
-    // borderColor: 'black',
-    // borderWidth: 1,
   },
   // Page Buttons
   pagebuttons: {
-    // backgroundColor: "rgba(255, 255, 255, 0)",
     borderColor: 'black',
-    // borderWidth: 1,
-    // backgroundColor: 'red',
-    // marginLeft: -35,
-    // padding: 20,
-    marginTop: 50,
+    marginTop: 30,
     flexDirection: "column",
     alignItems: "flex-start",
   },
   // Page Button Properties
   pagebutton: {
     backgroundColor: "rgba(255, 255, 255, 0)",
-    // borderWidth: 1,
-    // borderBottomWidth: 1,
     paddingHorizontal: 'auto'
-    // width: '100%',
   },
   // Background Image
   bgimage: {

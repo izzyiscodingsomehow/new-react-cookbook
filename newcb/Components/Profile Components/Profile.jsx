@@ -19,7 +19,7 @@ const Profile = ({ navigation }) => {
       console.error(error);
     }
   }
-  
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -37,14 +37,14 @@ const Profile = ({ navigation }) => {
                 <Image
                   source={require("../../imgs/suggbox.jpg")}
                   style={{
-                    height: 35,
-                    width: 35,
-                    marginRight: 5,
+                    height: 40,
+                    width: 40,
+                    marginRight: 10,
                     marginLeft: -2,
                   }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   Suggestion Box
                 </Text>
@@ -75,10 +75,10 @@ const Profile = ({ navigation }) => {
               <View style={styles.imagetext}>
                 <Image
                   source={require("../../imgs/about.jpg")}
-                  style={{ height: 35, width: 35, marginRight: 5 }}
+                  style={{ height: 40, width: 40, marginRight: 10 }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   About
                 </Text>
@@ -92,10 +92,10 @@ const Profile = ({ navigation }) => {
               <View style={styles.imagetext}>
                 <Image
                   source={require("../../imgs/termncon.jpg")}
-                  style={{ height: 35, width: 33, marginRight: 5 }}
+                  style={{ height: 40, width: 37, marginRight: 10 }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   Terms & Conditions
                 </Text>
@@ -108,11 +108,11 @@ const Profile = ({ navigation }) => {
             >
               <View style={styles.imagetext}>
                 <Image
-                  style={{ height: 35, width: 35, marginRight: 5 }}
+                  style={{ height: 40, width: 40, marginRight: 10 }}
                   source={require("../../imgs/PrivacyPolicy.jpg")}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   Privacy Policy
                 </Text>
@@ -120,19 +120,19 @@ const Profile = ({ navigation }) => {
             </Button>
 
             <Button style={styles.pagebutton} onPress={signOut}>
-            <View style={styles.imagetext}>
-              <Image
-                  style={{ height: 35, width: 35, marginRight: 5 }}
+              <View style={styles.imagetext}>
+                <Image
+                  style={{ height: 40, width: 40, marginRight: 10 }}
                   source={require("../../imgs/logout.jpg")}
                 />
-              <Text style={{color: 'black', fontWeight: 'bold', fontSize: 25}}>Sign Out</Text>
-            </View>
+                <Text style={{ color: 'black', fontWeight: '', fontSize: 23 }}>Sign Out</Text>
+              </View>
             </Button>
 
           </View>
         </View>
         <View style={styles.footer}>
-        <Footer navigation={navigation}/>
+          <Footer navigation={navigation} />
         </View>
       </ImageBackground>
     </NativeBaseProvider>
@@ -141,29 +141,39 @@ const Profile = ({ navigation }) => {
 const styles = StyleSheet.create({
   // Container
   container: {
-    marginBottom: 310,
+    // marginBottom: 310,
     padding: 0,
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // backgroundColor: 'red',
+    justifyContent: "flex-start",
+    alignContent: "flex-start",
+    // borderColor: 'black',
+    // borderWidth: 1,
   },
   // Page Buttons
   pagebuttons: {
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    marginLeft: -35,
-    padding: 10,
-    marginTop: 250,
+    // backgroundColor: "rgba(255, 255, 255, 0)",
+    borderColor: 'black',
+    // borderWidth: 1,
+    // backgroundColor: 'red',
+    // marginLeft: -35,
+    // padding: 20,
+    marginTop: 50,
     flexDirection: "column",
     alignItems: "flex-start",
   },
   // Page Button Properties
   pagebutton: {
     backgroundColor: "rgba(255, 255, 255, 0)",
+    // borderWidth: 1,
+    // borderBottomWidth: 1,
+    paddingHorizontal: 'auto'
+    // width: '100%',
   },
   // Background Image
   bgimage: {
     flex: 1,
-    justifyContent: "center",
   },
   // ImageText
   imagetext: {

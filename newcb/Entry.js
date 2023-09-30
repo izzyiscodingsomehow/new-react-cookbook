@@ -30,7 +30,7 @@ function ProfileNav() {
   console.log(user.user.givenName);
   return (
     <>
-      <Text>{user.user.givenName}</Text>
+      {/* <Text>{user.user.givenName}</Text> */}
       <Stack.Navigator
         screenOptions={{
           headerStyle: {

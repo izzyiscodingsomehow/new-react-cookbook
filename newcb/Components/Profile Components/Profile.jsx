@@ -5,21 +5,26 @@ import Footer from "../Footer.jsx";
 import auth from '../../firebase';
 import { signOut } from "firebase/auth";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { UserContext } from '../Global/ContextAPI';
+import { useContext } from "react";
 
 const color = "#E89452";
 
 const Profile = ({ navigation }) => {
+  
+  const { user, setUser } = useContext(UserContext);
 
   const signOut = async () => {
     try {
       await GoogleSignin.signOut();
       //setState({ user: null }); // Remember to remove the user from your app's state as well
+      setUser(null);
       navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }
   }
-  
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -37,14 +42,14 @@ const Profile = ({ navigation }) => {
                 <Image
                   source={require("../../imgs/suggbox.jpg")}
                   style={{
-                    height: 35,
-                    width: 35,
-                    marginRight: 5,
+                    height: 40,
+                    width: 40,
+                    marginRight: 10,
                     marginLeft: -2,
                   }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   Suggestion Box
                 </Text>
@@ -75,10 +80,10 @@ const Profile = ({ navigation }) => {
               <View style={styles.imagetext}>
                 <Image
                   source={require("../../imgs/about.jpg")}
-                  style={{ height: 35, width: 35, marginRight: 5 }}
+                  style={{ height: 40, width: 40, marginRight: 10 }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   About
                 </Text>
@@ -92,10 +97,10 @@ const Profile = ({ navigation }) => {
               <View style={styles.imagetext}>
                 <Image
                   source={require("../../imgs/termncon.jpg")}
-                  style={{ height: 35, width: 33, marginRight: 5 }}
+                  style={{ height: 40, width: 37, marginRight: 10 }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   Terms & Conditions
                 </Text>
@@ -108,11 +113,11 @@ const Profile = ({ navigation }) => {
             >
               <View style={styles.imagetext}>
                 <Image
-                  style={{ height: 35, width: 35, marginRight: 5 }}
+                  style={{ height: 40, width: 40, marginRight: 10 }}
                   source={require("../../imgs/PrivacyPolicy.jpg")}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "bold", fontSize: 25 }}
+                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
                 >
                   Privacy Policy
                 </Text>
@@ -120,19 +125,19 @@ const Profile = ({ navigation }) => {
             </Button>
 
             <Button style={styles.pagebutton} onPress={signOut}>
-            <View style={styles.imagetext}>
-              <Image
-                  style={{ height: 35, width: 35, marginRight: 5 }}
+              <View style={styles.imagetext}>
+                <Image
+                  style={{ height: 40, width: 40, marginRight: 10 }}
                   source={require("../../imgs/logout.jpg")}
                 />
-              <Text style={{color: 'black', fontWeight: 'bold', fontSize: 25}}>Sign Out</Text>
-            </View>
+                <Text style={{ color: 'black', fontWeight: '', fontSize: 23 }}>Sign Out</Text>
+              </View>
             </Button>
 
           </View>
         </View>
         <View style={styles.footer}>
-        <Footer navigation={navigation}/>
+          <Footer navigation={navigation} />
         </View>
       </ImageBackground>
     </NativeBaseProvider>
@@ -141,29 +146,26 @@ const Profile = ({ navigation }) => {
 const styles = StyleSheet.create({
   // Container
   container: {
-    marginBottom: 310,
-    padding: 0,
+    paddingLeft: 15,
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    alignContent: "flex-start",
   },
   // Page Buttons
   pagebuttons: {
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    marginLeft: -35,
-    padding: 10,
-    marginTop: 250,
+    borderColor: 'black',
+    marginTop: 30,
     flexDirection: "column",
     alignItems: "flex-start",
   },
   // Page Button Properties
   pagebutton: {
     backgroundColor: "rgba(255, 255, 255, 0)",
+    paddingHorizontal: 'auto'
   },
   // Background Image
   bgimage: {
     flex: 1,
-    justifyContent: "center",
   },
   // ImageText
   imagetext: {

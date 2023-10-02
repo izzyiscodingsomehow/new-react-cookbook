@@ -7,6 +7,7 @@ const UserContext = createContext([]);
 
 const ContextProvider = ({ children }) => {
   const [Data, setData] = useState();
+  const [user, setUser] = useState("");
   const categoriesRef = collection(db, "categories");
   // Fetch Data from Firebase
   useEffect(() => {
@@ -19,7 +20,7 @@ const ContextProvider = ({ children }) => {
   
   // Store in Context API
   return (
-    <UserContext.Provider value={{ Data }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ Data, user, setUser }}>{children}</UserContext.Provider>
   );
 };
 export const useData = () => useContext(UserContext);

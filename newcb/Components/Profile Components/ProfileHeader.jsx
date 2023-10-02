@@ -9,16 +9,21 @@ const ProfileHeader = ({ navigation, title }) => {
 
     return (
         <View style={styles.header}>
-            {/* <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Image source={require('../../imgs/backArrow.png')} />
-            </TouchableOpacity> */}
- 
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image source={require('../../imgs/backArrow.png')} style={styles.backButton} />
+            </TouchableOpacity>
+
             {/* TODO: add a placeholder/default image and username to profile is user is a guest  */}
-            <Image source={{ uri: user.user.photo }} style={styles.profileImage} width={75} height={75} />
-            
+            <Image source={user ? { uri: user.user.photo } : require('../../imgs/defaultPfp60x60.png')} style={styles.profileImage} width={60} height={60} />
+
             <View>
-                <Text style={styles.headerTitle}>{user.user.name}</Text>
-                <Text style={styles.subHeader}>{user.user.email}</Text>
+                <Text style={styles.headerTitle}>{user ? user.user.name : "Guest"}</Text>
+                {
+                    user ?
+                        <Text style={styles.subHeader}>{user ? user.user.email : ""}</Text>
+                        :
+                        null
+                }
             </View>
         </View>
     );
@@ -32,26 +37,24 @@ const styles = StyleSheet.create({
         // TODO: add a background color or the background image to the header
         backgroundColor: '#fff',
         padding: 20,
-        paddingTop: 30,
         paddingLeft: 24,
     },
     backButton: {
-        color: '#fff',
-        fontSize: 16,
-        marginRight: 10,
+        marginRight: 18,
+        transform: [{ scale: 1.3 }]
     },
     // username css
     headerTitle: {
         color: '#000',
-        fontSize: 23,
-        paddingLeft: 22,
+        fontSize: 20,
+        paddingLeft: 20,
         fontWeight: 'bold',
     },
     // email css
     subHeader: {
         color: '#000',
-        fontSize: 20,
-        paddingLeft: 22,
+        fontSize: 18,
+        paddingLeft: 20,
         paddingTop: 3,
 
     },

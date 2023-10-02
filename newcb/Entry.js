@@ -28,7 +28,7 @@ const Stack = createNativeStackNavigator();
 
 function ProfileNav() {
   const { user, setUser } = useContext(UserContext);
-  console.log(user.user.givenName);
+  
   return (
     <>
       {/* <Text>{user.user.givenName}</Text> */}

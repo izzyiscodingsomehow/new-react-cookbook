@@ -5,15 +5,20 @@ import Footer from "../Footer.jsx";
 import auth from '../../firebase';
 import { signOut } from "firebase/auth";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { UserContext } from '../Global/ContextAPI';
+import { useContext } from "react";
 
 const color = "#E89452";
 
 const Profile = ({ navigation }) => {
+  
+  const { user, setUser } = useContext(UserContext);
 
   const signOut = async () => {
     try {
       await GoogleSignin.signOut();
       //setState({ user: null }); // Remember to remove the user from your app's state as well
+      setUser(null);
       navigation.navigate("Login");
     } catch (error) {
       console.error(error);

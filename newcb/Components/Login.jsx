@@ -5,10 +5,13 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import { useState, useEffect, useContext } from 'react';
-import { UserContext } from './Global/ContextAPI';
 
+import {useState, useEffect, createContext, Children, useContext, UserContext} from 'react';
+
+/* TO DO
+1- Use Context API for object */
 const color = '#E89452';
+
 
 const Login = ({ navigation }) => {
   const { user, setUser } = useContext(UserContext);
@@ -22,10 +25,12 @@ const Login = ({ navigation }) => {
       offlineAcess: true,
     });
   }, []);
+  // Sign In Function
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      
       setUserId({ userInfo });
       setUser(userInfo);
       console.log(userInfo);
@@ -47,7 +52,9 @@ const Login = ({ navigation }) => {
         console.log(error);
       }
     }
+
   };
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -119,6 +126,20 @@ const Login = ({ navigation }) => {
     </NativeBaseProvider>
   );
 };
+
+
+// Context API For Authenticated User 
+const AuthUserInfoProvider = ({children}) => {
+  // Store in Context Provider
+  //avigation.navigate('HomeNav');
+  return(
+    <AuthUserInfo.Provider value={ arr }>{children}</AuthUserInfo.Provider>
+  );
+};
+
+
+export { AuthUserInfo, AuthUserInfoProvider };
+
 
 const styles = StyleSheet.create({
   // Main Container

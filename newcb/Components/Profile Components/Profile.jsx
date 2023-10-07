@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { UserContext } from '../Global/ContextAPI';
 import { useContext } from "react";
-
+import ProfileHeader, {Profileheader} from './ProfileHeader.jsx';
 const color = "#E89452";
 
 const Profile = ({ navigation }) => {
@@ -33,6 +33,9 @@ const Profile = ({ navigation }) => {
         style={styles.bgimage}
       >
         <View style={styles.container}>
+          <View style={{backgroundColor:"#ffffff0"}}>
+            <ProfileHeader/>
+          </View>
           <View style={styles.pagebuttons}>
             <Button
               style={styles.pagebutton}

@@ -9,9 +9,9 @@ const ProfileHeader = ({ navigation, title }) => {
 
     return (
         <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            {/* <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image source={require('../../imgs/backArrow.png')} style={styles.backButton} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             {/* TODO: add a placeholder/default image and username to profile is user is a guest  */}
             <Image source={user ? { uri: user.user.photo } : require('../../imgs/defaultPfp60x60.png')} style={styles.profileImage} width={60} height={60} />
@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
         // TODO: add a background color or the background image to the header
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff0f',
         padding: 20,
         paddingLeft: 24,
+        marginTop: 10,
     },
     backButton: {
         marginRight: 18,

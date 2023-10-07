@@ -35,7 +35,16 @@ function ProfileNav() {
       {/* <Text>{user.user.givenName}</Text> */}
       <Stack.Navigator
         screenOptions={({ navigation }) => ({
-          header: () => <ProfileHeader navigation={navigation} title="Profile" />,
+          headerStyle: {
+            backgroundColor: color,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          // headerRight: () => (
+          //   <ProfileHeader navigation={navigation} />
+          // ),
           // headerStyle: {
           //   backgroundColor: '#3498db', // Adjust the color as needed
           // },
@@ -45,7 +54,7 @@ function ProfileNav() {
           // },
         })}
       >
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Profile" component={Profile} options={{ headerShown:true, title:"Profile" }}/>
         <Stack.Screen name="Suggestion Box" component={SuggBox} />
         <Stack.Screen name="Terms and Conditions" component={TermsandCond} />
         <Stack.Screen name="About" component={About} />
@@ -195,9 +204,7 @@ function SubCategoryNav() {
 
 function MyStack() {
   return (
-    
     <ContextProvider>
-      <AuthUserInfoProvider>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
@@ -205,8 +212,8 @@ function MyStack() {
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="HomeNav" component={HomeNav} />
+
       </Stack.Navigator>
-      </AuthUserInfoProvider>
     </ContextProvider>
     
   );

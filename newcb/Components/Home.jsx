@@ -27,10 +27,10 @@ const Home = ({ route, navigation }) => {
 
   const { user, setUser } = useContext(UserContext);
 
-  const AuthData = useContext(AuthUserInfo);
+  // const AuthData = useContext(AuthUserInfo);
 
-  console.log("In Home");
-  console.log(AuthData);
+  // console.log("In Home");
+  // console.log(AuthData);
 
 
   useEffect(() => {

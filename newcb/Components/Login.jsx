@@ -1,55 +1,69 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { NativeBaseProvider } from 'native-base';
-import { Button } from 'native-base';
+import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {Alert, NativeBaseProvider} from 'native-base';
+import {Button} from 'native-base';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-import {useState, useEffect, createContext, Children, useContext} from 'react';
-import { UserContext } from './Global/ContextAPI';
+import {useEffect, useContext} from 'react';
+import {UserContext} from './Global/ContextAPI';
 /* TO DO
 1- Use Context API for object */
 const color = '#E89452';
 
-
-const Login = ({ navigation }) => {
-  const { user, setUser } = useContext(UserContext);
+const Login = ({navigation}) => {
+  const {user, setUser} = useContext(UserContext);
+  // Configure Google Sign In
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
         '637405091641-3o8c717lrj2q8qur2ji84f3hb5rh8i52.apps.googleusercontent.com',
       offlineAcess: true,
     });
+    getCurrentUserInfo();
   }, []);
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+      navigation.navigate('HomeNav');
+    }
+  }, [user]);
+  // Get Current User Info
+  getCurrentUserInfo = async () => {
+    try {
+      const userInfo = await GoogleSignin.signInSilently();
+      if (userInfo) {
+        setUser(userInfo);
+      }
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+        // user has not signed in yet
+      } else {
+        // some other error
+      }
+    }
+  };
   // Sign In Function
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       setUser(userInfo);
-      console.log(userInfo);
-
-      navigation.navigate('HomeNav');
     } catch (error) {
-
       // user cancelled the login flow
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-
+        alert('Sign in cancelled.');
         // operation (e.g. sign in) is in progress already
       } else if (error.code === statusCodes.IN_PROGRESS) {
-
         // play services not available or outdated
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-
         // some other error happened
       } else {
         console.log(error);
       }
     }
-
   };
-
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -77,9 +91,9 @@ const Login = ({ navigation }) => {
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/gmail.jpg')}
-                style={{ height: 23, width: 22, marginRight: 15 }}
+                style={{height: 23, width: 22, marginRight: 15}}
               />
-              <Text style={{ color: 'white', width: 140 }}>
+              <Text style={{color: 'white', width: 140}}>
                 Continue with Gmail
               </Text>
             </View>
@@ -102,18 +116,18 @@ const Login = ({ navigation }) => {
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/guest.jpg')}
-                style={{ height: 25, width: 26, marginRight: 15, marginLeft: 5 }}
+                style={{height: 25, width: 26, marginRight: 15, marginLeft: 5}}
               />
-              <Text style={{ color: 'black', fontWeight: 'bold', width: 160 }}>
+              <Text style={{color: 'black', fontWeight: 'bold', width: 160}}>
                 Continue as Guest
               </Text>
             </View>
           </Button>
           <View style={styles.Footer}>
-            <Text style={{ fontWeight: 'bold', marginRight: 5 }}>From</Text>
+            <Text style={{fontWeight: 'bold', marginRight: 5}}>From</Text>
             <Image
               source={require('../imgs/undefinedlogo.jpg')}
-              style={{ height: 20, width: 17 }}
+              style={{height: 20, width: 17}}
             />
           </View>
         </View>
@@ -121,7 +135,6 @@ const Login = ({ navigation }) => {
     </NativeBaseProvider>
   );
 };
-
 
 const styles = StyleSheet.create({
   // Main Container

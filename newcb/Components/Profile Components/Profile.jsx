@@ -52,7 +52,7 @@ const Profile = ({ navigation }) => {
                   }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
+                  style={{ color: "black", fontWeight: "bold", fontSize: 23 }}
                 >
                   Suggestion Box
                 </Text>
@@ -86,7 +86,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 40, marginRight: 10 }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
+                  style={{ color: "black", fontWeight: "bold", fontSize: 23 }}
                 >
                   About
                 </Text>
@@ -103,7 +103,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 37, marginRight: 10 }}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
+                  style={{ color: "black", fontWeight: "bold", fontSize: 23 }}
                 >
                   Terms & Conditions
                 </Text>
@@ -120,7 +120,7 @@ const Profile = ({ navigation }) => {
                   source={require("../../imgs/PrivacyPolicy.jpg")}
                 />
                 <Text
-                  style={{ color: "black", fontWeight: "", fontSize: 23 }}
+                  style={{ color: "black", fontWeight: "bold", fontSize: 23 }}
                 >
                   Privacy Policy
                 </Text>
@@ -133,7 +133,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 40, marginRight: 10 }}
                   source={require("../../imgs/logout.jpg")}
                 />
-                <Text style={{ color: 'black', fontWeight: '', fontSize: 23 }}>Sign Out</Text>
+                <Text style={{ color: 'black',fontWeight: "bold", fontSize: 23 }}>Sign Out</Text>
               </View>
             </Button>
 

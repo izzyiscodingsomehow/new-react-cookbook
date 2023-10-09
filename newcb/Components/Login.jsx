@@ -14,6 +14,7 @@ const color = '#E89452';
 
 const Login = ({navigation}) => {
   const {user, setUser} = useContext(UserContext);
+  const {setLoggedIn} = useContext(UserContext);
   // Configure Google Sign In
   useEffect(() => {
     GoogleSignin.configure({
@@ -25,10 +26,11 @@ const Login = ({navigation}) => {
   }, []);
   useEffect(() => {
     if (user) {
-      console.log(user);
       navigation.navigate('HomeNav');
+      setLoggedIn(true);
     }
   }, [user]);
+  
   // Get Current User Info
   getCurrentUserInfo = async () => {
     try {
@@ -112,7 +114,7 @@ const Login = ({navigation}) => {
 
           <Button
             style={styles.ButtonPropGuest}
-            onPress={() => navigation.navigate('HomeNav')}>
+            onPress={() => {navigation.navigate('HomeNav');setLoggedIn(true);}}>
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/guest.jpg')}

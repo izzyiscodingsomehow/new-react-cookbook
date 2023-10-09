@@ -13,17 +13,21 @@ const color = "#E89452";
 const Profile = ({ navigation }) => {
   
   const { user, setUser } = useContext(UserContext);
+  const { Loggedin, setLoggedIn } = useContext(UserContext);
 
   const signOut = async () => {
+    
     try {
-      await GoogleSignin.signOut();
-      //setState({ user: null }); // Remember to remove the user from your app's state as well
-      setUser(null);
+      setLoggedIn(false);
+      if(user){
+        setUser(null);
+        await GoogleSignin.signOut();
+      }
       navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <NativeBaseProvider>

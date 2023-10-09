@@ -21,12 +21,21 @@ const Home = ({ route, navigation }) => {
   const Data = useContext(UserContext);
 
   const { user, setUser } = useContext(UserContext);
+  const {LoggedIn} = useContext(UserContext);
 
   // const AuthData = useContext(AuthUserInfo);
 
   // console.log("In Home");
   // console.log(AuthData);
-
+  //Prevents user from going back to login screen after logging in
+  useEffect(
+    () =>
+      navigation.addListener('beforeRemove', e => {
+        console.log(LoggedIn);
+        if (LoggedIn) {
+        e.preventDefault();
+        }
+      }),[LoggedIn, navigation]);
 
   useEffect(() => {
     if (Data.Data)

@@ -1,7 +1,6 @@
 import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
-import Footer from "../Footer.jsx";
 import { abouttext } from "../../assets/Texts/Texts.js";
 const color = "#E89452";
 
@@ -21,9 +20,6 @@ const About = ({ navigation }) => {
             <Text style={styles.bodyText}>{abouttext}</Text>
           </View>
         </ScrollView>
-        <View style={styles.footer}>
-          <Footer navigation={navigation} />
-        </View>
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -63,14 +59,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-  },
-  // Footer
-  footer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    color: "white",
-    backgroundColor: "#ffffff",
   },
   // Button Properties
   button: {

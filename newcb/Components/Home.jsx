@@ -59,7 +59,6 @@ const Home = ({ route, navigation }) => {
   useEffect(
     () =>
       navigation.addListener('beforeRemove', e => {
-        console.log(LoggedIn);
         if (LoggedIn) {
           e.preventDefault();
         }

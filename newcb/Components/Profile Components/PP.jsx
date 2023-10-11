@@ -9,7 +9,6 @@ import {
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
 import { pptext } from "../../assets/Texts/Texts.js";
-import Footer from "../Footer.jsx";
 const color = "#E89452";
 
 const PrivacyPolicy = ({ navigation }) => {
@@ -31,9 +30,6 @@ const PrivacyPolicy = ({ navigation }) => {
             <Text style={styles.bodyText}>{bodyText}</Text>
           </View>
         </ScrollView>
-        <View style={styles.footer}>
-          <Footer/>
-        </View>
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -73,14 +69,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-  },
-  // Footer
-  footer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    color: "white",
-    backgroundColor: "#ffffff",
   },
   // Button Properties
   button: {

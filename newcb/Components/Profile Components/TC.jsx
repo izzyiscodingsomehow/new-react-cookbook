@@ -2,7 +2,6 @@ import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
 import { termsandconditiontext } from "../../assets/Texts/Texts.js";
-import Footer from "../Footer.jsx";
 const color = "#E89452";
 
 const TermsandCond = ({ navigation }) => {
@@ -24,9 +23,6 @@ const TermsandCond = ({ navigation }) => {
           </View>
         </View>
         </ScrollView>
-        <View style={styles.footer}>
-        <Footer navigation={navigation}/>
-      </View>
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -58,15 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
-  },
-  // Footer
-  footer: {
-    marginTop: -80,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    color: "white",
-    backgroundColor: "#ffffff",
   },
   // Button Properties
   button: {

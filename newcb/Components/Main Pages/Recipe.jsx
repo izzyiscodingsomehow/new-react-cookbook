@@ -70,7 +70,7 @@ const Recipe = ({ navigation, route }) => {
                 </Text>
                 {/* Video Player */}
                 <View style={{ position: "relative", left: 40, top: 10 }}>
-                  <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} />
+                  {/* <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} /> */}
                 </View>
 
               </Container>

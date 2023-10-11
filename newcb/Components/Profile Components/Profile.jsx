@@ -19,18 +19,17 @@ const Profile = ({ navigation }) => {
   const signOut = async () => {
 
     try {
-      console.log("before: ", LoggedIn);
-
-      console.log("after: ", LoggedIn);
+      setLoggedIn(false)
       if (user) {
         setUser(null);
         await GoogleSignin.signOut();
+        navigation.navigate("Login");
       }
+      else{
       setTimeout(async () => {
-        await setLoggedIn(false)
-      }
-         , 500);
-      await navigation.navigate("Login");
+        navigation.navigate("Login");
+      }, 500);
+    }
     } catch (error) {
       console.error(error);
     }

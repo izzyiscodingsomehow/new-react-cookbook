@@ -15,6 +15,8 @@ const Recipe = ({ navigation, route }) => {
     <NativeBaseProvider>
       <ScrollView>
         {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
+          let procedure = e.Making;
+          procedure = procedure.replace(/(?<!\.)\n/g, " ");
           return (
             <Container key={e.id} style={styles.IngredCont}>
      
@@ -59,7 +61,7 @@ const Recipe = ({ navigation, route }) => {
               <Container >
                 <Text style={{ fontSize: 22, fontWeight: "bold", color: 'black' }}>Recipe</Text>
                 {/* Procedure */}
-                <Text style={styles.makingstyle}>{e.Making}</Text>
+                <Text style={styles.makingstyle}>{procedure}</Text>
               </Container>
 
               <Container style={styles.refVid}>

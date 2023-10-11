@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, FlatList, Text, View, TouchableOpacity, SafeAreaView } from "react-native";
 import { NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
@@ -9,40 +9,66 @@ import { AuthUserInfo } from "./Login";
 
 const color = "#E89452";
 
+const Item = ({ item, onPress, backgroundColor, textColor }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
+    <Text style={{ color: textColor, fontSize: 16, }}>{item.title}</Text>
+  </TouchableOpacity>
+);
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Egg Fried Rice',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Lobster Fried Chicken',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Really longggg name',
+  },
+];
+
 const Home = ({ route, navigation }) => {
   // Always write Data.Data for accessing data elements from firebase in other components
 
-  /* Check if User is logged In or Not */
-  // const { Opt } = route.params;
-  // console.log(Opt);
-
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedId, setSelectedId] = useState();
 
   const Data = useContext(UserContext);
 
   const { user, setUser } = useContext(UserContext);
-  const {LoggedIn} = useContext(UserContext);
+  const { LoggedIn } = useContext(UserContext);
 
-  // const AuthData = useContext(AuthUserInfo);
+  const renderItem = ({ item }) => {
+    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const color = item.id === selectedId ? 'white' : 'black';
 
-  // console.log("In Home");
-  // console.log(AuthData);
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={backgroundColor}
+        textColor="#AC6A36"
+      />
+    );
+
+  }
   //Prevents user from going back to login screen after logging in
   useEffect(
     () =>
       navigation.addListener('beforeRemove', e => {
         console.log(LoggedIn);
         if (LoggedIn) {
-        e.preventDefault();
+          e.preventDefault();
         }
-      }),[LoggedIn, navigation]);
+      }), [LoggedIn, navigation]);
 
   useEffect(() => {
     if (Data.Data)
       setIsLoading(false);
   }, [Data]);
-  //console.log(Data.Data.map(e => e.id))
-  //alert(Opt);
   return (
     <NativeBaseProvider style={{ backgroundColor: color }}>
       <ImageBackground
@@ -59,9 +85,43 @@ const Home = ({ route, navigation }) => {
               <View style={styles.innercontainers}>
 
                 <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
+                    Recommended For You
+                  </Text>
+                </View>
+                <SafeAreaView style={{ marginLeft: 15 }}>
+                  <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                    extraData={selectedId}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                </SafeAreaView>
+                <View style={styles.headings}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
+                    New Recipes
+                  </Text>
+                </View>
+                <SafeAreaView style={{ marginLeft: 15 }}>
+                  <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                    extraData={selectedId}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                </SafeAreaView>
+
+                <View style={styles.headings}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
                     Categories
                   </Text>
+                </View>
+                <View style={{ marginLeft: 10, }}>
+                  <Image source={require(".././imgs/breakfast.jpg")} width={75} height={75} />
                 </View>
 
                 <View style={styles.subbuttons}>
@@ -236,6 +296,7 @@ const Home = ({ route, navigation }) => {
                 })}
               </View>
               {/*}
+              
           <View style={styles.reccomendedcontainer}>
              <View style={styles.reccomended}> 
             <Text style={styles.reccheading}>Recommended</Text>
@@ -335,6 +396,15 @@ const styles = StyleSheet.create({
     padding: 0,
     flex: 1,
   },
+  recommendedItem: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    fontSize: 18,
+    backgroundColor: "#F7DAC3",
+    color: "#AC6A36",
+    borderRadius: 10,
+    marginRight: 18,
+  },
   // Inner Container
   innercontainers: {
     marginTop: 20,
@@ -346,14 +416,10 @@ const styles = StyleSheet.create({
   },
   // Headings
   headings: {
-    alignItems: "center",
-    backgroundColor: color,
-    marginLeft: 6,
+    // alignItems: "center",
+    marginLeft: 10,
     padding: 6,
-    width: 150,
-    borderRadius: 15,
-    borderBottomWidth: 6,
-    borderBottomColor: "#00000045",
+    color: "#C77E45"
   },
   // Reccomended
   reccomended: {

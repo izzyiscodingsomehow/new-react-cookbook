@@ -104,9 +104,7 @@ function HomeNav() {
 
 function SubCategoryNav() {
   const [path, setPath] = useState(require("./imgs/heart_w.jpg"));
-  const IdContext = useContext([]);
   const Data = useContext(UserContext);
-  console.log("This is my Data: ", Data);
   let ID;
 
   /* Store Data */

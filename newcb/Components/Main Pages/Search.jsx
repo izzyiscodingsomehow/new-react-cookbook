@@ -34,6 +34,7 @@ const Search = ({ navigation, route }) => {
                 height: 20,
                 width: 20,
                 left: 300,
+                // borderWidth: 20,
                 marginBottom: 15,
                 zIndex: 1,
                 borderRadius: 100,
@@ -42,13 +43,15 @@ const Search = ({ navigation, route }) => {
             <TextField
               required
               w="85%"
-              backgroundColor={color}
-              color="white"
-              placeholder="WANT SOMETHING"
-              placeholderTextColor="white"
+              backgroundColor="transparent"
+              color={color}
+              placeholder={`Search recipe`}
+              placeholderTextColor={color}
               onChangeText={(s) => setSer(s.toUpperCase())}
               value={ser}
               borderRadius="50"
+              borderColor={color}
+              fontSize={16}
               styles={styles.searchBox}
             />
             { ser ?
@@ -71,7 +74,7 @@ const Search = ({ navigation, route }) => {
                   </Container>
                 );
               }
-            ) : <View  style={{backgroundColor: color, borderRadius: 20,  width: 100}}><Text style={{color: 'white', textAlign: 'center', margin: 5}}>Type Above</Text></View>
+            ) : <View  style={{backgroundColor: color, borderRadius: 20,  width: 100}}><Text style={{color: 'white', textAlign: 'center', margin: 7, fontWeight: 'bold', fontSize:16}}>Search</Text></View>
             
             }
           </View>

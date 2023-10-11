@@ -1,75 +1,78 @@
-import { Image, StyleSheet, Text, View, ScrollView, Alert} from "react-native";
-import { NativeBaseProvider, Container, FlatList, Button  } from "native-base";
+import { Image, StyleSheet, Text, View, ScrollView, Alert } from "react-native";
+import { NativeBaseProvider, Container, FlatList, Button } from "native-base";
 import Footer from "../Footer.jsx";
 import { UserContext } from "../Global/ContextAPI.jsx";
 import React, { useContext } from "react";
+import YoutubePlayer from "react-native-youtube-iframe";
 
 const color = "#E89452";
 
 const Recipe = ({ navigation, route }) => {
 
   const Data = useContext(UserContext);
-  
+
   return (
     <NativeBaseProvider>
       <ScrollView>
         {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
           return (
-            <Container key= {e.id} style={styles.IngredCont}>
-              <Container style={styles.img}>
-                <Image
-                  source={{ uri: `${e.ImageLink}` }}
-                  style={{ height: 180, width: 300, borderRadius: 10 }}
-                />
-              </Container>
-
-              {"\n"}
-              <Container style={{width: 320}}>
-                <Text style={{ fontSize: 20, fontWeight: "bold", color: 'black' }}>
+            <Container key={e.id} style={styles.IngredCont}>
+     
+              <Container style={{ width: 320 }}>
+                <Text style={{ fontSize: 22, fontWeight: "bold", color: 'black' }}>
                   Ingredients
                 </Text>
               </Container>
 
-              {/* <Container>
-                  {e.map((s, i) => {
-                    return <Text style={{marginVertical: 3, width:250}} key={i}>{s}</Text>;
-                  })}
-                </Container> */}
-
-
-
               <Container style={styles.ingred}>
                 {/* 2 columns for Data Calling Ingredients and Quantity */}
-                <Container>
+                {/* <Container>
                   {e.Ingredient.map((s, i) => {
-                    return <Text style={{marginVertical: 3, width:250, color: 'black' }} key={i}>{i}-{s}</Text>;
+                    return <Text style={{ marginVertical: s.length >= 25 ? 6 : 5, width: s.length >= 30 ? 200 : 250, color: 'black', fontSize: s.length >= 25 ? 14 : 16 }} key={i}><Text style={{ fontSize: 13 }}>{i}</Text>. {s} </Text>;
+                  })}
+                </Container> */}
+                <Container style={styles.ingredientsWrapper}>
+                  {e.Ingredient.map((s, i) => {
+                    return <>
+                      <View style={styles.ingredientRow} key={i}>
+
+                        {/* Ingredient Name */}
+                        <View style={styles.ingredientColumn}>
+                          <Text style={{ width: 200, fontSize: 16, color: "black" }}><Text style={{ fontSize: 13 }}>{i}. </Text>{s}</Text>
+                        </View>
+
+                        {/* Ingredient Quantity */}
+                        <View style={styles.ingredientColumn}>
+                          <Text style={{ width: 120, fontSize: 15, color: "black" }}>{e.Quantity[i]}</Text>
+                        </View>
+
+                      </View>
+                    </>
                   })}
                 </Container>
 
-                <Container style={{}}>
-                  {e.Quantity.map((s, i) => {
-                    return <Text style={{marginVertical: 3,marginLeft:30, color: 'black'}} key={i}>{i}-{s}</Text>;
-                  })}
-                </Container>
+
               </Container>
 
               {"\n"}
 
-              <Container style={{}}>
-                <Text style={{ fontSize: 20, fontWeight: "bold", color: 'black' }}>Recipe</Text>
+              <Container >
+                <Text style={{ fontSize: 22, fontWeight: "bold", color: 'black' }}>Recipe</Text>
                 {/* Procedure */}
                 <Text style={styles.makingstyle}>{e.Making}</Text>
               </Container>
 
-              {"\n"}
-
               <Container style={styles.refVid}>
-                <Text style={{ fontSize: 20, fontWeight: "bold",width: 250, color: 'black' }}>
-                  Reference Video
+                <Text style={{ fontSize: 20, fontWeight: "bold", width: 260, color: 'black' }}>
+                  Video Tutorial
                 </Text>
-                {/* Reference Video Link */}
-                <Button onPress={() => navigation.navigate("Youtube", {url: e.VideoLink})} style={styles.YoutubeBut}>Youtube Video</Button>
+                {/* Video Player */}
+                <View style={{ position: "relative", left: 40, top: 10 }}>
+                  <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} />
+                </View>
+
               </Container>
+
             </Container>
           );
         })}
@@ -84,14 +87,34 @@ const Recipe = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   // Main Container
   IngredCont: {
-    marginTop: 70,
+    marginTop: 20,
     marginBottom: 310,
     alignItems: "center",
     justifyContent: "center",
     display: "flex"
   },
-
+  ingredientsWrapper: {
+    position: "relative",
+    left: -53,
+  },
+  ingredientRow: {
+    display: "flex",
+    color: "black",
+    fontSize: 16,
+    width: 400,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 25,
+    color: "black",
+    marginBottom: 6,
+  },
+  ingredientColumn: {
+    display: "flex",
+    alignSelf: "center",
+  },
   ingred: {
+    marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -103,18 +126,12 @@ const styles = StyleSheet.create({
 
   // Reference Video
   refVid: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: "start"
   },
 
-  // Youtube Button
-  YoutubeBut: {
-    marginTop: 10,
-    marginLeft: 80,
-    borderRadius: 20,
-    backgroundColor: color, 
-    color: 'white',
-  },
   //Footer
   footer: {
     flexDirection: "row",
@@ -125,9 +142,11 @@ const styles = StyleSheet.create({
   },
   // making style
   makingstyle: {
-    width: 320,
+    marginTop: 10,
+    width: 340,
+    fontSize: 16,
     textAlign: "justify",
-    lineHeight: 20,
+    lineHeight: 23,
     color: 'black'
   },
 });

@@ -13,7 +13,6 @@ const ProfileHeader = ({ navigation, title }) => {
                 <Image source={require('../../imgs/backArrow.png')} style={styles.backButton} />
             </TouchableOpacity> */}
 
-            {/* TODO: add a placeholder/default image and username to profile is user is a guest  */}
             <Image source={user ? { uri: user.user.photo } : require('../../imgs/defaultPfp60x60.png')} style={styles.profileImage} width={60} height={60} />
 
             <View>

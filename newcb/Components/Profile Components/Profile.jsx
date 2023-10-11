@@ -7,23 +7,30 @@ import { signOut } from "firebase/auth";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { UserContext } from '../Global/ContextAPI';
 import { useContext } from "react";
-import ProfileHeader, {Profileheader} from './ProfileHeader.jsx';
+import ProfileHeader, { Profileheader } from './ProfileHeader.jsx';
 const color = "#E89452";
 
 const Profile = ({ navigation }) => {
-  
+
   const { user, setUser } = useContext(UserContext);
-  const { Loggedin, setLoggedIn } = useContext(UserContext);
+  const { LoggedIn, setLoggedIn } = useContext(UserContext);
+  console.log(LoggedIn);
 
   const signOut = async () => {
-    
+
     try {
-      setLoggedIn(false);
-      if(user){
+      console.log("before: ", LoggedIn);
+
+      console.log("after: ", LoggedIn);
+      if (user) {
         setUser(null);
         await GoogleSignin.signOut();
       }
-      navigation.navigate("Login");
+      setTimeout(async () => {
+        await setLoggedIn(false)
+      }
+         , 500);
+      await navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }
@@ -37,8 +44,8 @@ const Profile = ({ navigation }) => {
         style={styles.bgimage}
       >
         <View style={styles.container}>
-          <View style={{backgroundColor:"#ffffff0"}}>
-            <ProfileHeader/>
+          <View style={{ backgroundColor: "#ffffff0" }}>
+            <ProfileHeader />
           </View>
           <View style={styles.pagebuttons}>
             <Button
@@ -137,7 +144,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 40, marginRight: 10 }}
                   source={require("../../imgs/logout.jpg")}
                 />
-                <Text style={{ color: 'black',fontWeight: "bold", fontSize: 23 }}>Sign Out</Text>
+                <Text style={{ color: 'black', fontWeight: "bold", fontSize: 23 }}>Sign Out</Text>
               </View>
             </Button>
 

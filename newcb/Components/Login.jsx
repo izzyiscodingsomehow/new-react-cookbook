@@ -1,20 +1,20 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {Alert, NativeBaseProvider} from 'native-base';
-import {Button} from 'native-base';
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Alert, NativeBaseProvider } from 'native-base';
+import { Button } from 'native-base';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-import {useEffect, useContext} from 'react';
-import {UserContext} from './Global/ContextAPI';
+import { useEffect, useContext } from 'react';
+import { UserContext } from './Global/ContextAPI';
 /* TO DO
 1- Use Context API for object */
 const color = '#E89452';
 
-const Login = ({navigation}) => {
-  const {user, setUser} = useContext(UserContext);
-  const {setLoggedIn} = useContext(UserContext);
+const Login = ({ navigation }) => {
+  const { user, setUser } = useContext(UserContext);
+  const { LoggedIn, setLoggedIn } = useContext(UserContext);
   // Configure Google Sign In
   useEffect(() => {
     GoogleSignin.configure({
@@ -30,7 +30,7 @@ const Login = ({navigation}) => {
       setLoggedIn(true);
     }
   }, [user]);
-  
+
   // Get Current User Info
   getCurrentUserInfo = async () => {
     try {
@@ -93,9 +93,9 @@ const Login = ({navigation}) => {
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/gmail.jpg')}
-                style={{height: 23, width: 22, marginRight: 15}}
+                style={{ height: 23, width: 22, marginRight: 15 }}
               />
-              <Text style={{color: 'white', width: 140}}>
+              <Text style={{ color: 'white', width: 140 }}>
                 Continue with Gmail
               </Text>
             </View>
@@ -114,22 +114,22 @@ const Login = ({navigation}) => {
 
           <Button
             style={styles.ButtonPropGuest}
-            onPress={() => {navigation.navigate('HomeNav');setLoggedIn(true);}}>
+            onPress={() => { navigation.navigate('HomeNav'); setLoggedIn(true); }}>
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/guest.jpg')}
-                style={{height: 25, width: 26, marginRight: 15, marginLeft: 5}}
+                style={{ height: 25, width: 26, marginRight: 15, marginLeft: 5 }}
               />
-              <Text style={{color: 'black', fontWeight: 'bold', width: 160}}>
+              <Text style={{ color: 'black', fontWeight: 'bold', width: 160 }}>
                 Continue as Guest
               </Text>
             </View>
           </Button>
           <View style={styles.Footer}>
-            <Text style={{fontWeight: 'bold', marginRight: 5}}>From</Text>
+            <Text style={{ fontWeight: 'bold', marginRight: 5 }}>From</Text>
             <Image
               source={require('../imgs/undefinedlogo.jpg')}
-              style={{height: 20, width: 17}}
+              style={{ height: 20, width: 17 }}
             />
           </View>
         </View>

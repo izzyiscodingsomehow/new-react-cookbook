@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import { UserContext } from "./Global/ContextAPI";
 import { useContext, useState, useEffect } from "react";
 import Loader from "./Global/Loader";
-import { AuthUserInfo } from "./Login";
+import { FirebaseContext } from "./Global/./ContextFB";
 
 const color = "#E89452";
 
@@ -36,9 +36,7 @@ const Home = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedId, setSelectedId] = useState();
 
-  const Data = useContext(UserContext);
-
-  const { user, setUser } = useContext(UserContext);
+  const Data = useContext(FirebaseContext);
   const { LoggedIn } = useContext(UserContext);
 
   const renderItem = ({ item }) => {

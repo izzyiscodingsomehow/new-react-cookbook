@@ -1,46 +1,47 @@
-import Login from "./Components/Login.jsx";
-import React, { useState, useContext, createContext } from "react";
-import Home from "./Components/Home.jsx";
-import Search from "./Components/Main Pages/Search.jsx";
+import Login from './Components/Login.jsx';
+import React, {useState, useContext, createContext} from 'react';
+import Home from './Components/Home.jsx';
+import Search from './Components/Main Pages/Search.jsx';
 //import Favorites from "./Components/Main Pages/Favorites.jsx";
-import TermsandCond from "./Components/Profile Components/TC.jsx";
-import Help from "./Components/Profile Components/Help.jsx";
-import PrivacyPolicy from "./Components/Profile Components/PP.jsx";
-import Profile from "./Components/Profile Components/Profile.jsx";
-import Recipe from "./Components/Main Pages/Recipe.jsx";
-import SuggBox from "./Components/Profile Components/Suggestions.jsx";
-import About from "./Components/Profile Components/About.jsx";
-import SubCat from "./Components/Main Pages/SubCategory.jsx";
-import AllCat from "./Components/Main Pages/AllCategory.jsx"
+import TermsandCond from './Components/Profile Components/TC.jsx';
+import Help from './Components/Profile Components/Help.jsx';
+import PrivacyPolicy from './Components/Profile Components/PP.jsx';
+import Profile from './Components/Profile Components/Profile.jsx';
+import Recipe from './Components/Main Pages/Recipe.jsx';
+import SuggBox from './Components/Profile Components/Suggestions.jsx';
+import About from './Components/Profile Components/About.jsx';
+import SubCat from './Components/Main Pages/SubCategory.jsx';
+import AllCat from './Components/Main Pages/AllCategory.jsx';
 import Youtube from './Components/Global/YoutubePlayer.jsx';
-import { Button, NativeBaseProvider } from "native-base";
-import { Image, Text } from "react-native";
+import {Button, NativeBaseProvider} from 'native-base';
+import {Image, Text} from 'react-native';
+import {UserContext, ContextProvider} from './Components/Global/ContextAPI.jsx';
 import {
-  UserContext,
-  ContextProvider,
-} from "./Components/Global/ContextAPI.jsx";
-import { AuthUserInfo, AuthUserInfoProvider } from "./Components/Login.jsx";
-import { NavigationContainer } from "@react-navigation/native";
-import ProfileHeader from "./Components/Profile Components/ProfileHeader.jsx";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+  FirebaseContext,
+  FirebaseProvider,
+} from './Components/Global/ContextFB.jsx';
+import {AuthUserInfo, AuthUserInfoProvider} from './Components/Login.jsx';
+import {NavigationContainer} from '@react-navigation/native';
+import ProfileHeader from './Components/Profile Components/ProfileHeader.jsx';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const color = "#E89452";
+const color = '#E89452';
 const Stack = createNativeStackNavigator();
 
 function ProfileNav() {
-  const { user, setUser } = useContext(UserContext);
-  
+  const {user, setUser} = useContext(UserContext);
+
   return (
     <>
       {/* <Text>{user.user.givenName}</Text> */}
       <Stack.Navigator
-        screenOptions={({ navigation }) => ({
+        screenOptions={({navigation}) => ({
           headerStyle: {
             backgroundColor: color,
           },
-          headerTintColor: "#fff",
+          headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: "bold",
+            fontWeight: 'bold',
           },
           // headerRight: () => (
           //   <ProfileHeader navigation={navigation} />
@@ -52,9 +53,12 @@ function ProfileNav() {
           // headerTitleStyle: {
           //   fontWeight: 'bold',
           // },
-        })}
-      >
-        <Stack.Screen name="Profile" component={Profile} options={{ headerShown:true, title:"Profile" }}/>
+        })}>
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{headerShown: true, title: 'Profile'}}
+        />
         <Stack.Screen name="Suggestion Box" component={SuggBox} />
         <Stack.Screen name="Terms and Conditions" component={TermsandCond} />
         <Stack.Screen name="About" component={About} />
@@ -63,7 +67,6 @@ function ProfileNav() {
       </Stack.Navigator>
     </>
   );
-
 }
 function HomeNav() {
   return (
@@ -72,22 +75,20 @@ function HomeNav() {
         headerStyle: {
           backgroundColor: color,
         },
-        headerTintColor: "#fff",
+        headerTintColor: '#fff',
         headerTitleStyle: {
-          fontWeight: "bold",
+          fontWeight: 'bold',
         },
-      }}
-    >
+      }}>
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false
-          , gestureEnabled: false }}
+        options={{headerShown: false, gestureEnabled: false}}
       />
       <Stack.Screen
         name="SubCategoryNav"
         component={SubCategoryNav}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Stack.Screen name="Search" component={Search} />
 
@@ -96,15 +97,15 @@ function HomeNav() {
       <Stack.Screen
         name="ProfileNav"
         component={ProfileNav}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
 }
 
 function SubCategoryNav() {
-  const [path, setPath] = useState(require("./imgs/heart_w.jpg"));
-  const Data = useContext(UserContext);
+  const [path, setPath] = useState(require('./imgs/heart_w.jpg'));
+  //const Data = useContext(FirebaseContext);
   //console.log("This is my Data: ", Data);
   let ID;
 
@@ -168,35 +169,42 @@ function SubCategoryNav() {
           headerStyle: {
             backgroundColor: color,
           },
-          headerTintColor: "#fff",
+          headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: "bold",
+            fontWeight: 'bold',
           },
-        }}
-      >
+        }}>
         <Stack.Screen
           name="SubCategory"
           component={SubCat}
-          options={({ route }) => ({ title: route.params.name })}
+          options={({route}) => ({title: route.params.name})}
         />
-        <Stack.Screen name="Recipe" component={Recipe}
-          options={({ route }) => ({
+        <Stack.Screen
+          name="Recipe"
+          component={Recipe}
+          options={({route}) => ({
             title: route.params.name,
             // headerRight: () => (
             //   // onPress={() => {pathhandler(route.params.name)}}
-            //   <Button style={{backgroundColor:color}} >  
+            //   <Button style={{backgroundColor:color}} >
             //     <Image
             //       source={path}
             //       style={{ width: 29, height: 26 }}
             //     />
             //   </Button>
-            // ), 
-          })} />
-        <Stack.Screen name="Youtube"
+            // ),
+          })}
+        />
+        <Stack.Screen
+          name="Youtube"
           component={Youtube}
-          options={({ route }) => ({ title: route.params.name })} />
-        <Stack.Screen name="AllCategory" component={AllCat}
-          options={({ route }) => ({ title: route.params.name })} />
+          options={({route}) => ({title: route.params.name})}
+        />
+        <Stack.Screen
+          name="AllCategory"
+          component={AllCat}
+          options={({route}) => ({title: route.params.name})}
+        />
       </Stack.Navigator>
     </NativeBaseProvider>
   );
@@ -208,21 +216,20 @@ function MyStack() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-        }}
-      >
+        }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="HomeNav" component={HomeNav} />
-
       </Stack.Navigator>
     </ContextProvider>
-    
   );
 }
 const App = () => {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <FirebaseProvider>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </FirebaseProvider>
   );
-}
+};
 export default App;

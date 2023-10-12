@@ -1,15 +1,15 @@
 import { Image, StyleSheet, Text, View, ScrollView, Alert } from "react-native";
 import { NativeBaseProvider, Container, FlatList, Button } from "native-base";
 import Footer from "../Footer.jsx";
-import { UserContext } from "../Global/ContextAPI.jsx";
 import React, { useContext } from "react";
 import YoutubePlayer from "react-native-youtube-iframe";
+import { FirebaseContext } from "../Global/ContextFB";
 
 const color = "#E89452";
 
 const Recipe = ({ navigation, route }) => {
 
-  const Data = useContext(UserContext);
+  const Data = useContext(FirebaseContext);
 
   return (
     <NativeBaseProvider>

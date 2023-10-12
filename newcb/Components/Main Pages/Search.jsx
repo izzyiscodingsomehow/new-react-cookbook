@@ -9,13 +9,13 @@ import {
 import { NativeBaseProvider, TextField, Container } from "native-base";
 import Footer from "../Footer.jsx";
 import React, { useState, useContext } from "react";
-import { UserContext } from "../Global/ContextAPI";
 import { TouchableOpacity } from "react-native";
+import { FirebaseContext } from "../Global/ContextFB";
 
 const color = "#E89452";
 
 const Search = ({ navigation, route }) => {
-  const Data = useContext(UserContext);
+  const Data = useContext(FirebaseContext);
   const [ser, setSer] = useState("");
 
   return (

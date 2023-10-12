@@ -1,5 +1,5 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { Alert, NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import { Button } from 'native-base';
 import {
   GoogleSignin,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
 
   // Footer Text
   Footer: {
-    backgroundColor: '#615c5c5e',
+    backgroundColor: '#7c7a7a29',
     flexDirection: 'row',
     marginTop: 90,
     marginBottom: -190,

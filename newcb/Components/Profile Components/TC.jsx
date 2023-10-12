@@ -1,11 +1,13 @@
 import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
-import { termsandconditiontext } from "../../assets/Texts/Texts.js";
+import { termsandconditiontext } from "../../Texts/Texts.js";
+import Markdown from 'react-native-markdown-display';
 const color = "#E89452";
 
 const TermsandCond = ({ navigation }) => {
-  const bodyText = termsandconditiontext;
+  let bodyText = termsandconditiontext;
+  bodyText=bodyText.replace(/\\n/g, '\n');
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -19,7 +21,7 @@ const TermsandCond = ({ navigation }) => {
             Terms and Conditions
           </Text>
           <View>
-            <Text style={styles.bodyText}>{bodyText}</Text>
+            <Markdown style={styles.bodyText}>{bodyText}</Markdown>
           </View>
         </View>
         </ScrollView>

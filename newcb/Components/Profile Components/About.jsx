@@ -1,7 +1,7 @@
 import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
-import { abouttext } from "../../assets/Texts/Texts.js";
+import { abouttext } from "../../Texts/Texts.js";
 const color = "#E89452";
 
 const About = ({ navigation }) => {

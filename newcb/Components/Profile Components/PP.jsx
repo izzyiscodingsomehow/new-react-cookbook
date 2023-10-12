@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { pptext } from "../../Texts/Texts.js";
-import Markdown from 'react-native-markdown-display';
+import Markdown from '@ronradtke/react-native-markdown-display';
 const color = "#E89452";
 
 const PrivacyPolicy = ({ navigation }) => {

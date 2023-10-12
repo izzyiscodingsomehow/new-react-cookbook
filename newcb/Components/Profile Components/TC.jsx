@@ -2,7 +2,7 @@ import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
 import { termsandconditiontext } from "../../Texts/Texts.js";
-import Markdown from 'react-native-markdown-display';
+import Markdown from '@ronradtke/react-native-markdown-display';
 const color = "#E89452";
 
 const TermsandCond = ({ navigation }) => {

@@ -85,7 +85,7 @@ const Home = ({ route, navigation }) => {
         {isLoading ? <Loader /> : (
           <>
             <View style={styles.header}>
-              <Text style={styles.HeadingText}>Cook Book</Text>
+              <Text style={styles.HeadingText}>Cookbook</Text>
             </View>
             <View style={styles.container}>
               <View style={styles.innercontainers}>
@@ -264,11 +264,12 @@ const Home = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   // Heading Text
   HeadingText: {
-    color: "black",
+    color: "white",
     fontWeight: "bold",
-    fontSize: 30,
-    paddingHorizontal: 30,
-    paddingTop: 20,
+    fontSize: 28,
+    paddingTop: 15,
+    paddingRight: 15,
+    textAlign: "center"
   },
   // Sub Buttons
   subbuttons: {

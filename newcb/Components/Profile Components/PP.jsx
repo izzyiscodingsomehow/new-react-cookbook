@@ -13,7 +13,7 @@ const color = "#E89452";
 
 const PrivacyPolicy = ({ navigation }) => {
   let bodyText = pptext;
-  bodyText=bodyText.replace(/\\n/g, '\n');
+  bodyText = bodyText.replace(/\\n/g, '\n');
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -28,7 +28,9 @@ const PrivacyPolicy = ({ navigation }) => {
             >
               Privacy Policy For Undefined Technologies
             </Text>
-            <Markdown style={styles.bodyText}>{bodyText}</Markdown>
+            <View style={styles.bodyText}>
+              <Markdown>{bodyText}</Markdown>
+            </View>
           </View>
         </ScrollView>
       </ImageBackground>
@@ -38,7 +40,7 @@ const PrivacyPolicy = ({ navigation }) => {
 const styles = StyleSheet.create({
   // container
   container: {
-    marginTop: 70,
+    marginTop: 40,
     marginBottom: 310,
     alignItems: "center",
     justifyContent: "center",
@@ -69,12 +71,12 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     textAlign: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "white",
+  },
   heading3: {
     flexDirection: 'row',
     alignItems: 'center',
     fontSize: 18,
-  },
   },
   // Button Properties
   button: {

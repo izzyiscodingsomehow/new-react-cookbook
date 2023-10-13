@@ -20,7 +20,7 @@ const TermsandCond = ({ navigation }) => {
         <Text style={{ color: 'black', fontWeight: "bold", fontSize: 30 }}>
             Terms and Conditions
           </Text>
-          <View>
+          <View style={styles.bodyText}>
             <Markdown style={styles.bodyText}>{bodyText}</Markdown>
           </View>
         </View>
@@ -32,7 +32,7 @@ const TermsandCond = ({ navigation }) => {
 const styles = StyleSheet.create({
   // container
     container: {
-    marginTop: 70,
+    marginTop: 50,
     marginBottom: 310,
     alignItems: "center",
     justifyContent: "center",

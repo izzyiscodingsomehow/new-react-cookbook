@@ -1,6 +1,6 @@
 import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react-native";
 import { NativeBaseProvider } from "native-base";
-import { helptext } from "../../assets/Texts/Texts.js";
+import { helptext } from "../../Texts/Texts.js";
 import Footer from "../Footer.jsx";
 
 

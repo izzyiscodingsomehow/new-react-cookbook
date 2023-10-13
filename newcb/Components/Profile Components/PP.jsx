@@ -7,12 +7,13 @@ import {
   ScrollView,
 } from "react-native";
 import { NativeBaseProvider } from "native-base";
-import { Button } from "native-base";
-import { pptext } from "../../assets/Texts/Texts.js";
+import { pptext } from "../../Texts/Texts.js";
+import Markdown from '@ronradtke/react-native-markdown-display';
 const color = "#E89452";
 
 const PrivacyPolicy = ({ navigation }) => {
-  const bodyText = pptext;
+  let bodyText = pptext;
+  bodyText=bodyText.replace(/\\n/g, '\n');
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -27,7 +28,7 @@ const PrivacyPolicy = ({ navigation }) => {
             >
               Privacy Policy For Undefined Technologies
             </Text>
-            <Text style={styles.bodyText}>{bodyText}</Text>
+            <Markdown style={styles.bodyText}>{bodyText}</Markdown>
           </View>
         </ScrollView>
       </ImageBackground>
@@ -69,6 +70,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
+  heading3: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    fontSize: 18,
+  },
   },
   // Button Properties
   button: {

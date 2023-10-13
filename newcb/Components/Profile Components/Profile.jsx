@@ -14,7 +14,6 @@ const Profile = ({ navigation }) => {
 
   const { user, setUser } = useContext(UserContext);
   const { LoggedIn, setLoggedIn } = useContext(UserContext);
-  console.log(LoggedIn);
 
   const signOut = async () => {
 

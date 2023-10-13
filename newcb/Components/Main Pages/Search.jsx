@@ -54,29 +54,31 @@ const Search = ({ navigation, route }) => {
               fontSize={16}
               styles={styles.searchBox}
             />
-            { ser ?
-            Data.Data.filter((item) => item.RecipeName.toUpperCase().includes(ser)).map(
-              (e) => {
-                return (
-                  <Container key={e.id} w="40" style={styles.IngredCont}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("SubCategoryNav", {screen: "Recipe", params: { name: e.RecipeName, id:e.id }})}>
-                      <Container>
-                        <Image
-                          source={{ uri: `${e.ImageLink}` }}
-                          style={{ height: 90, width: 90, borderRadius: 50 }}
-                        />
+            <View style={styles.ingredWrapper}>
+              {ser ?
+                Data.Data.filter((item) => item.RecipeName.toUpperCase().includes(ser)).map(
+                  (e) => {
+                    return (
+                      <Container key={e.id} w="40" style={styles.IngredCont}>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate("SubCategoryNav", { screen: "Recipe", params: { name: e.RecipeName, id: e.id } })}>
+                          <Container>
+                            <Image
+                              source={{ uri: `${e.ImageLink}` }}
+                              style={{ height: 90, width: 90, borderRadius: 50 }}
+                            />
+                          </Container>
+                          <Container>
+                            <Text style={styles.innerText}> {e.RecipeName} </Text>
+                          </Container>
+                        </TouchableOpacity>
                       </Container>
-                      <Container>
-                        <Text style={styles.innerText}> {e.RecipeName} </Text>
-                      </Container>
-                    </TouchableOpacity>
-                  </Container>
-                );
+                    );
+                  }
+                ) : <View style={{ backgroundColor: color, borderRadius: 20, width: 100 }}><Text style={{ color: 'white', textAlign: 'center', margin: 7, fontWeight: 'bold', fontSize: 16 }}>Search</Text></View>
+
               }
-            ) : <View  style={{backgroundColor: color, borderRadius: 20,  width: 100}}><Text style={{color: 'white', textAlign: 'center', margin: 7, fontWeight: 'bold', fontSize:16}}>Search</Text></View>
-            
-            }
+            </View>
           </View>
         </ScrollView>
         <View style={styles.footer}>
@@ -107,11 +109,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  // all fetched recipes come inside this wrapper
+  ingredWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: 350,
+    justifyContent: "space-between",
+  },
 
   // Ingredient Container
   IngredCont: {
-    // borderColor: "red",
-    // borderWidth: 3,
     marginBottom: 30,
     flexDirection: "column",
     justifyContent: "center",

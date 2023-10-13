@@ -1,5 +1,5 @@
-import { Image, ImageBackground, StyleSheet, FlatList, Text, View, TouchableOpacity, SafeAreaView } from "react-native";
-import { NativeBaseProvider, createContext } from "native-base";
+import { Image, ImageBackground, StyleSheet, FlatList, Text, View, Dimensions, TouchableOpacity, SafeAreaView } from "react-native";
+import { Container, NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
 import { UserContext } from "./Global/ContextAPI";
@@ -29,6 +29,7 @@ const DATA = [
     title: 'Really longggg name',
   },
 ];
+
 
 const Home = ({ route, navigation }) => {
   // Always write Data.Data for accessing data elements from firebase in other components
@@ -65,7 +66,15 @@ const Home = ({ route, navigation }) => {
   useEffect(() => {
     if (Data.Data)
       setIsLoading(false);
+
   }, [Data]);
+
+  // const showData = async () => {
+  //   await Data.data;
+  //   console.log(Data);
+  // }
+
+  // showData();
   return (
     <NativeBaseProvider style={{ backgroundColor: color }}>
       <ImageBackground
@@ -86,7 +95,7 @@ const Home = ({ route, navigation }) => {
                     Recommended For You
                   </Text>
                 </View>
-                <SafeAreaView style={{ marginLeft: 15 }}>
+                <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
                   <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -97,201 +106,101 @@ const Home = ({ route, navigation }) => {
                   />
                 </SafeAreaView>
                 <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
-                    New Recipes
-                  </Text>
-                </View>
-                <SafeAreaView style={{ marginLeft: 15 }}>
-                  <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    extraData={selectedId}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                  />
-                </SafeAreaView>
-
-                <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45", marginTop: 20, }}>
                     Categories
                   </Text>
                 </View>
-                <View style={{ marginLeft: 10, }}>
-                  <Image source={require(".././imgs/breakfast.jpg")} width={75} height={75} />
-                </View>
-
-                <View style={styles.subbuttons}>
-                  <Button
-                    style={styles.subbutton}
-                    onPress={() =>
+                <View style={styles.categoryParent}>
+                  <View style={styles.categoryItem}
+                    onStartShouldSetResponder={() =>
                       navigation.navigate("SubCategoryNav", {
                         screen: "SubCategory",
                         params: { name: "Break Fast" },
                       })
                     }
                   >
-                    <Text style={styles.subtext}>Break Fast</Text>
-                  </Button>
 
-                  <Button
-                    style={styles.subbutton}
-                    onPress={() =>
+                    <Image source={require(".././imgs/breakfast.jpg")} width={100} height={100} />
+                    <Text style={{ color: "#C77E45", fontSize: 18 }}>  Breakfast</Text>
+                  </View>
+                  <View style={styles.categoryItem}
+
+                    onStartShouldSetResponder={() =>
                       navigation.navigate("SubCategoryNav", {
                         screen: "SubCategory",
                         params: { name: "Lunch" },
                       })
                     }
+
                   >
-                    <Text style={styles.subtext}>Lunch</Text>
-                  </Button>
-                  <Button
-                    style={styles.subbutton}
-                    onPress={() =>
+                    <Image source={require(".././imgs/lunch.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
+                    <Text style={{ color: "#C77E45", fontSize: 18 }}> Lunch</Text>
+                  </View>
+                  <View style={styles.categoryItem}
+
+                    onStartShouldSetResponder={() =>
                       navigation.navigate("SubCategoryNav", {
                         screen: "SubCategory",
                         params: { name: "Dinner" },
                       })
                     }
                   >
-                    <Text style={styles.subtext}>Dinner</Text>
-                  </Button>
-                  <Button
-                    style={styles.subbutton}
-                    onPress={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Appetizer" },
-                      })
-                    }
-                  >
-                    <Text style={styles.subtext}>Appetizer</Text>
-                  </Button>
-                  <Button
-                    style={styles.subbutton}
-                    onPress={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Fast Food" },
-                      })
-                    }
-                  >
-                    <Text style={styles.subtext}>Fast Food</Text>
-                  </Button>
-                  <Button
-                    style={styles.subbutton}
-                    onPress={() =>
+                    <Image source={require(".././imgs/dinner.jpg")} width={100} height={100} />
+                    <Text style={{ color: "#C77E45", fontSize: 18 }}> Dinner</Text>
+                  </View>
+                  <View style={styles.categoryItem}
+                    onStartShouldSetResponder={() =>
                       navigation.navigate("SubCategoryNav", {
                         screen: "SubCategory",
                         params: { name: "Desserts" },
                       })
                     }
                   >
-                    <Text style={styles.subtext}>Desserts</Text>
-                  </Button>
-                </View>
-              </View>
-              <View style={styles.innercontainers}>
-                <View style={styles.reccomended}>
-                  <View style={styles.headings}>
-                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                      Top Recipes
-                    </Text>
+                    <Image source={require(".././imgs/dessert.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
+                    <Text style={{ color: "#C77E45", fontSize: 18 }}>  Dessert</Text>
                   </View>
-                  <Button style={styles.morebutton} onPress={() =>
-                    navigation.navigate("SubCategoryNav", {
-                      screen: "AllCategory",
-                      params: { name: "Top Recipes" },
-                    })
-                  }>
-                    <View style={{ flexDirection: "row" }}>
-                      <Text
-                        style={{
-                          color: "black",
-                          fontSize: 15,
-                          fontWeight: "bold",
-                          marginLeft: 10,
-                        }}
-                      >
-                        Explore Now
-                      </Text>
-                      <Image
-                        source={require("../imgs/arrow.jpg")}
-                        style={styles.arrowimg}
-                      />
-                    </View>
-                  </Button>
+                  <View style={styles.categoryItem}
+
+                    onStartShouldSetResponder={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Fast Food" },
+                      })
+                    }
+                  >
+                    <Image source={require(".././imgs/fastFood.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
+                    <Text style={{ color: "#C77E45", fontSize: 18 }}> Fast Food</Text>
+                  </View>
+                  <View style={styles.categoryItem}
+                    onStartShouldSetResponder={() =>
+                      navigation.navigate("SubCategoryNav", {
+                        screen: "SubCategory",
+                        params: { name: "Appetizer" },
+                      })
+                    }
+                  >
+                    <Image source={require(".././imgs/appetizers.jpg")} width={100} height={100} />
+                    <Text style={{ color: "#C77E45", fontSize: 18 }}>Appetizers</Text>
+                  </View>
                 </View>
-                <View style={styles.subbuttons}>
-                  {Data.Data.slice(0, 5).map((e) => {
-                    return (
-                      <Button
-                        key={e.id}
-                        style={styles.subbutton}
-                        onPress={() =>
-                          navigation.navigate("SubCategoryNav", {
-                            screen: "Recipe",
-                            params: { name: e.RecipeName, id: e.id },
-                          })
-                        }
-                      >
-                        <Text style={styles.subtext}>{e.RecipeName}</Text>
-                      </Button>
-                    );
-                  })}
-                </View>
-              </View>
-              <View style={styles.reccomended}>
+
                 <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
                     New Recipes
                   </Text>
                 </View>
-                <Button
-                  style={styles.morebutton}
-                  onPress={() =>
-                    navigation.navigate("SubCategoryNav", {
-                      screen: "AllCategory",
-                      params: { name: "New Recipes" },
-                    })
-                  }
-                >
-                  <View style={{ flexDirection: "row" }}>
-                    <Text
-                      style={{
-                        color: "black",
-                        fontSize: 15,
-                        fontWeight: "bold",
-                        marginLeft: 10,
-                      }}
-                    >
-                      Explore Now
-                    </Text>
-                    <Image
-                      source={require("../imgs/arrow.jpg")}
-                      style={styles.arrowimg}
-                    />
-                  </View>
-                </Button>
+                <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
+                  <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                    extraData={selectedId}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                </SafeAreaView>
               </View>
-              <View style={styles.subbuttons}>
-                {Data.Data.slice(0, 3).map((e) => {
-                  return (
-                    <Button
-                      key={e.id}
-                      style={styles.subbutton}
-                      onPress={() =>
-                        navigation.navigate("SubCategoryNav", {
-                          screen: "Recipe",
-                          params: { name: e.RecipeName, id: e.id },
-                        })
-                      }
-                    >
-                      <Text style={styles.subtext}>{e.RecipeName}</Text>
-                    </Button>
-                  );
-                })}
-              </View>
+
               {/*}
               
           <View style={styles.reccomendedcontainer}>
@@ -346,9 +255,10 @@ const Home = ({ route, navigation }) => {
               <Footer navigation={navigation} />
             </View>
           </>
-        )}
-      </ImageBackground>
-    </NativeBaseProvider>
+        )
+        }
+      </ImageBackground >
+    </NativeBaseProvider >
   );
 };
 const styles = StyleSheet.create({
@@ -448,6 +358,28 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     color: "black",
+  },
+  categoryParent: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    // marginLeft: 40 ,
+    paddingTop: 0,
+    paddingHorizontal: 20,
+    columnGap: 16,
+    // borderWidth: 1,
+    alignItems: "center"
+  },
+  categoryItem: {
+    display: "flex",
+    // borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: "30%"
   },
   // Arrow Image
   arrowimg: {

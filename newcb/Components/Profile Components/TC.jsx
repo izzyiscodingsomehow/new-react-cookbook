@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View, ScrollView } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
 import { termsandconditiontext } from "../../Texts/Texts.js";
@@ -7,7 +7,7 @@ const color = "#E89452";
 
 const TermsandCond = ({ navigation }) => {
   let bodyText = termsandconditiontext;
-  bodyText=bodyText.replace(/\\n/g, '\n');
+  bodyText = bodyText.replace(/\\n/g, '\n');
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -16,14 +16,21 @@ const TermsandCond = ({ navigation }) => {
         style={styles.bgimage}
       >
         <ScrollView>
-        <View style={styles.container}>
-        <Text style={{ color: 'black', fontWeight: "bold", fontSize: 30 }}>
-            Terms and Conditions
-          </Text>
-          <View style={styles.bodyText}>
-            <Markdown style={styles.bodyText}>{bodyText}</Markdown>
+          <View style={styles.container}>
+            <Text style={{ color: 'black', fontWeight: "bold", fontSize: 30 }}>
+              Terms and Conditions
+            </Text>
+            <View style={styles.bodyText}>
+              <Markdown
+                style={{
+                  body: { fontSize: 17, color: "black" }
+                }}>
+                {bodyText}
+              </Markdown>
+
+
+            </View>
           </View>
-        </View>
         </ScrollView>
       </ImageBackground>
     </NativeBaseProvider>
@@ -31,12 +38,12 @@ const TermsandCond = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   // container
-    container: {
+  container: {
     marginTop: 50,
     marginBottom: 310,
     alignItems: "center",
     justifyContent: "center",
-    },
+  },
   // Background Image
   bgimage: {
     flex: 1,

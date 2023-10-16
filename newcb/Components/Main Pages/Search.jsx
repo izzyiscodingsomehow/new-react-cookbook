@@ -91,7 +91,7 @@ const Search = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   // container
   container: {
-    marginTop: 70,
+    marginTop: 20,
     marginBottom: 310,
     alignItems: "center",
     justifyContent: "center",

@@ -29,7 +29,12 @@ const PrivacyPolicy = ({ navigation }) => {
               Privacy Policy For Undefined Technologies
             </Text>
             <View style={styles.bodyText}>
-              <Markdown>{bodyText}</Markdown>
+              <Markdown
+                style={{
+                  body: { fontSize: 17, color: "black" }
+                }}>
+                {bodyText}
+              </Markdown>
             </View>
           </View>
         </ScrollView>

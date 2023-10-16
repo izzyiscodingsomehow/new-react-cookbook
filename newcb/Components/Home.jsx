@@ -9,26 +9,36 @@ import { FirebaseContext } from "./Global/./ContextFB";
 
 const color = "#E89452";
 
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
-    <Text style={{ color: textColor, fontSize: 16, }}>{item.title}</Text>
-  </TouchableOpacity>
-);
+const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Egg Fried Rice',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Lobster Fried Chicken',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Really longggg name',
-  },
-];
+  console.log(item);
+
+  return (
+    <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
+      <Text
+        style={{ color: textColor, fontSize: 16, }}
+        onPress={() =>
+          navigation.navigate("SubCategoryNav", {
+            screen: "Recipe",
+            params: { name: item.RecipeName, id: item.id },
+          })
+        }
+      >
+        {item.RecipeName}
+      </Text>
+    </TouchableOpacity >
+  )
+};
+
+
+// const customTextProps = {
+//   style: {
+//     fontFamily: 'LeagueSpartan-SemiBold', // Use the correct font family name
+//     color: "white",
+//     fontSize: 23,
+//   },
+// };
+
 
 
 const Home = ({ route, navigation }) => {
@@ -39,6 +49,8 @@ const Home = ({ route, navigation }) => {
 
   const Data = useContext(FirebaseContext);
   const { LoggedIn } = useContext(UserContext);
+  let topRecipes;
+
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
@@ -50,6 +62,7 @@ const Home = ({ route, navigation }) => {
         onPress={() => setSelectedId(item.id)}
         backgroundColor={backgroundColor}
         textColor="#AC6A36"
+        navigation={navigation}
       />
     );
 
@@ -64,17 +77,11 @@ const Home = ({ route, navigation }) => {
       }), [LoggedIn, navigation]);
 
   useEffect(() => {
-    if (Data.Data)
+    if (Data.Data) {
       setIsLoading(false);
-
+    }
   }, [Data]);
 
-  // const showData = async () => {
-  //   await Data.data;
-  //   console.log(Data);
-  // }
-
-  // showData();
   return (
     <NativeBaseProvider style={{ backgroundColor: color }}>
       <ImageBackground
@@ -85,7 +92,7 @@ const Home = ({ route, navigation }) => {
         {isLoading ? <Loader /> : (
           <>
             <View style={styles.header}>
-              <Text style={styles.HeadingText}>Cookbook</Text>
+              <Text style={styles.HeadingText} >Cookbook</Text>
             </View>
             <View style={styles.container}>
               <View style={styles.innercontainers}>
@@ -97,7 +104,7 @@ const Home = ({ route, navigation }) => {
                 </View>
                 <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
                   <FlatList
-                    data={DATA}
+                    data={Data.Data ? Data.Data.slice(0, 5) : ""}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     extraData={selectedId}
@@ -191,7 +198,7 @@ const Home = ({ route, navigation }) => {
                 </View>
                 <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
                   <FlatList
-                    data={DATA}
+                    data={Data.Data ? Data.Data.slice(0, 5) : ""}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     extraData={selectedId}
@@ -269,7 +276,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     paddingTop: 15,
     paddingRight: 15,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: "LeagueSpartan-Regular.ttf"
   },
   // Sub Buttons
   subbuttons: {
@@ -367,7 +375,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     // marginLeft: 40 ,
     paddingTop: 0,
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
     columnGap: 16,
     // borderWidth: 1,
     alignItems: "center"

@@ -6,13 +6,12 @@ import { UserContext } from "./Global/ContextAPI";
 import { useContext, useState, useEffect } from "react";
 import Loader from "./Global/Loader";
 import { FirebaseContext } from "./Global/./ContextFB";
-
+import { Carousel } from '../Components/Global/Carousel.jsx';
+import { SliderBox } from 'react-native-image-slider-box';
 const color = "#E89452";
 
 const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
-
-  console.log(item);
-
+  
   return (
     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
       <Text
@@ -43,8 +42,13 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 
 const Home = ({ route, navigation }) => {
   // Always write Data.Data for accessing data elements from firebase in other components
-
-  const [isLoading, setIsLoading] = useState(true);
+  const images = [
+    require(".././imgs/CookBookLogo.jpg"),
+    require(".././imgs/facebook.jpg"),
+    require(".././imgs/foodimage.jpeg"),
+    require(".././imgs/undefinedlogo.jpg"),
+  ]
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState();
 
   const Data = useContext(FirebaseContext);
@@ -95,8 +99,14 @@ const Home = ({ route, navigation }) => {
               <Text style={styles.HeadingText} >Cookbook</Text>
             </View>
             <View style={styles.container}>
+              <View style={styles.carousel}>
+                <SliderBox images={images} dotColor="white" inactiveDotColor="#dddddd" imageLoadingColor="grey" circleLoop={true}
+                resizeMode={'cover'} dotStyle={{width: 11, height: 11,borderRadius:10}}></SliderBox>
+              </View>
+              {/* <View>
+                <Carousel />
+              </View> */}
               <View style={styles.innercontainers}>
-
                 <View style={styles.headings}>
                   <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
                     Recommended For You
@@ -269,6 +279,11 @@ const Home = ({ route, navigation }) => {
   );
 };
 const styles = StyleSheet.create({
+  // Carousel
+  carousel: {
+    marginTop: 10,
+    backgroundColor: "#b9b9b942",
+  },
   // Heading Text
   HeadingText: {
     color: "white",

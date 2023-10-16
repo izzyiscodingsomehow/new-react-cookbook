@@ -56,7 +56,7 @@ const Profile = ({ navigation }) => {
                   style={{
                     height: 40,
                     width: 40,
-                    marginRight: 10,
+                    marginRight: 30,
                     marginLeft: -2,
                   }}
                 />
@@ -92,7 +92,7 @@ const Profile = ({ navigation }) => {
               <View style={styles.imagetext}>
                 <Image
                   source={require("../../imgs/about.jpg")}
-                  style={{ height: 40, width: 40, marginRight: 10 }}
+                  style={{ height: 40, width: 40, marginRight: 30 }}
                 />
                 <Text
                   style={{ color: "black", fontWeight: "bold", fontSize: 23 }}
@@ -109,7 +109,7 @@ const Profile = ({ navigation }) => {
               <View style={styles.imagetext}>
                 <Image
                   source={require("../../imgs/termncon.jpg")}
-                  style={{ height: 40, width: 37, marginRight: 10 }}
+                  style={{ height: 40, width: 37, marginRight: 30 }}
                 />
                 <Text
                   style={{ color: "black", fontWeight: "bold", fontSize: 23 }}
@@ -125,7 +125,7 @@ const Profile = ({ navigation }) => {
             >
               <View style={styles.imagetext}>
                 <Image
-                  style={{ height: 40, width: 40, marginRight: 10 }}
+                  style={{ height: 40, width: 40, marginRight: 30 }}
                   source={require("../../imgs/PrivacyPolicy.jpg")}
                 />
                 <Text
@@ -139,7 +139,7 @@ const Profile = ({ navigation }) => {
             <Button style={styles.pagebutton} onPress={signOut}>
               <View style={styles.imagetext}>
                 <Image
-                  style={{ height: 40, width: 40, marginRight: 10 }}
+                  style={{ height: 40, width: 40, marginRight: 30 }}
                   source={require("../../imgs/logout.jpg")}
                 />
                 <Text style={{ color: 'black', fontWeight: "bold", fontSize: 23 }}>Sign Out</Text>
@@ -167,12 +167,14 @@ const styles = StyleSheet.create({
   pagebuttons: {
     borderColor: 'black',
     marginTop: 30,
+    marginLeft: 20,
     flexDirection: "column",
     alignItems: "flex-start",
   },
   // Page Button Properties
   pagebutton: {
     backgroundColor: "rgba(255, 255, 255, 0)",
+    marginVertical: 5,
     paddingHorizontal: 'auto'
   },
   // Background Image

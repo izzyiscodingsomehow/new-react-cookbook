@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     textAlign: "center",
-    backgroundColor: "white",
+    backgroundColor: "#ffffff1c",
   },
   heading3: {
     flexDirection: 'row',

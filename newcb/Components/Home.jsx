@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import { UserContext } from "./Global/ContextAPI";
 import { useContext, useState, useEffect } from "react";
 import Loader from "./Global/Loader";
-import { FirebaseContext } from "./Global/./ContextFB";
+import { DataContext } from "./Global/./ContextFB";
 import { Carousel } from '../Components/Global/Carousel.jsx';
 import { SliderBox } from 'react-native-image-slider-box';
 const color = "#E89452";
@@ -48,10 +48,11 @@ const Home = ({ route, navigation }) => {
     require(".././imgs/foodimage.jpeg"),
     require(".././imgs/undefinedlogo.jpg"),
   ]
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedId, setSelectedId] = useState();
 
-  const Data = useContext(FirebaseContext);
+  const Data = useContext(DataContext);
+  console.log(Data.Data);
   const { LoggedIn } = useContext(UserContext);
   let topRecipes;
 

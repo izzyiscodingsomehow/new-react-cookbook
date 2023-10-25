@@ -17,8 +17,8 @@ import {Button, NativeBaseProvider} from 'native-base';
 import {Image, Text} from 'react-native';
 import {UserContext, ContextProvider} from './Components/Global/ContextAPI.jsx';
 import {
-  FirebaseContext,
-  FirebaseProvider,
+  DataContext,
+  DataProvider,
 } from './Components/Global/ContextFB.jsx';
 import {AuthUserInfo, AuthUserInfoProvider} from './Components/Login.jsx';
 import {NavigationContainer} from '@react-navigation/native';
@@ -225,11 +225,11 @@ function MyStack() {
 }
 const App = () => {
   return (
-    <FirebaseProvider>
+    <DataProvider>
       <NavigationContainer>
         <MyStack />
       </NavigationContainer>
-    </FirebaseProvider>
+    </DataProvider>
   );
 };
 export default App;

@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Container, NativeBaseProvider, HStack, Center } from "native-base";
-import { FirebaseContext } from "../Global/ContextFB";
+import { DataContext } from "../Global/ContextFB";
 import Footer from "../Footer.jsx";
 import { useContext } from "react";
 import { TouchableOpacity } from "react-native";
@@ -16,7 +16,7 @@ const color = "#E89452";
 
 const SubCat = ({ navigation, route }) => {
 
-  const Data = useContext(FirebaseContext);
+  const Data = useContext(DataContext);
 
   return (
     <NativeBaseProvider>

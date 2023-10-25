@@ -10,12 +10,12 @@ import { Container, NativeBaseProvider, HStack } from "native-base";
 import Footer from "../Footer.jsx";
 import { useContext } from "react";
 import { TouchableOpacity } from "react-native";
-import { FirebaseContext } from "../Global/ContextFB";
+import { DataContext } from "../Global/ContextFB";
 const color = "#E89452";
 
 const AllCat = ({ navigation }) => {
 
-  const Data = useContext(FirebaseContext);
+  const Data = useContext(DataContext);
 
   return (
     <NativeBaseProvider>

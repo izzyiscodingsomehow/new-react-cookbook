@@ -45,14 +45,13 @@ const Home = ({ route, navigation }) => {
   const images = [
     require(".././imgs/image1.jpg"),
     require(".././imgs/image2.jpg"),
-    require(".././imgs/image3.jpeg"),
+    require(".././imgs/image3.jpg"),
     require(".././imgs/image4.jpg"),
   ]
   const [isLoading, setIsLoading] = useState(true);
   const [selectedId, setSelectedId] = useState();
 
   const Data = useContext(DataContext);
-  console.warn(Data);
   const { LoggedIn } = useContext(UserContext);
   let topRecipes;
 
@@ -83,7 +82,7 @@ const Home = ({ route, navigation }) => {
 
   useEffect(() => {
     if (Data.Data) {
-      setIsLoading(true);
+      setIsLoading(false);
     }
   }, [Data]);
 

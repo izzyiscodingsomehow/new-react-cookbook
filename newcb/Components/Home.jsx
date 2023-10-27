@@ -43,16 +43,16 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 const Home = ({ route, navigation }) => {
   // Always write Data.Data for accessing data elements from firebase in other components
   const images = [
-    require(".././imgs/CookBookLogo.jpg"),
-    require(".././imgs/facebook.jpg"),
-    require(".././imgs/foodimage.jpeg"),
-    require(".././imgs/undefinedlogo.jpg"),
+    require(".././imgs/image1.jpg"),
+    require(".././imgs/image2.jpg"),
+    require(".././imgs/image3.jpeg"),
+    require(".././imgs/image4.jpg"),
   ]
   const [isLoading, setIsLoading] = useState(true);
   const [selectedId, setSelectedId] = useState();
 
   const Data = useContext(DataContext);
-  console.log(Data.Data);
+  console.warn(Data);
   const { LoggedIn } = useContext(UserContext);
   let topRecipes;
 
@@ -83,7 +83,7 @@ const Home = ({ route, navigation }) => {
 
   useEffect(() => {
     if (Data.Data) {
-      setIsLoading(false);
+      setIsLoading(true);
     }
   }, [Data]);
 

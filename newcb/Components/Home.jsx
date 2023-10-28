@@ -101,7 +101,7 @@ const Home = ({ route, navigation }) => {
             <View style={styles.container}>
               <View style={styles.carousel}>
                 <SliderBox images={images} dotColor="white" inactiveDotColor="#dddddd" imageLoadingColor="grey" circleLoop={true}
-                resizeMode={'cover'} dotStyle={{width: 11, height: 11,borderRadius:10}}></SliderBox>
+                resizeMode={'cover'} dotStyle={{width: 11, height: 11,borderRadius:10}} disableOnPress={true} autoplay={true} ></SliderBox>
               </View>
               {/* <View>
                 <Carousel />

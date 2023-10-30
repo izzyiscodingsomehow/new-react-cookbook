@@ -38,10 +38,10 @@ const SubCat = ({ navigation, route }) => {
                       }
                     >
                       <Container>
-                      <Image
+                      {/* <Image
                         source={{ uri: `${e.ImageLink}` }}
                         style={{ height: 90, width: 90, borderRadius: 50 }}
-                      />
+                      /> */}
                       </Container>
                       <Container >
                         <Text style={styles.innerText}> {e.RecipeName} </Text>

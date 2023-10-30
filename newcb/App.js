@@ -29,7 +29,6 @@ const color = '#E89452';
 const Stack = createNativeStackNavigator();
 
 function ProfileNav() {
-  const {user, setUser} = useContext(UserContext);
 
   return (
     <>

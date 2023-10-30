@@ -9,6 +9,7 @@ import { UserContext } from '../Global/ContextAPI';
 import { useContext } from "react";
 import ProfileHeader, { Profileheader } from './ProfileHeader.jsx';
 const color = "#E89452";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = ({ navigation }) => {
 
@@ -22,13 +23,15 @@ const Profile = ({ navigation }) => {
       if (user) {
         setUser(null);
         await GoogleSignin.signOut();
+        await AsyncStorage.setItem('hasData', "false");
         navigation.navigate("Login");
       }
-      else{
-      setTimeout(async () => {
-        navigation.navigate("Login");
-      }, 500);
-    }
+      else {
+        setTimeout(async () => {
+          await AsyncStorage.setItem('hasData', "false");
+          navigation.navigate("Login");
+        }, 500);
+      }
     } catch (error) {
       console.error(error);
     }

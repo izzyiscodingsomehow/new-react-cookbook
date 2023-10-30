@@ -9,7 +9,6 @@ import { DataContext } from "./Global/./ContextFB";
 import { Carousel } from '../Components/Global/Carousel.jsx';
 import { SliderBox } from 'react-native-image-slider-box';
 const color = "#E89452";
-import { PureComponent } from "react";
 
 // const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 

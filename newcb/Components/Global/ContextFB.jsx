@@ -7,50 +7,46 @@ import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 const DataContext = createContext([]);
 
 const DataProvider = ({ children }) => {
+
+  let hasD = AsyncStorage.getItem('hasData');
   const [Data, setData] = useState();
   const categoriesRef = collection(db, 'categories');
   const [AsyncData, setAsyncData] = useState();
-  const [hasData, setHasData] = useState(false);
+  const [hasData, setHasData] = useState(hasD);
+
+  // get data from firebase and map it to async state
   const ReadData = async () => {
     try {
       const data = await getDocs(categoriesRef);
       setAsyncData(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+      await storeData();
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    if (AsyncData)
-      storeData();
-  }
-    , [AsyncData]);
+
+  // store data in async storage
   const storeData = async () => {
     try {
       const jsonValue = JSON.stringify(AsyncData);
       await AsyncStorage.setItem('newdata', jsonValue);
+      await AsyncStorage.setItem('hasData', "true");
       console.log('storedata');
       getData();
     } catch (error) {
       console.log('storedata Error: ', error);
     }
   };
-  // Fetch Data from Firebase
-  useEffect(() => {
-    getData();
-    if (hasData) {
-    }
-    else {
-      ReadData();
-    }
-  }, [, setHasData]);
+
+  // get data from async storage
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('newdata');
+      const hasAsyncData = await AsyncStorage.getItem('hasData');
+      setHasData(hasAsyncData);
       const parsedvalue = JSON.parse(jsonValue);
-      console.log('Recieved Data: ', jsonValue);
       if (parsedvalue) {
         setData(parsedvalue);
-        setHasData(true);
       }
       //console.log(parsedvalue);
       return parsedvalue == null ? true : false;
@@ -59,7 +55,24 @@ const DataProvider = ({ children }) => {
     }
   }
 
+  // TODO: maybe theres an error that when async data is removed on logout, the user needs to refresh or useEffect needs to run 
+  //       again to fetch the data, need to check further more
+
+  // bilal's code
+  useEffect(() => {
+    console.log(hasData);
+    if (hasData == "false") {
+      console.log("fetched data");
+      ReadData();
+    }
+    else {
+      getData();
+    }
+  }, [hasData])
+
+
   return <DataContext.Provider value={{ Data }}>{children}</DataContext.Provider>;
 };
+
 export const useData = () => useContext(DataContext);
 export { DataContext, DataProvider };

@@ -19,6 +19,7 @@ const DataProvider = ({ children }) => {
     try {
       const data = await getDocs(categoriesRef);
       setAsyncData(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+      await clearAll();
       await storeData();
     } catch (error) {
       console.log(error);
@@ -42,14 +43,17 @@ const DataProvider = ({ children }) => {
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('newdata');
-      const hasAsyncData = await AsyncStorage.getItem('hasData');
-      setHasData(hasAsyncData);
-      const parsedvalue = JSON.parse(jsonValue);
-      if (parsedvalue) {
+      // const hasAsyncData = await AsyncStorage.getItem('hasData');
+      // setHasData(hasAsyncData);
+      if (jsonValue != null) {
+        console.log('if');
+        const parsedvalue = JSON.parse(jsonValue);
         setData(parsedvalue);
       }
-      //console.log(parsedvalue);
-      return parsedvalue == null ? true : false;
+      else {
+        console.log('else');
+        ReadData();
+      }
     } catch (e) {
       // error reading value
     }
@@ -60,16 +64,25 @@ const DataProvider = ({ children }) => {
 
   // bilal's code
   useEffect(() => {
-    console.log(hasData);
-    if (hasData == "false") {
-      console.log("fetched data");
-      ReadData();
-    }
-    else {
+    // console.log(hasData);
+    // if (hasData == "false") {
+    //   console.log("fetched data");
+    //   ReadData();
+    // }
+    // else {
       getData();
-    }
-  }, [hasData])
+    //}
+  }, [])
 
+  const clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+      // clear error
+    }
+  
+    console.log('Done.')
+  }
 
   return <DataContext.Provider value={{ Data }}>{children}</DataContext.Provider>;
 };

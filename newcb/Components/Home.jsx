@@ -3,19 +3,40 @@ import { Container, NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
 import { UserContext } from "./Global/ContextAPI";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useMemo } from "react";
 import Loader from "./Global/Loader";
 import { DataContext } from "./Global/./ContextFB";
 import { Carousel } from '../Components/Global/Carousel.jsx';
 import { SliderBox } from 'react-native-image-slider-box';
 const color = "#E89452";
+import { PureComponent } from "react";
 
+// const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
+
+//   return (
+//     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
+//       <Text
+//         style={{ color: textColor, fontSize: 16, }}
+//         onPress={() =>
+//           navigation.navigate("SubCategoryNav", {
+//             screen: "Recipe",
+//             params: { name: item.RecipeName, id: item.id },
+//           })
+//         }
+//       >
+//         {item.RecipeName}
+//       </Text>
+//     </TouchableOpacity >
+//   )
+// };
+
+// const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
-  
-  return (
+  // Memoize the JSX structure
+  const itemContent = useMemo(() => (
     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
       <Text
-        style={{ color: textColor, fontSize: 16, }}
+        style={{ color: textColor, fontSize: 16 }}
         onPress={() =>
           navigation.navigate("SubCategoryNav", {
             screen: "Recipe",
@@ -25,10 +46,11 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
       >
         {item.RecipeName}
       </Text>
-    </TouchableOpacity >
-  )
-};
+    </TouchableOpacity>
+  ), [onPress, textColor, navigation, item.RecipeName, item.id]);
 
+  return itemContent;
+};
 
 // const customTextProps = {
 //   style: {
@@ -101,7 +123,7 @@ const Home = ({ route, navigation }) => {
             <View style={styles.container}>
               <View style={styles.carousel}>
                 <SliderBox images={images} dotColor="white" inactiveDotColor="#dddddd" imageLoadingColor="grey" circleLoop={true}
-                resizeMode={'cover'} dotStyle={{width: 11, height: 11,borderRadius:10}} disableOnPress={true} autoplay={true} ></SliderBox>
+                  resizeMode={'cover'} dotStyle={{ width: 11, height: 11, borderRadius: 10 }} disableOnPress={true} autoplay={true} ></SliderBox>
               </View>
               {/* <View>
                 <Carousel />

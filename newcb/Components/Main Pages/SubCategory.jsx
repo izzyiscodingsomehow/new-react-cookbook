@@ -38,10 +38,10 @@ const SubCat = ({ navigation, route }) => {
                       }
                     >
                       <Container style={{ width: 500, display: "flex", flexDirection: "row", alignItems: "center", gap: 10, }}>
-                        <Image
+                        {/* <Image
                           source={{ uri: `${e.ImageLink}` }}
                           style={{ height: 60, width: 60, borderRadius: 50, backgroundColor: "lightgray" }}
-                        />
+                        /> */}
                         <Text style={styles.innerText}> {e.RecipeName} </Text>
                       </Container>
                     </TouchableOpacity>
@@ -97,9 +97,15 @@ const styles = StyleSheet.create({
 
   // Inner Text
   innerText: {
-    color: 'black',
+    color: '#AC6A36',
     fontFamily: "LeagueSpartan-Regular",
-    fontSize: 19,
+    fontSize: 23,
+    width: 300,
+    // borderWidth: 1,
+    // backgroundColor:"#F7DAC3",
+    // paddingVertical: 5,
+    // paddingHorizontal: 7,
+    // borderRadius: 5,
   },
 
   // Footer

@@ -62,12 +62,12 @@ const Search = ({ navigation, route }) => {
                       <Container key={e.id} w="40" style={styles.IngredCont}>
                         <TouchableOpacity
                           onPress={() => navigation.navigate("SubCategoryNav", { screen: "Recipe", params: { name: e.RecipeName, id: e.id } })}>
-                          <Container>
+                          {/* <Container>
                             <Image
                               source={{ uri: `${e.ImageLink}` }}
                               style={{ height: 90, width: 90, borderRadius: 50 }}
                             />
-                          </Container>
+                          </Container> */}
                           <Container>
                             <Text style={styles.innerText}> {e.RecipeName} </Text>
                           </Container>
@@ -75,7 +75,7 @@ const Search = ({ navigation, route }) => {
                       </Container>
                     );
                   }
-                ) : <View style={{ backgroundColor: color, borderRadius: 20, width: 100 }}><Text style={{ color: 'white', textAlign: 'center', margin: 7, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold"}}>Search</Text></View>
+                ) : <View style={{ backgroundColor: color, borderRadius: 20, width: 100, position: "relative", left: 140 }}><Text style={{ color: 'white', textAlign: 'center', margin: 7, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold" }}>Search</Text></View>
 
               }
             </View>
@@ -114,23 +114,32 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    width: 350,
-    justifyContent: "space-between",
+    width: 400,
+    justifyContent: "left",
+    alignItems: "center",
+    // borderWidth: 1
   },
 
   // Ingredient Container
   IngredCont: {
-    marginBottom: 30,
-    flexDirection: "column",
+    marginBottom: 20,
     justifyContent: "center",
     alignItems: "center",
+    // borderWidth: 1,
+    width: 350,
   },
 
   // Inner Text
   innerText: {
-    textAlign: "center",
-    fontFamily:"LeagueSpartan-Regular",
-    fontSize: 19,
+    textAlign: "left",
+    fontFamily: "LeagueSpartan-Regular",
+    fontSize: 22,
+    width: 350,
+    color: '#AC6A36',
+    borderBottomWidth: 1,
+    paddingBottom: 20,
+    borderBottomColor: "#F7DAC3",
+
   },
 
   // ImageText

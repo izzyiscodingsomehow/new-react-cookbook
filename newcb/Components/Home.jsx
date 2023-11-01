@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet, FlatList, Text, View, Dimensions, TouchableOpacity, SafeAreaView } from "react-native";
+import { Image, ImageBackground, StyleSheet, FlatList, Text, View, Dimensions, TouchableOpacity, SafeAreaView} from "react-native";
 import { Container, NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
@@ -35,7 +35,7 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
   const itemContent = useMemo(() => (
     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
       <Text
-        style={{ color: textColor, fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}
+        style={{ color: textColor, fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}
         onPress={() =>
           navigation.navigate("SubCategoryNav", {
             screen: "Recipe",
@@ -115,131 +115,131 @@ const Home = ({ route, navigation }) => {
         style={styles.bgimage}
       >
         {isLoading ? <Loader /> : (
-          <>  
-            <View style={styles.header}>
-              <Text style={styles.HeadingText} >Cookbook</Text>
-            </View>
-            <View style={styles.container}>
-              <View style={styles.carousel}>
-                <SliderBox images={images} dotColor="white" inactiveDotColor="#dddddd" imageLoadingColor="grey" circleLoop={true}
-                  resizeMode={'cover'} dotStyle={{ width: 11, height: 11, borderRadius: 10 }} disableOnPress={true} autoplay={true} ></SliderBox>
+          <>
+              <View style={styles.header}>
+                <Text style={styles.HeadingText} >Cookbook</Text>
               </View>
-              {/* <View>
+              <View style={styles.container}>
+                <View style={styles.carousel}>
+                  <SliderBox images={images} dotColor="white" inactiveDotColor="#dddddd" imageLoadingColor="grey" circleLoop={true}
+                    resizeMode={'cover'} dotStyle={{ width: 11, height: 11, borderRadius: 10 }} disableOnPress={true} autoplay={true} ></SliderBox>
+                </View>
+                {/* <View>
                 <Carousel />
               </View> */}
-              <View style={styles.innercontainers}>
-                <View style={styles.headings}>
-                  <Text style={{ fontSize: 24, color: "#C77E45", fontFamily:"LeagueSpartan-SemiBold" }}>
-                    Recommended For You
-                  </Text>
+                <View style={styles.innercontainers}>
+                  <View style={styles.headings}>
+                    <Text style={{ fontSize: 24, color: "#C77E45", fontFamily: "LeagueSpartan-SemiBold" }}>
+                      Recommended For You
+                    </Text>
+                  </View>
+                  <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
+                    <FlatList
+                      data={Data.Data ? Data.Data.slice(0, 5) : ""}
+                      renderItem={renderItem}
+                      keyExtractor={item => item.id}
+                      extraData={selectedId}
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                    />
+                  </SafeAreaView>
+                  <View style={styles.headings}>
+                    <Text style={{ fontSize: 23, color: "#C77E45", marginTop: 20, fontFamily: "LeagueSpartan-SemiBold" }}>
+                      Categories
+                    </Text>
+                  </View>
+                  <View style={styles.categoryParent}>
+                    <View style={styles.categoryItem}
+                      onStartShouldSetResponder={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "SubCategory",
+                          params: { name: "Break Fast" },
+                        })
+                      }
+                    >
+
+                      <Image source={require(".././imgs/breakfast.jpg")} width={100} height={100} />
+                      <Text style={{ color: "#C77E45", fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}>  Breakfast</Text>
+                    </View>
+                    <View style={styles.categoryItem}
+
+                      onStartShouldSetResponder={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "SubCategory",
+                          params: { name: "Lunch" },
+                        })
+                      }
+
+                    >
+                      <Image source={require(".././imgs/lunch.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
+                      <Text style={{ color: "#C77E45", fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}> Lunch</Text>
+                    </View>
+                    <View style={styles.categoryItem}
+
+                      onStartShouldSetResponder={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "SubCategory",
+                          params: { name: "Dinner" },
+                        })
+                      }
+                    >
+                      <Image source={require(".././imgs/dinner.jpg")} width={100} height={100} />
+                      <Text style={{ color: "#C77E45", fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}> Dinner</Text>
+                    </View>
+                    <View style={styles.categoryItem}
+                      onStartShouldSetResponder={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "SubCategory",
+                          params: { name: "Desserts" },
+                        })
+                      }
+                    >
+                      <Image source={require(".././imgs/dessert.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
+                      <Text style={{ color: "#C77E45", fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}>  Dessert</Text>
+                    </View>
+                    <View style={styles.categoryItem}
+
+                      onStartShouldSetResponder={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "SubCategory",
+                          params: { name: "Fast Food" },
+                        })
+                      }
+                    >
+                      <Image source={require(".././imgs/fastFood.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
+                      <Text style={{ color: "#C77E45", fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}> Fast Food</Text>
+                    </View>
+                    <View style={styles.categoryItem}
+                      onStartShouldSetResponder={() =>
+                        navigation.navigate("SubCategoryNav", {
+                          screen: "SubCategory",
+                          params: { name: "Appetizer" },
+                        })
+                      }
+                    >
+                      <Image source={require(".././imgs/appetizers.jpg")} width={100} height={100} />
+                      <Text style={{ color: "#C77E45", fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}>Appetizers</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.headings}>
+                    <Text style={{ fontSize: 23, color: "#C77E45", fontFamily: "LeagueSpartan-SemiBold" }}>
+                      New Recipes
+                    </Text>
+                  </View>
+                  <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
+                    <FlatList
+                      data={Data.Data ? Data.Data.slice(0, 5) : ""}
+                      renderItem={renderItem}
+                      keyExtractor={item => item.id}
+                      extraData={selectedId}
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                    />
+                  </SafeAreaView>
                 </View>
-                <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
-                  <FlatList
-                    data={Data.Data ? Data.Data.slice(0, 5) : ""}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    extraData={selectedId}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                  />
-                </SafeAreaView>
-                <View style={styles.headings}>
-                  <Text style={{ fontSize: 23, color: "#C77E45", marginTop: 20, fontFamily: "LeagueSpartan-SemiBold" }}>
-                    Categories
-                  </Text>
-                </View>
-                <View style={styles.categoryParent}>
-                  <View style={styles.categoryItem}
-                    onStartShouldSetResponder={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Break Fast" },
-                      })
-                    }
-                  >
 
-                    <Image source={require(".././imgs/breakfast.jpg")} width={100} height={100} />
-                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}>  Breakfast</Text>
-                  </View>
-                  <View style={styles.categoryItem}
-
-                    onStartShouldSetResponder={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Lunch" },
-                      })
-                    }
-
-                  >
-                    <Image source={require(".././imgs/lunch.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
-                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}> Lunch</Text>
-                  </View>
-                  <View style={styles.categoryItem}
-
-                    onStartShouldSetResponder={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Dinner" },
-                      })
-                    }
-                  >
-                    <Image source={require(".././imgs/dinner.jpg")} width={100} height={100} />
-                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}> Dinner</Text>
-                  </View>
-                  <View style={styles.categoryItem}
-                    onStartShouldSetResponder={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Desserts" },
-                      })
-                    }
-                  >
-                    <Image source={require(".././imgs/dessert.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
-                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}>  Dessert</Text>
-                  </View>
-                  <View style={styles.categoryItem}
-
-                    onStartShouldSetResponder={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Fast Food" },
-                      })
-                    }
-                  >
-                    <Image source={require(".././imgs/fastFood.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
-                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}> Fast Food</Text>
-                  </View>
-                  <View style={styles.categoryItem}
-                    onStartShouldSetResponder={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "SubCategory",
-                        params: { name: "Appetizer" },
-                      })
-                    }
-                  >
-                    <Image source={require(".././imgs/appetizers.jpg")} width={100} height={100} />
-                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}>Appetizers</Text>
-                  </View>
-                </View>
-
-                <View style={styles.headings}>
-                  <Text style={{ fontSize: 23, color: "#C77E45", fontFamily: "LeagueSpartan-SemiBold" }}>
-                    New Recipes
-                  </Text>
-                </View>
-                <SafeAreaView style={{ marginLeft: 15, marginTop: 10, }}>
-                  <FlatList
-                    data={Data.Data ? Data.Data.slice(0, 5) : ""}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    extraData={selectedId}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                  />
-                </SafeAreaView>
-              </View>
-
-              {/*}
+                {/*}
               
           <View style={styles.reccomendedcontainer}>
              <View style={styles.reccomended}> 
@@ -288,10 +288,10 @@ const Home = ({ route, navigation }) => {
             </View> 
           </View>
           */}
-            </View>
-            <View style={styles.footer}>
-              <Footer navigation={navigation} />
-            </View>
+              </View>
+              <View style={styles.footer}>
+                <Footer navigation={navigation} />
+              </View>
           </>
         )
         }

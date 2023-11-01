@@ -27,23 +27,21 @@ const SubCat = ({ navigation, route }) => {
       >
         {/* Main Screen */}
         <ScrollView>
-          <HStack  style={styles.container}>
+          <HStack style={styles.container}>
             {Data.Data.filter((item) => item.Category == route.params.name).map(
               (e) => {
                 return (
-                  <Container key= {e.id} w="40" style={styles.IngredCont}>
+                  <Container key={e.id} w="40" style={styles.IngredCont}>
                     <TouchableOpacity
                       onPress={() =>
-                        navigation.navigate("Recipe", { name: e.RecipeName, id:e.id })
+                        navigation.navigate("Recipe", { name: e.RecipeName, id: e.id })
                       }
                     >
-                      <Container>
-                      <Image
-                        source={{ uri: `${e.ImageLink}` }}
-                        style={{ height: 90, width: 90, borderRadius: 50 }}
-                      />
-                      </Container>
-                      <Container >
+                      <Container style={{ width: 500, display: "flex", flexDirection: "row", alignItems: "center", gap: 10, }}>
+                        <Image
+                          source={{ uri: `${e.ImageLink}` }}
+                          style={{ height: 60, width: 60, borderRadius: 50, backgroundColor: "lightgray" }}
+                        />
                         <Text style={styles.innerText}> {e.RecipeName} </Text>
                       </Container>
                     </TouchableOpacity>
@@ -65,13 +63,19 @@ const SubCat = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   // container
   container: {
-    marginTop: 70,
+    marginTop: 35,
     display: "flex",
     flexWrap: "wrap",
+    flexDirection: "row",
     justifyContent: "center",
-    
-  },
 
+
+  },
+  recipeWrapper: {
+    flex: 1,
+    flexDirection: "row",
+
+  },
   // Background Image
   bgimage: {
     flex: 1,
@@ -80,22 +84,25 @@ const styles = StyleSheet.create({
 
   // Ingredient Container
   IngredCont: {
-    // borderColor: "red",
-    // borderWidth: 3,
-    marginBottom: 30,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems:"center",
+    borderColor: "red",
+    display: "flex",
+    width: "100%",
+    marginBottom: 20,
+    flexDirection: "row",
+    // justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    paddingBottom: 20,
+    borderBottomColor: "#F7DAC3",
   },
 
   // Inner Text
   innerText: {
-    textAlign: "center",
     color: 'black',
-    fontFamily:"LeagueSpartan-Regular",
+    fontFamily: "LeagueSpartan-Regular",
     fontSize: 19,
   },
- 
+
   // Footer
   footer: {
     flexDirection: "row",

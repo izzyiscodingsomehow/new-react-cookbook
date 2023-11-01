@@ -1,5 +1,5 @@
 import Login from './Components/Login.jsx';
-import React, {useState, useContext, createContext} from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import Home from './Components/Home.jsx';
 import Search from './Components/Main Pages/Search.jsx';
 //import Favorites from "./Components/Main Pages/Favorites.jsx";
@@ -13,17 +13,17 @@ import About from './Components/Profile Components/About.jsx';
 import SubCat from './Components/Main Pages/SubCategory.jsx';
 import AllCat from './Components/Main Pages/AllCategory.jsx';
 import Youtube from './Components/Global/YoutubePlayer.jsx';
-import {Button, NativeBaseProvider} from 'native-base';
-import {Image, Text} from 'react-native';
-import {UserContext, ContextProvider} from './Components/Global/ContextAPI.jsx';
+import { Button, NativeBaseProvider } from 'native-base';
+import { Image, Text } from 'react-native';
+import { UserContext, ContextProvider } from './Components/Global/ContextAPI.jsx';
 import {
   DataContext,
   DataProvider,
 } from './Components/Global/ContextFB.jsx';
-import {AuthUserInfo, AuthUserInfoProvider} from './Components/Login.jsx';
-import {NavigationContainer} from '@react-navigation/native';
+import { AuthUserInfo, AuthUserInfoProvider } from './Components/Login.jsx';
+import { NavigationContainer } from '@react-navigation/native';
 import ProfileHeader from './Components/Profile Components/ProfileHeader.jsx';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const color = '#E89452';
 const Stack = createNativeStackNavigator();
@@ -34,13 +34,14 @@ function ProfileNav() {
     <>
       {/* <Text>{user.user.givenName}</Text> */}
       <Stack.Navigator
-        screenOptions={({navigation}) => ({
+        screenOptions={({ navigation }) => ({
           headerStyle: {
             backgroundColor: color,
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontFamily: "LeagueSpartan-SemiBold",
+            fontSize: 23,
           },
           // headerRight: () => (
           //   <ProfileHeader navigation={navigation} />
@@ -56,7 +57,7 @@ function ProfileNav() {
         <Stack.Screen
           name="Profile"
           component={Profile}
-          options={{headerShown: true, title: 'Profile'}}
+          options={{ headerShown: true, title: 'Profile' }}
         />
         <Stack.Screen name="Suggestion Box" component={SuggBox} />
         <Stack.Screen name="Terms and Conditions" component={TermsandCond} />
@@ -76,18 +77,19 @@ function HomeNav() {
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-          fontWeight: 'bold',
+          fontFamily: "LeagueSpartan-SemiBold",
+          fontSize: 23,
         },
       }}>
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{headerShown: false, gestureEnabled: false}}
+        options={{ headerShown: false, gestureEnabled: false }}
       />
       <Stack.Screen
         name="SubCategoryNav"
         component={SubCategoryNav}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen name="Search" component={Search} />
 
@@ -96,7 +98,7 @@ function HomeNav() {
       <Stack.Screen
         name="ProfileNav"
         component={ProfileNav}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -170,18 +172,19 @@ function SubCategoryNav() {
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontFamily: "LeagueSpartan-Regular",
+            fontSize: 23,
           },
         }}>
         <Stack.Screen
           name="SubCategory"
           component={SubCat}
-          options={({route}) => ({title: route.params.name})}
+          options={({ route }) => ({ title: route.params.name })}
         />
         <Stack.Screen
           name="Recipe"
           component={Recipe}
-          options={({route}) => ({
+          options={({ route }) => ({
             title: route.params.name,
             // headerRight: () => (
             //   // onPress={() => {pathhandler(route.params.name)}}
@@ -197,12 +200,12 @@ function SubCategoryNav() {
         <Stack.Screen
           name="Youtube"
           component={Youtube}
-          options={({route}) => ({title: route.params.name})}
+          options={({ route }) => ({ title: route.params.name })}
         />
         <Stack.Screen
           name="AllCategory"
           component={AllCat}
-          options={({route}) => ({title: route.params.name})}
+          options={({ route }) => ({ title: route.params.name })}
         />
       </Stack.Navigator>
     </NativeBaseProvider>

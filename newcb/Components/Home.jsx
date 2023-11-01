@@ -35,7 +35,7 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
   const itemContent = useMemo(() => (
     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
       <Text
-        style={{ color: textColor, fontSize: 16 }}
+        style={{ color: textColor, fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}
         onPress={() =>
           navigation.navigate("SubCategoryNav", {
             screen: "Recipe",
@@ -115,7 +115,7 @@ const Home = ({ route, navigation }) => {
         style={styles.bgimage}
       >
         {isLoading ? <Loader /> : (
-          <>
+          <>  
             <View style={styles.header}>
               <Text style={styles.HeadingText} >Cookbook</Text>
             </View>
@@ -129,7 +129,7 @@ const Home = ({ route, navigation }) => {
               </View> */}
               <View style={styles.innercontainers}>
                 <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
+                  <Text style={{ fontSize: 24, color: "#C77E45", fontFamily:"LeagueSpartan-SemiBold" }}>
                     Recommended For You
                   </Text>
                 </View>
@@ -144,7 +144,7 @@ const Home = ({ route, navigation }) => {
                   />
                 </SafeAreaView>
                 <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45", marginTop: 20, }}>
+                  <Text style={{ fontSize: 23, color: "#C77E45", marginTop: 20, fontFamily: "LeagueSpartan-SemiBold" }}>
                     Categories
                   </Text>
                 </View>
@@ -159,7 +159,7 @@ const Home = ({ route, navigation }) => {
                   >
 
                     <Image source={require(".././imgs/breakfast.jpg")} width={100} height={100} />
-                    <Text style={{ color: "#C77E45", fontSize: 18 }}>  Breakfast</Text>
+                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}>  Breakfast</Text>
                   </View>
                   <View style={styles.categoryItem}
 
@@ -172,7 +172,7 @@ const Home = ({ route, navigation }) => {
 
                   >
                     <Image source={require(".././imgs/lunch.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
-                    <Text style={{ color: "#C77E45", fontSize: 18 }}> Lunch</Text>
+                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}> Lunch</Text>
                   </View>
                   <View style={styles.categoryItem}
 
@@ -184,7 +184,7 @@ const Home = ({ route, navigation }) => {
                     }
                   >
                     <Image source={require(".././imgs/dinner.jpg")} width={100} height={100} />
-                    <Text style={{ color: "#C77E45", fontSize: 18 }}> Dinner</Text>
+                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}> Dinner</Text>
                   </View>
                   <View style={styles.categoryItem}
                     onStartShouldSetResponder={() =>
@@ -195,7 +195,7 @@ const Home = ({ route, navigation }) => {
                     }
                   >
                     <Image source={require(".././imgs/dessert.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
-                    <Text style={{ color: "#C77E45", fontSize: 18 }}>  Dessert</Text>
+                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}>  Dessert</Text>
                   </View>
                   <View style={styles.categoryItem}
 
@@ -207,7 +207,7 @@ const Home = ({ route, navigation }) => {
                     }
                   >
                     <Image source={require(".././imgs/fastFood.jpg")} width={100} height={100} style={{ borderWidth: 1 }} />
-                    <Text style={{ color: "#C77E45", fontSize: 18 }}> Fast Food</Text>
+                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}> Fast Food</Text>
                   </View>
                   <View style={styles.categoryItem}
                     onStartShouldSetResponder={() =>
@@ -218,12 +218,12 @@ const Home = ({ route, navigation }) => {
                     }
                   >
                     <Image source={require(".././imgs/appetizers.jpg")} width={100} height={100} />
-                    <Text style={{ color: "#C77E45", fontSize: 18 }}>Appetizers</Text>
+                    <Text style={{ color: "#C77E45", fontSize: 20, fontFamily:"LeagueSpartan-Regular" }}>Appetizers</Text>
                   </View>
                 </View>
 
                 <View style={styles.headings}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", color: "#C77E45" }}>
+                  <Text style={{ fontSize: 23, color: "#C77E45", fontFamily: "LeagueSpartan-SemiBold" }}>
                     New Recipes
                   </Text>
                 </View>
@@ -308,12 +308,11 @@ const styles = StyleSheet.create({
   // Heading Text
   HeadingText: {
     color: "white",
-    fontWeight: "bold",
     fontSize: 28,
     paddingTop: 15,
     paddingRight: 15,
     textAlign: "center",
-    fontFamily: "LeagueSpartan-Regular.ttf"
+    fontFamily: "LeagueSpartan-Regular"
   },
   // Sub Buttons
   subbuttons: {

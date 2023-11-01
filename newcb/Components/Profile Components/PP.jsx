@@ -31,7 +31,7 @@ const PrivacyPolicy = ({ navigation }) => {
             <View style={styles.bodyText}>
               <Markdown
                 style={{
-                  body: { fontSize: 17, color: "black" }
+                  body: { fontSize: 18, color: "black", fontFamily: "LeagueSpartan-Regular" }
                 }}>
                 {bodyText}
               </Markdown>
@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
   // Heading Text
   HeadingText: {
     color: "black",
-    fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 32,
     textAlign: "center",
+    fontFamily:"LeagueSpartan-SemiBold",
     paddingHorizontal: 30,
   },
   // Background Image
@@ -75,12 +75,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     color: "black",
     fontSize: 16,
+    fontFamily:"LeagueSpartan-SemiBold",
     textAlign: "center",
     backgroundColor: "#ffffff1c",
   },
   heading3: {
     flexDirection: 'row',
     alignItems: 'center',
+    fontFamily:"LeagueSpartan-SemiBold",
     fontSize: 18,
   },
   // Button Properties

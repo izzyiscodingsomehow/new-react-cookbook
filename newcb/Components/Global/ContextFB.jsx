@@ -35,7 +35,7 @@ const DataProvider = ({ children }) => {
       console.log('storedata');
       getData();
     } catch (error) {
-      console.log('storedata Error: ', error);
+      console.log('storedata Error: ', error, '\n');
     }
   };
 
@@ -49,6 +49,8 @@ const DataProvider = ({ children }) => {
         console.log('if');
         const parsedvalue = JSON.parse(jsonValue);
         setData(parsedvalue);
+        console.log('else');
+        // ReadData();
       }
       else {
         console.log('else');
@@ -70,17 +72,17 @@ const DataProvider = ({ children }) => {
     //   ReadData();
     // }
     // else {
-      getData();
+    getData();
     //}
   }, [])
 
   const clearAll = async () => {
     try {
-      await AsyncStorage.clear()
-    } catch(e) {
+      await AsyncStorage.removeItem('newdata')
+    } catch (e) {
       // clear error
     }
-  
+
     console.log('Done.')
   }
 

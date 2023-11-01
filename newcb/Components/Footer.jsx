@@ -16,17 +16,17 @@ const Footer = ({ navigation }) => {
             source={require("../imgs/home.jpg")}
             style={{ height: 40, width: 40 }}
           />
-          <Text style={{ color: color, fontWeight: "bold", fontSize: 15 }}>
+          <Text style={{ color: color, fontSize: 17, fontFamily: "LeagueSpartan-SemiBold" }}>
             Home
           </Text>
         </Button>
         <Button style={styles.button}
-        onPress={() => navigation.navigate("Search")}>
+          onPress={() => navigation.navigate("Search")}>
           <Image
             source={require("../imgs/search.jpg")}
             style={{ height: 40, width: 40, marginLeft: 5 }}
           />
-          <Text style={{ color: color, fontWeight: "bold", fontSize: 15 }}>
+          <Text style={{ color: color, fontSize: 17, fontFamily: "LeagueSpartan-SemiBold" }}>
             Search
           </Text>
         </Button>
@@ -51,31 +51,31 @@ const Footer = ({ navigation }) => {
           <Text
             style={{
               color: color,
-              fontWeight: "bold",
-              fontSize: 15,
+              fontSize: 17,
               marginLeft: -3,
+              fontFamily: "LeagueSpartan-SemiBold"
             }}
           >
             Profile
           </Text>
         </Button>
       </View>
-    </NativeBaseProvider>
+    </NativeBaseProvider >
   );
 };
 const styles = StyleSheet.create({
-    footer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
-        color: "white",
-        backgroundColor: "#ffffff",
-      },
-      // Button Properties
-      button: {
-        backgroundColor: "#ffffff",
-        margin: 5,
-        height: 60,
-      },
+  footer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    color: "white",
+    backgroundColor: "#ffffff",
+  },
+  // Button Properties
+  button: {
+    backgroundColor: "#ffffff",
+    margin: 5,
+    height: 60,
+  },
 });
 export default Footer;

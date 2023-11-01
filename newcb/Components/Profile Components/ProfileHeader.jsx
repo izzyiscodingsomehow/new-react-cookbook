@@ -46,20 +46,22 @@ const styles = StyleSheet.create({
     // username css
     headerTitle: {
         color: '#000',
-        fontSize: 20,
+        fontSize: 22,
         paddingLeft: 20,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
+        fontFamily: "LeagueSpartan-SemiBold",
     },
     // email css
     subHeader: {
         color: '#000',
-        fontSize: 18,
+        fontSize: 20,
         paddingLeft: 20,
         paddingTop: 3,
+        fontFamily: "LeagueSpartan-Regular",
 
     },
     profileImage: {
-        backgroundColor: 'red',
+        backgroundColor: '#6e3b6e',
         borderRadius: 50
     }
 });

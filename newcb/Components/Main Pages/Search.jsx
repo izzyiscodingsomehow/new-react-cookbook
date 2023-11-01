@@ -75,7 +75,7 @@ const Search = ({ navigation, route }) => {
                       </Container>
                     );
                   }
-                ) : <View style={{ backgroundColor: color, borderRadius: 20, width: 100 }}><Text style={{ color: 'white', textAlign: 'center', margin: 7, fontWeight: 'bold', fontSize: 16 }}>Search</Text></View>
+                ) : <View style={{ backgroundColor: color, borderRadius: 20, width: 100 }}><Text style={{ color: 'white', textAlign: 'center', margin: 7, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold"}}>Search</Text></View>
 
               }
             </View>
@@ -129,6 +129,8 @@ const styles = StyleSheet.create({
   // Inner Text
   innerText: {
     textAlign: "center",
+    fontFamily:"LeagueSpartan-Regular",
+    fontSize: 19,
   },
 
   // ImageText

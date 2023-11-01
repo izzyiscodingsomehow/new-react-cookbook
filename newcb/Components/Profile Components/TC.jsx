@@ -17,13 +17,13 @@ const TermsandCond = ({ navigation }) => {
       >
         <ScrollView>
           <View style={styles.container}>
-            <Text style={{ color: 'black', fontWeight: "bold", fontSize: 30 }}>
+            <Text style={{ color: 'black', fontSize: 32,fontFamily:"LeagueSpartan-SemiBold" }}>
               Terms and Conditions
             </Text>
             <View style={styles.bodyText}>
               <Markdown
                 style={{
-                  body: { fontSize: 17, color: "black" }
+                  body: { fontSize: 19, color: "black", fontFamily:"LeagueSpartan-Regular" }
                 }}>
                 {bodyText}
               </Markdown>

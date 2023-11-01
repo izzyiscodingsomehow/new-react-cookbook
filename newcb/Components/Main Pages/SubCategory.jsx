@@ -38,10 +38,10 @@ const SubCat = ({ navigation, route }) => {
                       }
                     >
                       <Container>
-                      {/* <Image
+                      <Image
                         source={{ uri: `${e.ImageLink}` }}
                         style={{ height: 90, width: 90, borderRadius: 50 }}
-                      /> */}
+                      />
                       </Container>
                       <Container >
                         <Text style={styles.innerText}> {e.RecipeName} </Text>
@@ -90,8 +90,10 @@ const styles = StyleSheet.create({
 
   // Inner Text
   innerText: {
-    textAlign: "center"
-    , color: 'black'
+    textAlign: "center",
+    color: 'black',
+    fontFamily:"LeagueSpartan-Regular",
+    fontSize: 19,
   },
  
   // Footer

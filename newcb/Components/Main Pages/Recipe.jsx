@@ -21,7 +21,7 @@ const Recipe = ({ navigation, route }) => {
             <Container key={e.id} style={styles.IngredCont}>
      
               <Container style={{ width: 320 }}>
-                <Text style={{ fontSize: 22, fontWeight: "bold", color: 'black' }}>
+                <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
                   Ingredients
                 </Text>
               </Container>
@@ -40,12 +40,12 @@ const Recipe = ({ navigation, route }) => {
 
                         {/* Ingredient Name */}
                         <View style={styles.ingredientColumn}>
-                          <Text style={{ width: 200, fontSize: 16, color: "black" }}><Text style={{ fontSize: 13 }}>{i}. </Text>{s}</Text>
+                          <Text style={{ width: 200, fontSize: 18, color: "black", fontFamily: "LeagueSpartan-Regular" }}><Text style={{ fontSize: 13, }}>{i}. </Text>{s}</Text>
                         </View>
 
                         {/* Ingredient Quantity */}
                         <View style={styles.ingredientColumn}>
-                          <Text style={{ width: 120, fontSize: 15, color: "black" }}>{e.Quantity[i]}</Text>
+                          <Text style={{ width: 120, fontSize: 17, color: "black", fontFamily: "LeagueSpartan-Regular" }}>{e.Quantity[i]}</Text>
                         </View>
 
                       </View>
@@ -59,13 +59,13 @@ const Recipe = ({ navigation, route }) => {
               {"\n"}
 
               <Container >
-                <Text style={{ fontSize: 22, fontWeight: "bold", color: 'black' }}>Recipe</Text>
+                <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>Recipe</Text>
                 {/* Procedure */}
                 <Text style={styles.makingstyle}>{procedure}</Text>
               </Container>
 
               <Container style={styles.refVid}>
-                <Text style={{ fontSize: 20, fontWeight: "bold", width: 260, color: 'black' }}>
+                <Text style={{ fontSize: 24, width: 260, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
                   Video Tutorial
                 </Text>
                 {/* Video Player */}
@@ -146,9 +146,10 @@ const styles = StyleSheet.create({
   makingstyle: {
     marginTop: 10,
     width: 340,
-    fontSize: 16,
+    fontSize: 19,
     textAlign: "justify",
     lineHeight: 23,
+    fontFamily: "LeagueSpartan-Regular",
     color: 'black'
   },
 });

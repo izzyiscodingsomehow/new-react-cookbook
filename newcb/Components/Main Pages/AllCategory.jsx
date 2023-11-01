@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
 
   // Inner Text
   innerText: {
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily:"LeagueSpartan-Regular",
   },
  
   // Footer

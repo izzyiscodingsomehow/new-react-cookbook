@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
   // Heading Text
   HeadingText: {
     color: "black",
-    fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 32,
+    fontFamily:"LeagueSpartan-SemiBold",
     textAlign: "center",
     paddingHorizontal: 30,
   },
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     marginHorizontal: 5,
     color: "black",
-    fontSize: 16,
+    fontSize: 18,
+    fontFamily:"LeagueSpartan-SemiBold",
     textAlign: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
   },

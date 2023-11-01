@@ -141,9 +141,9 @@ const SuggBox = ({ navigation }) => {
             Other (Explain it in suggestion box)
           </Checkbox>
         </View>
-        <View style={{ alignItems: "center", marginTop: 10 }}>
+        <View style={{ alignItems: "center", marginTop:10 }}>
           <Button style={styles.button} onPress={submitHandler}>
-            <Text style={{ color: "white", fontSize: 23, fontWeight: "bold" }}>
+            <Text style={{ color: "white", fontSize: 25, fontFamily: "LeagueSpartan-SemiBold"}}>
               Submit
             </Text>
           </Button>

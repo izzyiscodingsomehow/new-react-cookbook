@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet, FlatList, Text, View, Dimensions, TouchableOpacity, SafeAreaView } from "react-native";
+import { Image, ImageBackground, StyleSheet, FlatList, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
 import { Container, NativeBaseProvider, createContext } from "native-base";
 import { Button } from "native-base";
 import Footer from "./Footer";
@@ -109,6 +109,7 @@ const Home = ({ route, navigation }) => {
 
   return (
     <NativeBaseProvider style={{ backgroundColor: color }}>
+      <ScrollView>
       <ImageBackground
         source={require("../imgs/mainBg.jpg")}
         resizeMode="cover"
@@ -296,6 +297,7 @@ const Home = ({ route, navigation }) => {
         )
         }
       </ImageBackground >
+      </ScrollView>
     </NativeBaseProvider >
   );
 };

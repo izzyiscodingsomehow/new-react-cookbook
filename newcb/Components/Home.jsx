@@ -103,13 +103,12 @@ const Home = ({ route, navigation }) => {
 
   useEffect(() => {
     if (Data.Data) {
-      setIsLoading(false);
+      setIsLoading(true);
     }
   }, [Data]);
 
   return (
     <NativeBaseProvider style={{backgroundColor: color}}>
-      <ScrollView>
         <ImageBackground
           source={require('../imgs/mainBg.jpg')}
           resizeMode="cover"
@@ -118,6 +117,7 @@ const Home = ({ route, navigation }) => {
             <Loader />
           ) : (
             <>
+            <ScrollView>
               <View style={styles.header}>
                 <Text style={styles.HeadingText}>Cookbook</Text>
               </View>
@@ -383,14 +383,14 @@ const Home = ({ route, navigation }) => {
             </View> 
           </View>
           */}
-              </View>
+              </View>  
+            </ScrollView>
+            <View style={styles.footer}>
+              <Footer navigation={navigation} />
+            </View>
             </>
           )}
         </ImageBackground>
-      </ScrollView>
-      <View style={styles.footer}>
-        <Footer navigation={navigation} />
-      </View>
     </NativeBaseProvider>
   );
 };

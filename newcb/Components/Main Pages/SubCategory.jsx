@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
 
   // Ingredient Container
   IngredCont: {
-    borderColor: "red",
     display: "flex",
     width: "100%",
     marginBottom: 20,

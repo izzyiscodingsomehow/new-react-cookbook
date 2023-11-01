@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ScrollView, Alert } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, Alert,ImageBackground, } from "react-native";
 import { NativeBaseProvider, Container, FlatList, Button } from "native-base";
 import Footer from "../Footer.jsx";
 import React, { useContext } from "react";
@@ -14,6 +14,10 @@ const Recipe = ({ navigation, route }) => {
   return (
     <NativeBaseProvider>
       <ScrollView>
+      <ImageBackground
+          source={require('../../imgs/mainBg.jpg')}
+          resizeMode="cover"
+          style={styles.bgimage}>
         {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
           let procedure = e.Making;
           procedure = procedure.replace(/(?<!\.)\n/g, " ");
@@ -66,10 +70,17 @@ const Recipe = ({ navigation, route }) => {
 
               <Container style={styles.refVid}>
                 <Text style={{ fontSize: 24, width: 260, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
-                  Video Tutorial
+                  Video Player
                 </Text>
-                {/* Video Player */}
-                <View style={{ position: "relative", left: 40, top: 10 }}>
+                <View style={{ position: "relative", left: 40, top: 10 }} >
+                  <Button style={{ backgroundColor: color, borderRadius: 30, width: 100 }} onPress={() =>
+                      navigation.navigate("SubCategoryNav", {
+                      screen: "Youtube",
+                      params: { url: e.VideoLink },
+                    })
+                  }>
+                    <Text style={{ color: 'white', textAlign: 'center', marginBottom:5, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold" }}>Play</Text>
+                  </Button>
                   {/* <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} /> */}
                 </View>
 
@@ -78,6 +89,7 @@ const Recipe = ({ navigation, route }) => {
             </Container>
           );
         })}
+        </ImageBackground>
       </ScrollView>
       <View style={styles.footer}>
         <Footer navigation={navigation} />
@@ -87,6 +99,11 @@ const Recipe = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+  // bgimage
+  bgimage: {
+    flex: 1,
+    justifyContent: "center",
+  },
   // Main Container
   IngredCont: {
     marginTop: 20,

@@ -103,7 +103,7 @@ const Home = ({ route, navigation }) => {
 
   useEffect(() => {
     if (Data.Data) {
-      setIsLoading(true);
+      setIsLoading(false);
     }
   }, [Data]);
 

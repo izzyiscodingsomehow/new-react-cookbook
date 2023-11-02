@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   // Main Container
   IngredCont: {
     marginTop: 20,
-    marginBottom: 310,
+    marginBottom: 90,
     alignItems: "center",
     justifyContent: "center",
     display: "flex"

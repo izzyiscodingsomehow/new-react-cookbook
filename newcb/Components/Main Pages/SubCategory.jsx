@@ -6,10 +6,10 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { Container, NativeBaseProvider, HStack, Center } from "native-base";
+import { Container, NativeBaseProvider, HStack, Center,TextField } from "native-base";
 import { DataContext } from "../Global/ContextFB";
 import Footer from "../Footer.jsx";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 const color = "#E89452";
@@ -17,6 +17,7 @@ const color = "#E89452";
 const SubCat = ({ navigation, route }) => {
 
   const Data = useContext(DataContext);
+  const [ser, setSer] = useState("");
 
   return (
     <NativeBaseProvider>
@@ -27,6 +28,50 @@ const SubCat = ({ navigation, route }) => {
       >
         {/* Main Screen */}
         <ScrollView>
+        <View style={styles.searchField}>
+            {/*<Text>Want Something</Text>*/}
+            <TextField
+              required
+              w="85%"
+              backgroundColor="transparent"
+              color={color}
+              placeholder={`Search recipe`}
+              placeholderTextColor={color}
+              onChangeText={(s) => setSer(s.toUpperCase())}
+              value={ser}
+              borderRadius="50"
+              borderColor={color}
+              fontSize={21}
+              styles={styles.searchBox}
+              
+            />
+            <View style={styles.searchButtonwrapper}>
+              {ser ?
+                Data.Data.filter((item) => item.RecipeName.toUpperCase().includes(ser)).map(
+                  (e) => {
+                    return (
+                      <Container key={e.id} w="40" style={styles.IngredCont}>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate("SubCategoryNav", { screen: "Recipe", params: { name: e.RecipeName, id: e.id } })}>
+                          {/* <Container>
+                            <Image
+                              source={{ uri: `${e.ImageLink}` }}
+                              style={{ height: 90, width: 90, borderRadius: 50 }}
+                            />
+                          </Container> */}
+                          <Container>
+                            <Text style={styles.innerText}> {e.RecipeName} </Text>
+                          </Container>
+                        </TouchableOpacity>
+                      </Container>
+                    );
+                  }
+                ) : <></>
+
+              }
+            </View>
+          </View>
+
           <HStack style={styles.container}>
             {Data.Data.filter((item) => item.Category == route.params.name).map(
               (e) => {
@@ -53,17 +98,34 @@ const SubCat = ({ navigation, route }) => {
         </ScrollView>
 
         {/* Footer */}
+        {ser ? <></> : 
         <View style={styles.footer}>
           <Footer navigation={navigation} />
-        </View>
+        </View>}
       </ImageBackground>
     </NativeBaseProvider>
   );
 };
 const styles = StyleSheet.create({
+  // searchField
+  searchField: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+  //searchButtonwrapper
+  searchButtonwrapper: {
+    marginLeft: 80,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: 400,
+    justifyContent: "left",
+    alignItems: "center",
+    // borderWidth: 1
+  },
   // container
   container: {
-    marginTop: 35,
+    marginTop: 5,
     display: "flex",
     flexWrap: "wrap",
     flexDirection: "row",

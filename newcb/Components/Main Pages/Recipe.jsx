@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ScrollView, Alert,ImageBackground, } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, Alert, ImageBackground, } from "react-native";
 import { NativeBaseProvider, Container, FlatList, Button } from "native-base";
 import Footer from "../Footer.jsx";
 import React, { useContext } from "react";
@@ -14,81 +14,89 @@ const Recipe = ({ navigation, route }) => {
   return (
     <NativeBaseProvider>
       <ScrollView>
-      <ImageBackground
+        <ImageBackground
           source={require('../../imgs/mainBg.jpg')}
           resizeMode="cover"
           style={styles.bgimage}>
-        {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
-          let procedure = e.Making;
-          procedure = procedure.replace(/(?<!\.)\n/g, " ");
-          return (
-            <Container key={e.id} style={styles.IngredCont}>
-     
-              <Container style={{ width: 320 }}>
-                <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
-                  Ingredients
-                </Text>
-              </Container>
+          {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
+            let procedure = e.Making;
+            procedure = procedure.replace(/(?<!\.)\n/g, " ");
+            return (
+              <Container key={e.id} style={styles.IngredCont}>
 
-              <Container style={styles.ingred}>
-                {/* 2 columns for Data Calling Ingredients and Quantity */}
-                {/* <Container>
+                <Container style={{ width: 320 }}>
+                  <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
+                    Ingredients
+                  </Text>
+                </Container>
+
+                <Container style={styles.ingred}>
+                  {/* 2 columns for Data Calling Ingredients and Quantity */}
+                  {/* <Container>
                   {e.Ingredient.map((s, i) => {
                     return <Text style={{ marginVertical: s.length >= 25 ? 6 : 5, width: s.length >= 30 ? 200 : 250, color: 'black', fontSize: s.length >= 25 ? 14 : 16 }} key={i}><Text style={{ fontSize: 13 }}>{i}</Text>. {s} </Text>;
                   })}
                 </Container> */}
-                <Container style={styles.ingredientsWrapper}>
-                  {e.Ingredient.map((s, i) => {
-                    return <>
-                      <View style={styles.ingredientRow} key={i}>
+                  <Container style={styles.ingredientsWrapper}>
+                    {e.Ingredient.map((s, i) => {
+                      return <>
+                        <View style={styles.ingredientRow} key={i}>
 
-                        {/* Ingredient Name */}
-                        <View style={styles.ingredientColumn}>
-                          <Text style={{ width: 200, fontSize: 18, color: "black", fontFamily: "LeagueSpartan-Regular" }}><Text style={{ fontSize: 13, }}>{i}. </Text>{s}</Text>
+                          {/* Ingredient Name */}
+                          <View style={styles.ingredientColumn}>
+                            <Text style={{ width: 200, fontSize: 18, color: "black", fontFamily: "LeagueSpartan-Regular" }}><Text style={{ fontSize: 13, }}>{i}. </Text>{s}</Text>
+                          </View>
+
+                          {/* Ingredient Quantity */}
+                          <View style={styles.ingredientColumn}>
+                            <Text style={{ width: 120, fontSize: 17, color: "black", fontFamily: "LeagueSpartan-Regular" }}>{e.Quantity[i]}</Text>
+                          </View>
+
                         </View>
+                      </>
+                    })}
+                  </Container>
 
-                        {/* Ingredient Quantity */}
-                        <View style={styles.ingredientColumn}>
-                          <Text style={{ width: 120, fontSize: 17, color: "black", fontFamily: "LeagueSpartan-Regular" }}>{e.Quantity[i]}</Text>
-                        </View>
 
-                      </View>
-                    </>
-                  })}
                 </Container>
 
+                {"\n"}
 
-              </Container>
+                <Container >
+                  <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>Recipe</Text>
+                  {/* Procedure */}
+                  <Text style={styles.makingstyle}>{procedure}</Text>
+                </Container>
 
-              {"\n"}
-
-              <Container >
-                <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>Recipe</Text>
-                {/* Procedure */}
-                <Text style={styles.makingstyle}>{procedure}</Text>
-              </Container>
-
-              <Container style={styles.refVid}>
-                <Text style={{ fontSize: 24, width: 260, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
-                  Video Player
-                </Text>
-                <View style={{ position: "relative", left: 40, top: 10 }} >
-                  <Button style={{ backgroundColor: color, borderRadius: 30, width: 100 }} onPress={() =>
+                <Container style={styles.refVid}>
+                  <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
+                    Video Player
+                  </Text>
+                  <View style={{ position: "relative" }} >
+                    <Button style={{ backgroundColor: color, borderRadius: 30 }} onPress={() =>
                       navigation.navigate("SubCategoryNav", {
-                      screen: "Youtube",
-                      params: { url: e.VideoLink },
-                    })
-                  }>
-                    <Text style={{ color: 'white', textAlign: 'center', marginBottom:5, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold" }}>Play</Text>
-                  </Button>
-                  {/* <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} /> */}
-                </View>
+                        screen: "Youtube",
+                        params: { url: e.VideoLink },
+                      })
+                    }>
+                      {/* <Text style={{ color: 'white', textAlign: 'center', marginBottom: 5, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold" }}>Play</Text> */}
+                      <Image
+                        source={require("../../imgs/playIcon.jpg")}
+                        style={{
+                          height: 20,
+                          width: 20,
+
+                        }}
+                      />
+                    </Button>
+                    {/* <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} /> */}
+                  </View>
+
+                </Container>
 
               </Container>
-
-            </Container>
-          );
-        })}
+            );
+          })}
         </ImageBackground>
       </ScrollView>
       <View style={styles.footer}>
@@ -146,9 +154,11 @@ const styles = StyleSheet.create({
   // Reference Video
   refVid: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: "start"
+    justifyContent: "start",
+    width: 340,
+    gap: 10,
   },
 
   //Footer

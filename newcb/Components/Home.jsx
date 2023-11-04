@@ -35,7 +35,7 @@ const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
   const itemContent = useMemo(() => (
     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
       <Text
-        style={{ color: textColor, fontSize: 20, fontFamily: "LeagueSpartan-Regular" }}
+        style={{ color: textColor, fontSize: 19, fontFamily: "LeagueSpartan-Regular" }}
         onPress={() =>
           navigation.navigate("SubCategoryNav", {
             screen: "Recipe",
@@ -108,15 +108,15 @@ const Home = ({ route, navigation }) => {
   }, [Data]);
 
   return (
-    <NativeBaseProvider style={{backgroundColor: color}}>
-        <ImageBackground
-          source={require('../imgs/mainBg.jpg')}
-          resizeMode="cover"
-          style={styles.bgimage}>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
+    <NativeBaseProvider style={{ backgroundColor: color }}>
+      <ImageBackground
+        source={require('../imgs/mainBg.jpg')}
+        resizeMode="cover"
+        style={styles.bgimage}>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
             <ScrollView>
               <View style={styles.header}>
                 <Text style={styles.HeadingText}>Cookbook</Text>
@@ -130,7 +130,7 @@ const Home = ({ route, navigation }) => {
                     imageLoadingColor="grey"
                     circleLoop={true}
                     resizeMode={'cover'}
-                    dotStyle={{width: 11, height: 11, borderRadius: 10}}
+                    dotStyle={{ width: 11, height: 11, borderRadius: 10 }}
                     disableOnPress={true}
                     autoplay={true}></SliderBox>
                 </View>
@@ -148,7 +148,7 @@ const Home = ({ route, navigation }) => {
                       Recommended For You
                     </Text>
                   </View>
-                  <SafeAreaView style={{marginLeft: 15, marginTop: 10}}>
+                  <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
                     <FlatList
                       data={Data.Data ? Data.Data.slice(0, 5) : ''}
                       renderItem={renderItem}
@@ -170,12 +170,12 @@ const Home = ({ route, navigation }) => {
                     </Text>
                   </View>
                   <View style={styles.categoryParent}>
-                    <View
+                    <TouchableOpacity
                       style={styles.categoryItem}
-                      onStartShouldSetResponder={() =>
+                      onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Break Fast'},
+                          params: { name: 'Break Fast' },
                         })
                       }>
                       <Image
@@ -186,43 +186,43 @@ const Home = ({ route, navigation }) => {
                       <Text
                         style={{
                           color: '#C77E45',
-                          fontSize: 20,
+                          fontSize: 19,
                           fontFamily: 'LeagueSpartan-Regular',
                         }}>
                         {' '}
                         Breakfast
                       </Text>
-                    </View>
-                    <View
+                    </TouchableOpacity>
+                    <TouchableOpacity
                       style={styles.categoryItem}
-                      onStartShouldSetResponder={() =>
+                      onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Lunch'},
+                          params: { name: 'Lunch' },
                         })
                       }>
                       <Image
                         source={require('.././imgs/lunch.jpg')}
                         width={100}
                         height={100}
-                        style={{borderWidth: 1}}
+                        style={{ borderWidth: 1 }}
                       />
                       <Text
                         style={{
                           color: '#C77E45',
-                          fontSize: 20,
+                          fontSize: 19,
                           fontFamily: 'LeagueSpartan-Regular',
                         }}>
                         {' '}
                         Lunch
                       </Text>
-                    </View>
-                    <View
+                    </TouchableOpacity>
+                    <TouchableOpacity
                       style={styles.categoryItem}
-                      onStartShouldSetResponder={() =>
+                      onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Dinner'},
+                          params: { name: 'Dinner' },
                         })
                       }>
                       <Image
@@ -233,67 +233,67 @@ const Home = ({ route, navigation }) => {
                       <Text
                         style={{
                           color: '#C77E45',
-                          fontSize: 20,
+                          fontSize: 19,
                           fontFamily: 'LeagueSpartan-Regular',
                         }}>
                         {' '}
                         Dinner
                       </Text>
-                    </View>
-                    <View
+                    </TouchableOpacity>
+                    <TouchableOpacity
                       style={styles.categoryItem}
-                      onStartShouldSetResponder={() =>
+                      onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Desserts'},
+                          params: { name: 'Desserts' },
                         })
                       }>
                       <Image
                         source={require('.././imgs/dessert.jpg')}
                         width={100}
                         height={100}
-                        style={{borderWidth: 1}}
+                        style={{ borderWidth: 1 }}
                       />
                       <Text
                         style={{
                           color: '#C77E45',
-                          fontSize: 20,
+                          fontSize: 19,
                           fontFamily: 'LeagueSpartan-Regular',
                         }}>
                         {' '}
                         Dessert
                       </Text>
-                    </View>
-                    <View
+                    </TouchableOpacity>
+                    <TouchableOpacity
                       style={styles.categoryItem}
-                      onStartShouldSetResponder={() =>
+                      onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Fast Food'},
+                          params: { name: 'Fast Food' },
                         })
                       }>
                       <Image
                         source={require('.././imgs/fastFood.jpg')}
                         width={100}
                         height={100}
-                        style={{borderWidth: 1}}
+                        style={{ borderWidth: 1 }}
                       />
                       <Text
                         style={{
                           color: '#C77E45',
-                          fontSize: 20,
+                          fontSize: 19,
                           fontFamily: 'LeagueSpartan-Regular',
                         }}>
                         {' '}
                         Fast Food
                       </Text>
-                    </View>
-                    <View
+                    </TouchableOpacity>
+                    <TouchableOpacity
                       style={styles.categoryItem}
-                      onStartShouldSetResponder={() =>
+                      onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Appetizer'},
+                          params: { name: 'Appetizer' },
                         })
                       }>
                       <Image
@@ -304,12 +304,12 @@ const Home = ({ route, navigation }) => {
                       <Text
                         style={{
                           color: '#C77E45',
-                          fontSize: 20,
+                          fontSize: 19,
                           fontFamily: 'LeagueSpartan-Regular',
                         }}>
                         Appetizers
                       </Text>
-                    </View>
+                    </TouchableOpacity>
                   </View>
 
                   <View style={styles.headings}>
@@ -322,7 +322,7 @@ const Home = ({ route, navigation }) => {
                       New Recipes
                     </Text>
                   </View>
-                  <SafeAreaView style={{marginLeft: 15, marginTop: 10}}>
+                  <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
                     <FlatList
                       data={Data.Data ? Data.Data.slice(0, 5) : ''}
                       renderItem={renderItem}
@@ -383,14 +383,14 @@ const Home = ({ route, navigation }) => {
             </View> 
           </View>
           */}
-              </View>  
+              </View>
             </ScrollView>
             <View style={styles.footer}>
               <Footer navigation={navigation} />
             </View>
-            </>
-          )}
-        </ImageBackground>
+          </>
+        )}
+      </ImageBackground>
     </NativeBaseProvider>
   );
 };
@@ -443,8 +443,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   recommendedItem: {
-    paddingVertical: 8,
-    paddingHorizontal: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 18,
     fontSize: 18,
     backgroundColor: "#F7DAC3",
     color: "#AC6A36",

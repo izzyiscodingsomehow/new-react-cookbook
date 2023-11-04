@@ -20,7 +20,13 @@ const Recipe = ({ navigation, route }) => {
           style={styles.bgimage}>
           {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
             let procedure = e.Making;
+            
+            // remove unwanted whitespace
             procedure = procedure.replace(/(?<!\.)\n/g, " ");
+            
+            // add more space before each new paragraph
+            procedure = procedure.replace(/\n/g, "\n\n");
+            
             return (
               <Container key={e.id} style={styles.IngredCont}>
 

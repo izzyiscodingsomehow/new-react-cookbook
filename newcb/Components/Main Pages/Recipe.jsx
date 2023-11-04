@@ -20,17 +20,17 @@ const Recipe = ({ navigation, route }) => {
           style={styles.bgimage}>
           {Data.Data.filter((item) => item.id == route.params.id).map((e) => {
             let procedure = e.Making;
-            
+
             // remove unwanted whitespace
             procedure = procedure.replace(/(?<!\.)\n/g, " ");
-            
+
             // add more space before each new paragraph
             procedure = procedure.replace(/\n/g, "\n\n");
-            
+
             return (
               <Container key={e.id} style={styles.IngredCont}>
 
-                <Container style={{ width: 320 }}>
+                <Container style={{ minWidth: "100%", maxWidth: "100%" }}>
                   <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
                     Ingredients
                   </Text>
@@ -68,7 +68,7 @@ const Recipe = ({ navigation, route }) => {
 
                 {"\n"}
 
-                <Container >
+                <Container style={{ minWidth: "100%", maxWidth: "120%" }}>
                   <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>Recipe</Text>
                   {/* Procedure */}
                   <Text style={styles.makingstyle}>{procedure}</Text>
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
   bgimage: {
     flex: 1,
     justifyContent: "center",
+    alignItems: "center"
   },
   // Main Container
   IngredCont: {
@@ -124,11 +125,15 @@ const styles = StyleSheet.create({
     marginBottom: 90,
     alignItems: "center",
     justifyContent: "center",
-    display: "flex"
+    display: "flex",
+    width: "100%",
+    minWidth: "85%",
+    maxWidth: "85%",
+    // borderWidth: 1
   },
   ingredientsWrapper: {
     position: "relative",
-    left: -53,
+    left: -29,
   },
   ingredientRow: {
     display: "flex",
@@ -150,6 +155,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    minWidth: "100%",
+    maxWidth: "100%"
   },
 
   controlContainer: {
@@ -163,7 +170,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: "start",
-    width: 340,
+    minWidth: "100%",
+    maxWidth: "100%",
     gap: 10,
   },
 

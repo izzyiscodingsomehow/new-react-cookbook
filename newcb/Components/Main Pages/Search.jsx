@@ -28,29 +28,18 @@ const Search = ({ navigation, route }) => {
         <ScrollView>
           <View style={styles.container}>
             {/*<Text>Want Something</Text>*/}
-            <Image
-              source={require("../../imgs/search.jpg")}
-              style={{
-                height: 20,
-                width: 20,
-                left: 300,
-                // borderWidth: 20,
-                marginBottom: 15,
-                zIndex: 1,
-                borderRadius: 100,
-              }}
-            />
             <TextField
               required
               w="85%"
               backgroundColor="transparent"
               color={color}
-              placeholder={`Search recipe`}
+              placeholder={`Search Recipe`}
               placeholderTextColor={color}
               onChangeText={(s) => setSer(s.toUpperCase())}
               value={ser}
               borderRadius="50"
               borderColor={color}
+              marginTop="15"
               fontSize={16}
               styles={styles.searchBox}
             />

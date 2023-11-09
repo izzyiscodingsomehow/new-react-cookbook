@@ -67,7 +67,7 @@ const Profile = ({ navigation }) => {
                 <Text
                   style={{ color: "black", fontSize: 25, fontFamily: "LeagueSpartan-Regular", marginBottom: 3 }}
                 >
-                  Suggestion Box
+                  Suggestions
                 </Text>
               </View>
             </Button>

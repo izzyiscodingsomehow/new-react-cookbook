@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     // username css
     headerTitle: {
-        color: '#000',
+        color: '#AC6A36',
         fontSize: 22,
         paddingLeft: 20,
         // fontWeight: 'bold',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     // email css
     subHeader: {
-        color: '#000',
+        color: '#AC6A36',
         fontSize: 20,
         paddingLeft: 20,
         paddingTop: 3,

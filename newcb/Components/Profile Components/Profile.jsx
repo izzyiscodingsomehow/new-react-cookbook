@@ -10,6 +10,7 @@ import { useContext } from "react";
 import ProfileHeader, { Profileheader } from './ProfileHeader.jsx';
 const color = "#E89452";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { clearAll } from "../Global/ContextFB.jsx";
 
 const Profile = ({ navigation }) => {
 
@@ -23,12 +24,12 @@ const Profile = ({ navigation }) => {
       if (user) {
         setUser(null);
         await GoogleSignin.signOut();
-        await AsyncStorage.setItem('hasData', "false");
+        await clearAll();
         navigation.navigate("Login");
       }
       else {
         setTimeout(async () => {
-          await AsyncStorage.setItem('hasData', "false");
+          await clearAll();
           navigation.navigate("Login");
         }, 500);
       }
@@ -64,7 +65,7 @@ const Profile = ({ navigation }) => {
                   }}
                 />
                 <Text
-                  style={{ color: "black", fontSize: 25, fontFamily:"LeagueSpartan-Regular", marginBottom: 3 }}
+                  style={{ color: "black", fontSize: 25, fontFamily: "LeagueSpartan-Regular", marginBottom: 3 }}
                 >
                   Suggestion Box
                 </Text>
@@ -98,7 +99,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 40, marginRight: 30 }}
                 />
                 <Text
-                  style={{ color: "black", fontSize: 25, fontFamily:"LeagueSpartan-Regular", marginBottom: 3 }}
+                  style={{ color: "black", fontSize: 25, fontFamily: "LeagueSpartan-Regular", marginBottom: 3 }}
                 >
                   About
                 </Text>
@@ -115,7 +116,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 37, marginRight: 30 }}
                 />
                 <Text
-                  style={{ color: "black", fontSize: 25, fontFamily:"LeagueSpartan-Regular", marginBottom: 3 }}
+                  style={{ color: "black", fontSize: 25, fontFamily: "LeagueSpartan-Regular", marginBottom: 3 }}
                 >
                   Terms & Conditions
                 </Text>
@@ -132,7 +133,7 @@ const Profile = ({ navigation }) => {
                   source={require("../../imgs/PrivacyPolicy.jpg")}
                 />
                 <Text
-                  style={{ color: "black", fontSize: 25, fontFamily:"LeagueSpartan-Regular", marginBottom: 3 }}
+                  style={{ color: "black", fontSize: 25, fontFamily: "LeagueSpartan-Regular", marginBottom: 3 }}
                 >
                   Privacy Policy
                 </Text>
@@ -145,7 +146,7 @@ const Profile = ({ navigation }) => {
                   style={{ height: 40, width: 40, marginRight: 30 }}
                   source={require("../../imgs/logout.jpg")}
                 />
-                <Text style={{ color: 'black', fontSize: 25, fontFamily:"LeagueSpartan-Regular", marginBottom: 3 }}>Sign Out</Text>
+                <Text style={{ color: 'black', fontSize: 25, fontFamily: "LeagueSpartan-Regular", marginBottom: 3 }}>Sign Out</Text>
               </View>
             </Button>
 

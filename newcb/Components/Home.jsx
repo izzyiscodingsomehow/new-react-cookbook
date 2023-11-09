@@ -10,26 +10,7 @@ import { Carousel } from '../Components/Global/Carousel.jsx';
 import { SliderBox } from 'react-native-image-slider-box';
 const color = "#E89452";
 
-// const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 
-//   return (
-//     <TouchableOpacity onPress={onPress} style={[styles.recommendedItem]}>
-//       <Text
-//         style={{ color: textColor, fontSize: 16, }}
-//         onPress={() =>
-//           navigation.navigate("SubCategoryNav", {
-//             screen: "Recipe",
-//             params: { name: item.RecipeName, id: item.id },
-//           })
-//         }
-//       >
-//         {item.RecipeName}
-//       </Text>
-//     </TouchableOpacity >
-//   )
-// };
-
-// const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
 const Item = ({ item, onPress, backgroundColor, textColor, navigation }) => {
   // Memoize the JSX structure
   const itemContent = useMemo(() => (
@@ -104,6 +85,7 @@ const Home = ({ route, navigation }) => {
   useEffect(() => {
     if (Data.Data) {
       setIsLoading(false);
+      console.log("Recipe data: ", Data.Data);
     }
   }, [Data]);
 
@@ -148,16 +130,29 @@ const Home = ({ route, navigation }) => {
                       Recommended For You
                     </Text>
                   </View>
-                  <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
-                    <FlatList
-                      data={Data.Data ? Data.Data.slice(0, 5) : ''}
-                      renderItem={renderItem}
-                      keyExtractor={item => item.id}
-                      extraData={selectedId}
-                      horizontal={true}
-                      showsHorizontalScrollIndicator={false}
-                    />
-                  </SafeAreaView>
+                  {
+                    Data.Data ?
+                      <Text style={{
+                        // textAlign: "center",
+                        color: '#C77E45',
+                        fontSize: 19,
+                        marginLeft: 17,
+                        fontFamily: 'LeagueSpartan-Regular',
+                      }}>
+                        Please check your connection
+                      </Text>
+                      :
+                      <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
+                        <FlatList
+                          data={Data.Data ? Data.Data.slice(0, 5) : ''}
+                          renderItem={renderItem}
+                          keyExtractor={item => item.id}
+                          extraData={selectedId}
+                          horizontal={true}
+                          showsHorizontalScrollIndicator={false}
+                        />
+                      </SafeAreaView>
+                  }
                   <View style={styles.headings}>
                     <Text
                       style={{
@@ -322,16 +317,29 @@ const Home = ({ route, navigation }) => {
                       New Recipes
                     </Text>
                   </View>
-                  <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
-                    <FlatList
-                      data={Data.Data ? Data.Data.slice(0, 5) : ''}
-                      renderItem={renderItem}
-                      keyExtractor={item => item.id}
-                      extraData={selectedId}
-                      horizontal={true}
-                      showsHorizontalScrollIndicator={false}
-                    />
-                  </SafeAreaView>
+                  {
+                    Data.Data ?
+                      <Text style={{
+                        // textAlign: "center",
+                        color: '#C77E45',
+                        fontSize: 19,
+                        marginLeft: 17,
+                        fontFamily: 'LeagueSpartan-Regular',
+                      }}>
+                        Please check your connection
+                      </Text>
+                      :
+                      <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
+                        <FlatList
+                          data={Data.Data ? Data.Data.slice(0, 5) : ''}
+                          renderItem={renderItem}
+                          keyExtractor={item => item.id}
+                          extraData={selectedId}
+                          horizontal={true}
+                          showsHorizontalScrollIndicator={false}
+                        />
+                      </SafeAreaView>
+                  }
                 </View>
 
                 {/*}

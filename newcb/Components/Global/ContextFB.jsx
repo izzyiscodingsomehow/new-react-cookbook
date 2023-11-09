@@ -8,11 +8,9 @@ const DataContext = createContext([]);
 
 const DataProvider = ({ children }) => {
 
-  let hasD = AsyncStorage.getItem('hasData');
   const [Data, setData] = useState();
   const categoriesRef = collection(db, 'categories');
   const [AsyncData, setAsyncData] = useState();
-  const [hasData, setHasData] = useState(hasD);
 
   // get data from firebase and map it to async state
   const ReadData = async () => {
@@ -33,7 +31,6 @@ const DataProvider = ({ children }) => {
     try {
       const jsonValue = JSON.stringify(receivedData);
       await AsyncStorage.setItem('newdata', jsonValue);
-      await AsyncStorage.setItem('hasData', "true");
       console.log('storedata');
 
       getData();
@@ -48,7 +45,7 @@ const DataProvider = ({ children }) => {
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('newdata');
-      if (jsonValue != null) {
+      if (jsonValue != null ) {
         console.log('if');
         const parsedvalue = JSON.parse(jsonValue);
         setData(parsedvalue);
@@ -74,18 +71,22 @@ const DataProvider = ({ children }) => {
 
   }, [])
 
-  const clearAll = async () => {
-    try {
-      await AsyncStorage.removeItem('newdata')
-    } catch (e) {
-      // clear error
-    }
-
-    console.log('Done.')
-  }
 
   return <DataContext.Provider value={{ Data }}>{children}</DataContext.Provider>;
 };
+
+export const clearAll = async () => {
+  try {
+    await AsyncStorage.removeItem('newdata');
+    console.log("cleared async!");
+
+  } catch (e) {
+    // clear error
+    console.log("did not clear async");
+  }
+
+  console.log('Done.')
+}
 
 export const useData = () => useContext(DataContext);
 export { DataContext, DataProvider };

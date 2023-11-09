@@ -59,6 +59,7 @@ const Login = ({ navigation }) => {
         // operation (e.g. sign in) is in progress already
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // play services not available or outdated
+        
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // some other error happened
       } else {

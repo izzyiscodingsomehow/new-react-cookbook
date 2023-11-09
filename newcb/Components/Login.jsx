@@ -8,13 +8,14 @@ import {
 
 import { useEffect, useContext } from 'react';
 import { UserContext } from './Global/ContextAPI';
+import { DataContext } from './Global/ContextFB';
 /* TO DO
 1- Use Context API for object */
 const color = '#E89452';
 
 const Login = ({ navigation }) => {
   const { user, setUser } = useContext(UserContext);
-  const { LoggedIn, setLoggedIn } = useContext(UserContext);
+  const { LoggedIn, setLoggedIn } = useContext(DataContext);
   // Configure Google Sign In
   useEffect(() => {
     GoogleSignin.configure({

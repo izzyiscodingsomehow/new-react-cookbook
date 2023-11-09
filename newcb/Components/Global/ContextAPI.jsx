@@ -5,11 +5,10 @@ const UserContext = createContext([]);
 
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
-  const [LoggedIn, setLoggedIn] = useState(false);
   
   // Store in Context API
   return (
-    <UserContext.Provider value={{ user, setUser, LoggedIn, setLoggedIn }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, setUser, }}>{children}</UserContext.Provider>
   );
 };
 export const useData = () => useContext(UserContext);

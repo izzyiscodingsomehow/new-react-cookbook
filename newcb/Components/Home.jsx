@@ -54,7 +54,7 @@ const Home = ({ route, navigation }) => {
   const [selectedId, setSelectedId] = useState();
 
   const Data = useContext(DataContext);
-  const { LoggedIn } = useContext(UserContext);
+  const { LoggedIn } = useContext(DataContext);
   let topRecipes;
 
 
@@ -85,12 +85,12 @@ const Home = ({ route, navigation }) => {
   useEffect(() => {
     if (Data.Data) {
       setIsLoading(false);
-      console.log("Recipe data: ", Data.Data);
+      console.log("Recipe data: ");
     }
   }, [Data]);
 
   return (
-    <NativeBaseProvider style={{ backgroundColor: color }}>
+    <NativeBaseProvider style={{backgroundColor: color}}>
       <ImageBackground
         source={require('../imgs/mainBg.jpg')}
         resizeMode="cover"
@@ -112,7 +112,7 @@ const Home = ({ route, navigation }) => {
                     imageLoadingColor="grey"
                     circleLoop={true}
                     resizeMode={'cover'}
-                    dotStyle={{ width: 11, height: 11, borderRadius: 10 }}
+                    dotStyle={{width: 11, height: 11, borderRadius: 10}}
                     disableOnPress={true}
                     autoplay={true}></SliderBox>
                 </View>
@@ -130,29 +130,29 @@ const Home = ({ route, navigation }) => {
                       Recommended For You
                     </Text>
                   </View>
-                  {
-                    Data.Data ?
-                      <Text style={{
+                  {Data.Data ? (
+                    <SafeAreaView style={{marginLeft: 15, marginTop: 10}}>
+                      <FlatList
+                        data={Data.Data ? Data.Data.slice(0, 5) : ''}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        extraData={selectedId}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                      />
+                    </SafeAreaView>
+                  ) : (
+                    <Text
+                      style={{
                         // textAlign: "center",
                         color: '#C77E45',
                         fontSize: 19,
                         marginLeft: 17,
                         fontFamily: 'LeagueSpartan-Regular',
                       }}>
-                        Please check your connection
-                      </Text>
-                      :
-                      <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
-                        <FlatList
-                          data={Data.Data ? Data.Data.slice(0, 5) : ''}
-                          renderItem={renderItem}
-                          keyExtractor={item => item.id}
-                          extraData={selectedId}
-                          horizontal={true}
-                          showsHorizontalScrollIndicator={false}
-                        />
-                      </SafeAreaView>
-                  }
+                      Please check your connection
+                    </Text>
+                  )}
                   <View style={styles.headings}>
                     <Text
                       style={{
@@ -170,7 +170,7 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: { name: 'Break Fast' },
+                          params: {name: 'Break Fast'},
                         })
                       }>
                       <Image
@@ -193,14 +193,14 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: { name: 'Lunch' },
+                          params: {name: 'Lunch'},
                         })
                       }>
                       <Image
                         source={require('.././imgs/lunch.jpg')}
                         width={100}
                         height={100}
-                        style={{ borderWidth: 1 }}
+                        style={{borderWidth: 1}}
                       />
                       <Text
                         style={{
@@ -217,7 +217,7 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: { name: 'Dinner' },
+                          params: {name: 'Dinner'},
                         })
                       }>
                       <Image
@@ -240,14 +240,14 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: { name: 'Desserts' },
+                          params: {name: 'Desserts'},
                         })
                       }>
                       <Image
                         source={require('.././imgs/dessert.jpg')}
                         width={100}
                         height={100}
-                        style={{ borderWidth: 1 }}
+                        style={{borderWidth: 1}}
                       />
                       <Text
                         style={{
@@ -264,14 +264,14 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: { name: 'Fast Food' },
+                          params: {name: 'Fast Food'},
                         })
                       }>
                       <Image
                         source={require('.././imgs/fastFood.jpg')}
                         width={100}
                         height={100}
-                        style={{ borderWidth: 1 }}
+                        style={{borderWidth: 1}}
                       />
                       <Text
                         style={{
@@ -288,7 +288,7 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: { name: 'Appetizer' },
+                          params: {name: 'Appetizer'},
                         })
                       }>
                       <Image
@@ -317,29 +317,29 @@ const Home = ({ route, navigation }) => {
                       New Recipes
                     </Text>
                   </View>
-                  {
-                    Data.Data ?
-                      <Text style={{
-                        // textAlign: "center",
-                        color: '#C77E45',
-                        fontSize: 19,
-                        marginLeft: 17,
-                        fontFamily: 'LeagueSpartan-Regular',
-                      }}>
-                        Please check your connection
-                      </Text>
-                      :
-                      <SafeAreaView style={{ marginLeft: 15, marginTop: 10 }}>
-                        <FlatList
-                          data={Data.Data ? Data.Data.slice(0, 5) : ''}
-                          renderItem={renderItem}
-                          keyExtractor={item => item.id}
-                          extraData={selectedId}
-                          horizontal={true}
-                          showsHorizontalScrollIndicator={false}
-                        />
-                      </SafeAreaView>
-                  }
+                  {Data.Data ? (
+                    <SafeAreaView style={{marginLeft: 15, marginTop: 10}}>
+                    <FlatList
+                      data={Data.Data ? Data.Data.slice(0, 5) : ''}
+                      renderItem={renderItem}
+                      keyExtractor={item => item.id}
+                      extraData={selectedId}
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                    />
+                  </SafeAreaView>
+                  ) : (
+                    <Text
+                    style={{
+                      // textAlign: "center",
+                      color: '#C77E45',
+                      fontSize: 19,
+                      marginLeft: 17,
+                      fontFamily: 'LeagueSpartan-Regular',
+                    }}>
+                    Please check your connection
+                  </Text>
+                  )}
                 </View>
 
                 {/*}

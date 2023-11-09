@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { UserContext } from '../Global/ContextAPI';
 import { useContext } from "react";
+import { DataContext } from "../Global/ContextFB";
 import ProfileHeader, { Profileheader } from './ProfileHeader.jsx';
 const color = "#E89452";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,12 +16,12 @@ import { clearAll } from "../Global/ContextFB.jsx";
 const Profile = ({ navigation }) => {
 
   const { user, setUser } = useContext(UserContext);
-  const { LoggedIn, setLoggedIn } = useContext(UserContext);
+  const { LoggedIn, setLoggedIn } = useContext(DataContext);
 
   const signOut = async () => {
 
     try {
-      setLoggedIn(false)
+      setLoggedIn(false);
       if (user) {
         setUser(null);
         await GoogleSignin.signOut();

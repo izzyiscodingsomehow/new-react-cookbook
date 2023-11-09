@@ -3,6 +3,7 @@ import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { UserContext } from './ContextAPI';
 
 const DataContext = createContext([]);
 
@@ -11,6 +12,7 @@ const DataProvider = ({ children }) => {
   const [Data, setData] = useState();
   const categoriesRef = collection(db, 'categories');
   const [AsyncData, setAsyncData] = useState();
+  const [LoggedIn, setLoggedIn] = useState(false);
 
   // get data from firebase and map it to async state
   const ReadData = async () => {
@@ -18,7 +20,7 @@ const DataProvider = ({ children }) => {
       const data = await getDocs(categoriesRef);
       const receivedData = data.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       setAsyncData(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-      await clearAll();
+      //await clearAll();
 
       await storeData(receivedData);
     } catch (error) {
@@ -46,10 +48,10 @@ const DataProvider = ({ children }) => {
     try {
       const jsonValue = await AsyncStorage.getItem('newdata');
       if (jsonValue != null ) {
-        console.log('if');
+        //console.log('if');
         const parsedvalue = JSON.parse(jsonValue);
         setData(parsedvalue);
-        console.log('if end');
+        //console.log('if end');
         // ReadData();
       }
       else {
@@ -65,14 +67,11 @@ const DataProvider = ({ children }) => {
   //       again to fetch the data, need to check further more
   // bilal's code
   useEffect(() => {
-
     getData();
+  }, [LoggedIn,clearAll]);
 
 
-  }, [])
-
-
-  return <DataContext.Provider value={{ Data }}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={{ Data, LoggedIn, setLoggedIn }}>{children}</DataContext.Provider>;
 };
 
 export const clearAll = async () => {

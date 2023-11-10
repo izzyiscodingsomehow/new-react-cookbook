@@ -174,7 +174,7 @@ const Home = ({ route, navigation }) => {
                         })
                       }>
                       <Image
-                        source={require('.././imgs/breakfast.jpg')}
+                        source={require('.././imgs/breakfast.png')}
                         width={100}
                         height={100}
                       />
@@ -197,7 +197,7 @@ const Home = ({ route, navigation }) => {
                         })
                       }>
                       <Image
-                        source={require('.././imgs/lunch.jpg')}
+                        source={require('.././imgs/lunch.png')}
                         width={100}
                         height={100}
                         style={{borderWidth: 1}}
@@ -221,7 +221,7 @@ const Home = ({ route, navigation }) => {
                         })
                       }>
                       <Image
-                        source={require('.././imgs/dinner.jpg')}
+                        source={require('.././imgs/dinner.png')}
                         width={100}
                         height={100}
                       />
@@ -244,7 +244,7 @@ const Home = ({ route, navigation }) => {
                         })
                       }>
                       <Image
-                        source={require('.././imgs/dessert.jpg')}
+                        source={require('.././imgs/dessert.png')}
                         width={100}
                         height={100}
                         style={{borderWidth: 1}}
@@ -268,7 +268,7 @@ const Home = ({ route, navigation }) => {
                         })
                       }>
                       <Image
-                        source={require('.././imgs/fastFood.jpg')}
+                        source={require('.././imgs/fastFood.png')}
                         width={100}
                         height={100}
                         style={{borderWidth: 1}}
@@ -292,7 +292,7 @@ const Home = ({ route, navigation }) => {
                         })
                       }>
                       <Image
-                        source={require('.././imgs/appetizers.jpg')}
+                        source={require('.././imgs/appetizers.png')}
                         width={100}
                         height={100}
                       />

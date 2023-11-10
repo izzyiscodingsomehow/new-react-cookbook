@@ -11,6 +11,12 @@ const Recipe = ({ navigation, route }) => {
 
   const Data = useContext(DataContext);
 
+  const isValidURL = urlString => {
+    let urlPattern = new RegExp(/https:\/\//); // fragment locator
+
+    return !!urlPattern.test(urlString);
+  }
+
   return (
     <NativeBaseProvider>
       <ScrollView>
@@ -45,6 +51,7 @@ const Recipe = ({ navigation, route }) => {
                 </Container> */}
                   <Container style={styles.ingredientsWrapper}>
                     {e.Ingredient.map((s, i) => {
+                      console.log(e.VideoLink)
                       return <>
                         <View style={styles.ingredientRow} key={i}>
 
@@ -74,31 +81,34 @@ const Recipe = ({ navigation, route }) => {
                   <Text style={styles.makingstyle}>{procedure}</Text>
                 </Container>
 
-                <Container style={styles.refVid}>
-                  <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
-                    Video Player
-                  </Text>
-                  <View style={{ position: "relative" }} >
-                    <Button style={{ backgroundColor: color, borderRadius: 30 }} onPress={() =>
-                      navigation.navigate("SubCategoryNav", {
-                        screen: "Youtube",
-                        params: { url: e.VideoLink },
-                      })
-                    }>
-                      {/* <Text style={{ color: 'white', textAlign: 'center', marginBottom: 5, fontSize: 18, fontFamily: "LeagueSpartan-SemiBold" }}>Play</Text> */}
-                      <Image
-                        source={require("../../imgs/playIcon.jpg")}
-                        style={{
-                          height: 20,
-                          width: 20,
+                {
+                  isValidURL(e.VideoLink) ?
+                    <Container style={styles.refVid}>
+                      <Text style={{ fontSize: 24, color: 'black', fontFamily: "LeagueSpartan-SemiBold" }}>
+                        Video Player
+                      </Text>
+                      <View style={{ position: "relative" }} >
+                        <Button style={{ backgroundColor: color, borderRadius: 30 }} onPress={() =>
+                          navigation.navigate("SubCategoryNav", {
+                            screen: "Youtube",
+                            params: { url: e.VideoLink },
+                          })
+                        }>
+                          <Image
+                            source={require("../../imgs/playIcon.jpg")}
+                            style={{
+                              height: 20,
+                              width: 20,
 
-                        }}
-                      />
-                    </Button>
-                    {/* <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} /> */}
-                  </View>
+                            }}
+                          />
+                        </Button>
+                        {/* <YoutubePlayer width={340} height={300} play={false} videoId={e.VideoLink} /> */}
+                      </View>
 
-                </Container>
+
+                    </Container>
+                    : null}
 
               </Container>
             );

@@ -1,10 +1,12 @@
-import { Image, ImageBackground, StyleSheet, Text, View,ScrollView } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View, ScrollView } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import { Button } from "native-base";
-import { abouttext } from "../../Texts/Texts.js";
+import Markdown from '@ronradtke/react-native-markdown-display';
+import { abouttext} from "../../Texts/Texts.js";
 const color = "#E89452";
 
 const About = ({ navigation }) => {
+  let bodyText = abouttext.replace(/\\n/g, '\n');
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -17,7 +19,14 @@ const About = ({ navigation }) => {
             <Text style={styles.HeadingText}>
               About
             </Text>
-            <Text style={styles.bodyText}>{abouttext}</Text>
+            <View style={styles.bodyText}>
+              <Markdown
+                style={{
+                  body: { fontSize: 18, color: "black", fontFamily: "LeagueSpartan-Regular" }
+                }}>
+                {bodyText}
+              </Markdown>
+            </View>
           </View>
         </ScrollView>
       </ImageBackground>
@@ -36,7 +45,7 @@ const styles = StyleSheet.create({
   HeadingText: {
     color: "black",
     fontSize: 32,
-    fontFamily:"LeagueSpartan-SemiBold",
+    fontFamily: "LeagueSpartan-SemiBold",
     textAlign: "center",
     paddingHorizontal: 30,
   },
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     color: "black",
     fontSize: 18,
-    fontFamily:"LeagueSpartan-SemiBold",
+    fontFamily: "LeagueSpartan-SemiBold",
     textAlign: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
   },

@@ -20,7 +20,7 @@ import {useNetInfo} from '@react-native-community/netinfo';
 import RNRestart from 'react-native-restart';
 
 
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 /* TO DO
 1- Use Context API for object */
@@ -50,20 +50,21 @@ const Login = ({navigation}) => {
     }
   }, [user]);
   // Send Data to Firebase
-  const sendDatatoFirebase = async (userInfo) => {
-    const usersRef = collection(db, 'users');
-    const docRef = await addDoc(usersRef, {
-      name: userInfo.user.name,
-      email: userInfo.user.email,
-    });
-  };
+  // const sendDatatoFirebase = async (userInfo) => {
+  //   const usersRef = collection(db, 'users');
+  //   const docRef = await addDoc(usersRef, {
+  //     name: userInfo.user.name,
+  //     email: userInfo.user.email,
+  //   });
+  //   console.log('Document written with ID: ', docRef.id);
+  // };
   // Get Current User Info
   getCurrentUserInfo = async () => {
     try {
       const userInfo = await GoogleSignin.signInSilently();
       if (userInfo) {
         setUser(userInfo);
-        sendDatatoFirebase(userInfo);
+        //await sendDatatoFirebase(userInfo);
       }
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_REQUIRED) {

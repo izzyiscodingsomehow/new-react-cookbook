@@ -1,21 +1,36 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { NativeBaseProvider } from 'native-base';
-import { Button } from 'native-base';
+import {
+  Alert,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {NativeBaseProvider} from 'native-base';
+import {Button} from 'native-base';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-import { useEffect, useContext } from 'react';
-import { UserContext } from './Global/ContextAPI';
-import { DataContext } from './Global/ContextFB';
+import {useEffect, useContext, useState} from 'react';
+import {UserContext} from './Global/ContextAPI';
+import {DataContext} from './Global/ContextFB';
+import {useNetInfo} from '@react-native-community/netinfo';
+import RNRestart from 'react-native-restart';
+
 /* TO DO
 1- Use Context API for object */
 const color = '#E89452';
 
-const Login = ({ navigation }) => {
-  const { user, setUser } = useContext(UserContext);
-  const { LoggedIn, setLoggedIn } = useContext(DataContext);
+const Login = ({navigation}) => {
+  // Check Internet Connection
+  const {isConnected} = useNetInfo();
+  // Context API
+  const {user, setUser} = useContext(UserContext);
+  const {LoggedIn, setLoggedIn} = useContext(DataContext);
+  const {hasData} = useContext(DataContext);
+  const [noConnLoad, setNoConnLoad] = useState(true);
   // Configure Google Sign In
   useEffect(() => {
     GoogleSignin.configure({
@@ -47,6 +62,20 @@ const Login = ({ navigation }) => {
       }
     }
   };
+  useEffect(() => {
+      if (hasData && isConnected) {
+      }
+      else if (!hasData && isConnected===false) {
+        Alert.alert(
+          'No Internet!',
+          'This App requires an internet connection on first launch.', [
+            {
+              text: 'Reload App',
+              onPress: () => RNRestart.restart(),
+            },
+          ]);
+      }
+  }, [hasData, isConnected]);
   // Sign In Function
   const signIn = async () => {
     try {
@@ -60,7 +89,6 @@ const Login = ({ navigation }) => {
         // operation (e.g. sign in) is in progress already
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // play services not available or outdated
-        
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // some other error happened
       } else {
@@ -68,6 +96,7 @@ const Login = ({ navigation }) => {
       }
     }
   };
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -95,9 +124,9 @@ const Login = ({ navigation }) => {
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/gmail.jpg')}
-                style={{ height: 23, width: 22, marginRight: 15 }}
+                style={{height: 23, width: 22, marginRight: 15}}
               />
-              <Text style={{ color: 'white', width: 140 }}>
+              <Text style={{color: 'white', width: 140}}>
                 Continue with Gmail
               </Text>
             </View>
@@ -116,22 +145,25 @@ const Login = ({ navigation }) => {
 
           <Button
             style={styles.ButtonPropGuest}
-            onPress={() => { navigation.navigate('HomeNav'); setLoggedIn(true); }}>
+            onPress={() => {
+              navigation.navigate('HomeNav');
+              setLoggedIn(true);
+            }}>
             <View style={styles.imagetext}>
               <Image
                 source={require('../imgs/guest.jpg')}
-                style={{ height: 25, width: 26, marginRight: 15, marginLeft: 5 }}
+                style={{height: 25, width: 26, marginRight: 15, marginLeft: 5}}
               />
-              <Text style={{ color: 'black', fontWeight: 'bold', width: 160 }}>
+              <Text style={{color: 'black', fontWeight: 'bold', width: 160}}>
                 Continue as Guest
               </Text>
             </View>
           </Button>
           <View style={styles.Footer}>
-            <Text style={{ fontWeight: 'bold', marginRight: 5 }}>From</Text>
+            <Text style={{fontWeight: 'bold', marginRight: 5}}>From</Text>
             <Image
               source={require('../imgs/undefinedlogo.jpg')}
-              style={{ height: 20, width: 17 }}
+              style={{height: 20, width: 17}}
             />
           </View>
         </View>

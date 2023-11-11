@@ -4,16 +4,16 @@ import { collection, getDocs } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { UserContext } from './ContextAPI';
-
+import { useNetInfo } from "@react-native-community/netinfo";
 const DataContext = createContext([]);
 
 const DataProvider = ({ children }) => {
-
+  const { type, isConnected } = useNetInfo();
   const [Data, setData] = useState();
   const categoriesRef = collection(db, 'categories');
   const [AsyncData, setAsyncData] = useState();
   const [LoggedIn, setLoggedIn] = useState(false);
-
+  const [hasData, setHasData] = useState(false);
   // get data from firebase and map it to async state
   const ReadData = async () => {
     try {
@@ -46,17 +46,23 @@ const DataProvider = ({ children }) => {
   // get data from async storage
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('newdata');
-      if (jsonValue != null ) {
-        //console.log('if');
-        const parsedvalue = JSON.parse(jsonValue);
-        setData(parsedvalue);
-        //console.log('if end');
-        // ReadData();
-      }
-      else {
-        console.log('else');
-        ReadData();
+      if(!hasData){
+        const jsonValue = await AsyncStorage.getItem('newdata');
+        if (jsonValue != null ) {
+          //console.log('if');
+          const parsedvalue = JSON.parse(jsonValue);
+          setData(parsedvalue);
+          setHasData(true);
+          //console.log('if end');
+          // ReadData();
+        }
+        else {
+          console.log('else');
+          setHasData(false);
+          if(isConnected){
+            ReadData();
+          }
+        }
       }
     } catch (e) {
       // error reading value
@@ -68,10 +74,10 @@ const DataProvider = ({ children }) => {
   // bilal's code
   useEffect(() => {
     getData();
-  }, [LoggedIn,clearAll]);
+  }, [LoggedIn,isConnected,clearAll]);
 
 
-  return <DataContext.Provider value={{ Data, LoggedIn, setLoggedIn }}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={{ Data, LoggedIn, setLoggedIn,hasData }}>{children}</DataContext.Provider>;
 };
 
 export const clearAll = async () => {

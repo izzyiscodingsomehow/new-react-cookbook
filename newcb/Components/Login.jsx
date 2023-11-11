@@ -68,7 +68,7 @@ const Login = ({navigation}) => {
       else if (!hasData && isConnected===false) {
         Alert.alert(
           'No Internet!',
-          'This App requires an internet connection on first launch.', [
+          'The app requires an internet connection to get data.', [
             {
               text: 'Reload App',
               onPress: () => RNRestart.restart(),

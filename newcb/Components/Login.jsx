@@ -18,8 +18,6 @@ import {UserContext} from './Global/ContextAPI';
 import {DataContext} from './Global/ContextFB';
 import {useNetInfo} from '@react-native-community/netinfo';
 import RNRestart from 'react-native-restart';
-
-
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 /* TO DO

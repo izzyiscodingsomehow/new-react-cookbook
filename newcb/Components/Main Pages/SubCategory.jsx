@@ -15,7 +15,12 @@ import { TouchableOpacity } from "react-native";
 const color = "#E89452";
 
 const SubCat = ({ navigation, route }) => {
-
+  
+  let resultString = route.params.name.replace(/\s+/g, '');
+  if (resultString.endsWith('t')) {
+    resultString += 's';
+  }
+  navigation.setOptions({ title: resultString });
   const Data = useContext(DataContext);
   const [ser, setSer] = useState("");
 

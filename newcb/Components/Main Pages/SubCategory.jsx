@@ -17,7 +17,7 @@ const color = "#E89452";
 const SubCat = ({ navigation, route }) => {
   
   let resultString = route.params.name.replace(/\s+/g, '');
-  if (resultString.endsWith('t')) {
+  if (resultString === "Dessert") {
     resultString += 's';
   }
   navigation.setOptions({ title: resultString });

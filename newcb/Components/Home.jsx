@@ -240,7 +240,7 @@ const Home = ({ route, navigation }) => {
                       onPress={() =>
                         navigation.navigate('SubCategoryNav', {
                           screen: 'SubCategory',
-                          params: {name: 'Desserts'},
+                          params: {name: 'Dessert'},
                         })
                       }>
                       <Image

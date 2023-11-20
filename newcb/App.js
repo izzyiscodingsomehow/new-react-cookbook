@@ -179,7 +179,6 @@ function SubCategoryNav() {
         <Stack.Screen
           name="SubCategory"
           component={SubCat}
-          options={({ route }) => ({ title: route.params.name })}
         />
         <Stack.Screen
           name="Recipe"

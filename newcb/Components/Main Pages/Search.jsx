@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { NativeBaseProvider, TextField, Container } from "native-base";
 import Footer from "../Footer.jsx";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import { TouchableOpacity } from "react-native";
 import { DataContext } from "../Global/ContextFB";
 
@@ -18,6 +18,14 @@ const color = "#E89452";
 const Search = ({ navigation, route }) => {
   const Data = useContext(DataContext);
   const [ser, setSer] = useState("");
+
+  const filterData = useMemo(() => {
+
+    return Data.Data.filter((item) =>
+      item.RecipeName.toLowerCase().includes(ser.toLowerCase())
+    );
+
+  }, [Data.Data, ser]);
 
   return (
     <NativeBaseProvider>
@@ -46,7 +54,7 @@ const Search = ({ navigation, route }) => {
             />
             <View style={styles.ingredWrapper}>
               {ser ?
-                Data.Data.filter((item) => item.RecipeName.toLowerCase().includes(ser.toLowerCase())).map(
+                filterData.map(
                   (e) => {
                     return (
                       <Container key={e.id} w="40" style={styles.IngredCont}>

@@ -5,23 +5,17 @@ import {
   Text,
   View,
   ScrollView,
-  KeyboardAvoidingView
 } from "react-native";
-import { Container, NativeBaseProvider, HStack, Center, TextField } from "native-base";
+import { Container, NativeBaseProvider, HStack, Center,TextField } from "native-base";
 import { DataContext } from "../Global/ContextFB";
 import Footer from "../Footer.jsx";
-import { useContext, useState } from "react";
+import { useContext,useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 const color = "#E89452";
 
 const SubCat = ({ navigation, route }) => {
-  
-  let resultString = route.params.name.replace(/\s+/g, '');
-  if (resultString === "Dessert") {
-    resultString += 's';
-  }
-  navigation.setOptions({ title: resultString });
+
   const Data = useContext(DataContext);
   const [ser, setSer] = useState("");
 
@@ -34,7 +28,7 @@ const SubCat = ({ navigation, route }) => {
       >
         {/* Main Screen */}
         <ScrollView>
-          <View style={styles.searchField}>
+        <View style={styles.searchField}>
             {/*<Text>Want Something</Text>*/}
             <TextField
               required
@@ -49,11 +43,11 @@ const SubCat = ({ navigation, route }) => {
               borderColor={color}
               fontSize={21}
               styles={styles.searchBox}
-
+              
             />
             <View style={styles.searchButtonwrapper}>
               {ser ?
-                Data.Data.filter((item) => item.RecipeName.toLowerCase().includes(ser.toLowerCase)).map(
+                Data.Data.filter((item) => item.RecipeName.toLowerCase().includes(ser.toLowerCase())).map(
                   (e) => {
                     return (
                       <Container key={e.id} w="40" style={styles.IngredCont}>
@@ -104,12 +98,10 @@ const SubCat = ({ navigation, route }) => {
         </ScrollView>
 
         {/* Footer */}
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.footer}>
+        {ser ? <></> : 
+        <View style={styles.footer}>
           <Footer navigation={navigation} />
-        </KeyboardAvoidingView>
-
+        </View>}
       </ImageBackground>
     </NativeBaseProvider>
   );

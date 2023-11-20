@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ScrollView,
+  KeyboardAvoidingView
 } from "react-native";
 import { NativeBaseProvider, TextField, Container } from "native-base";
 import Footer from "../Footer.jsx";
@@ -35,7 +36,7 @@ const Search = ({ navigation, route }) => {
               color={color}
               placeholder={`Search Recipe`}
               placeholderTextColor={color}
-              onChangeText={(s) => setSer(s.toUpperCase())}
+              onChangeText={(s) => setSer(s)}
               value={ser}
               borderRadius="50"
               borderColor={color}
@@ -45,18 +46,12 @@ const Search = ({ navigation, route }) => {
             />
             <View style={styles.ingredWrapper}>
               {ser ?
-                Data.Data.filter((item) => item.RecipeName.toUpperCase().includes(ser)).map(
+                Data.Data.filter((item) => item.RecipeName.toLowerCase().includes(ser.toLowerCase())).map(
                   (e) => {
                     return (
                       <Container key={e.id} w="40" style={styles.IngredCont}>
                         <TouchableOpacity
                           onPress={() => navigation.navigate("SubCategoryNav", { screen: "Recipe", params: { name: e.RecipeName, id: e.id } })}>
-                          {/* <Container>
-                            <Image
-                              source={{ uri: `${e.ImageLink}` }}
-                              style={{ height: 90, width: 90, borderRadius: 50 }}
-                            />
-                          </Container> */}
                           <Container>
                             <Text style={styles.innerText}> {e.RecipeName} </Text>
                           </Container>
@@ -70,9 +65,15 @@ const Search = ({ navigation, route }) => {
             </View>
           </View>
         </ScrollView>
-        <View style={styles.footer}>
+        {/* <View style={styles.footer}> */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.footer}
+        >
+
           <Footer navigation={navigation} />
-        </View>
+        </KeyboardAvoidingView>
+        {/* </View> */}
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -149,6 +150,8 @@ const styles = StyleSheet.create({
   // Footer
   footer: {
     flexDirection: "row",
+    position: "absolute",
+    bottom: 0,
     alignItems: "center",
     justifyContent: "space-around",
     color: "white",

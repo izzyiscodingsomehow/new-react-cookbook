@@ -115,9 +115,6 @@ const Recipe = ({ navigation, route }) => {
           })}
         </ImageBackground>
       </ScrollView>
-      <View style={styles.footer}>
-        <Footer navigation={navigation} />
-      </View>
     </NativeBaseProvider>
   );
 };

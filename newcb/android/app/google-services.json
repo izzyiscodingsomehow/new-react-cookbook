@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "637405091641-egp2fonsmrhuflikrkafmvv3goc70gpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.undefinedtech.cookbook",
+            "certificate_hash": "fb44d572c81a25088192d183ea6848b0d2608d40"
+          }
+        },
+        {
           "client_id": "637405091641-ieplijd54tbla638jdv4a62o8phuqsru.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

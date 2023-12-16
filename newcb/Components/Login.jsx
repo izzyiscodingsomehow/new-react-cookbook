@@ -18,13 +18,15 @@ import {UserContext} from './Global/ContextAPI';
 import {DataContext} from './Global/ContextFB';
 import {useNetInfo} from '@react-native-community/netinfo';
 import RNRestart from 'react-native-restart';
-import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+
+import auth from '@react-native-firebase/auth';
 /* TO DO
 1- Use Context API for object */
 const color = '#E89452';
 
 const Login = ({navigation}) => {
+  
+  //Bye
   // Check Internet Connection
   const {isConnected} = useNetInfo();
   // Context API
@@ -61,8 +63,10 @@ const Login = ({navigation}) => {
     try {
       const userInfo = await GoogleSignin.signInSilently();
       if (userInfo) {
+        const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
         setUser(userInfo);
         //await sendDatatoFirebase(userInfo);
+        return auth().signInWithCredential(googleCredential);
       }
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_REQUIRED) {
@@ -71,6 +75,7 @@ const Login = ({navigation}) => {
         // some other error
       }
     }
+    // Sign-in the user with the credential
   };
   useEffect(() => {
       if (hasData && isConnected) {
@@ -92,6 +97,9 @@ const Login = ({navigation}) => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       setUser(userInfo);
+      const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
+      // Sign-in the user with the credential
+      return auth().signInWithCredential(googleCredential);
     } catch (error) {
       // user cancelled the login flow
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -105,7 +113,18 @@ const Login = ({navigation}) => {
         console.log(error);
       }
     }
+    
   };
+  // // Handle user state changes
+  // function onAuthStateChanged(user) {
+  //     navigation.navigate('HomeNav');
+  //     setLoggedIn(true);
+  // }
+
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
 
   return (
     <NativeBaseProvider>
